@@ -1,6 +1,15 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <div class="hello">
+      <h4>아이디</h4>
+      <input type="text"></input>
+      <h4>패스워드</h4>
+      <input type="password"></input>
+      <div>
+        <button @click="setData()">가입하기</button>
+      </div>
+    </div>
     <p>
       For guide and recipes on how to configure / customize this project,<br>
       check out the
@@ -33,12 +42,54 @@
   </div>
 </template>
 
+
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-@Component
-export default class HelloWorld extends Vue {
-  @Prop() private msg!: string;
-}
+  import { Component, Prop, Vue } from 'vue-property-decorator';
+  import firebase from 'firebase';
+
+// @Component
+// export default class HelloWorld extends Vue {
+//   @Prop() private msg!: string;
+//   message: string = 'Hello!'
+//   SignUp(): void {
+//     window.alert(this.message)
+//   }
+// }
+
+  const HelloWorld = Vue.extend({
+    data(){
+      return {
+        msg: 'Fucking'
+      }
+    },
+    methods:{
+      // `this` 때문에 리턴 타입에 어노테이션이 필요합니다.
+      SignUp():string {
+        return this.msg + ' world'
+      },
+      setData():void {
+        this.msg = this.SignUp();
+      }
+    }
+  });
+  export default HelloWorld;
+
+// var config = {
+//   apiKey: "AIzaSyBgwBKKnFovKtJJPUKwenS-AgQ59zwuhuk",
+//   authDomain: "nac-admin.firebaseapp.com",
+//   databaseURL: "https://nac-admin.firebaseio.com",
+//   projectId: "nac-admin",
+//   storageBucket: "nac-admin.appspot.com",
+//   messagingSenderId: "858334622417"
+// };
+// firebase.initializeApp(config)
+// /* eslint-disable no-new */
+// new Vue({
+//   el: '#app',
+//   router,
+//   template: '<App/>',
+//   components: { App }
+// })
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

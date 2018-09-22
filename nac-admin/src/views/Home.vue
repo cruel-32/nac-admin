@@ -9,14 +9,6 @@
 import { Component, Vue } from 'vue-property-decorator';
 import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 
-const aaaaa = function(abc='abc'){
-  new Promise((resolve,reject)=>{
-    abc+='def';
-  });
-  alert(abc);
-}
-aaaaa();
-
 @Component({
   components: {
     HelloWorld,
