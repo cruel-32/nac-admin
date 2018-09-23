@@ -1,0 +1,24 @@
+{
+    "members" : {
+        "uid-cshee8508" : {
+            "name" : "최승희",
+            "birth" : "19850819",
+            "address" : "쌍문동",
+            "joinDate" : "20141111",
+            "phone" : "01050544147",
+            "participation" : [
+                "20180923"
+            ]
+        },
+        "uid-tladlwl13" : {
+            "name" : "심이지",
+            "birth" : "19931014",
+            "address" : "의정부 호원동",
+            "joinDate" : "20180101",
+            "phone" : "01093924918",
+            "participation" : [
+                "20180923"
+            ]
+        }
+    }
+}
