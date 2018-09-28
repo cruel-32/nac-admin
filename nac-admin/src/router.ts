@@ -11,25 +11,33 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      props : true,
       component: Home,
     },
     {
       path: '/management',
       name: 'management',
-      props : true,
-      component: () => import('./views/Management.vue'),
+      props : (route) => ({
+        params : route.params,
+        query : route.query
+      }),
+      component : () => import('./views/Management.vue'),
     },
     {
-      path: '/stat',
+      path: '/statistics',
       name: 'statistics',
-      props : true,
+      props: (route) => ({
+        params : route.params,
+        query: route.query
+      }),
       component: () => import('./views/Statistics.vue'),
     },
     {
       path: '/member/:id',
       name: 'memberView',
-      props : true,
+      props: (route) => ({
+        params : route.params,
+        query : route.query
+      }),
       component: () => import('./views/MemberView.vue'),
     },
   ],

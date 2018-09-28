@@ -1,11 +1,10 @@
 <template>
   <div id="app">
-    <HeaderComp
+    <headerComp
       :account="account"
-      v-on:signInGoogle="signInGoogle"
-      v-on:signOut="signOut"
-    ></HeaderComp>
-    <router-view />
+      v-on:setAccount="setAccount"
+    ></headerComp>
+    <router-view :account="account"/>
   </div>
 </template>
 
@@ -14,40 +13,18 @@ import { Firebase } from './service/Firebase';
 import { Component, Prop, Vue, Model } from 'vue-property-decorator';
 
 //component
-import HeaderComp from './components/HeaderComp.vue';
+import headerComp from './components/headerComp.vue';
 
 @Component({
   components: {
-    HeaderComp
+    headerComp
   }
 })
 export default class App extends Vue {
-  firebase:any = new Firebase();
-  account:any = this.firebase.auth.currentUser;
-  constructor(){
-    super();
-    console.log('this ::::: ', this.account);
-    this.firebase.auth.onAuthStateChanged((user:any)=>{
-      console.log('onAuthStateChanged user ::::: ', user);
-      if (user) {
-        this.account = user;
-      } else {
-        this.account = this.firebase.auth.currentUser;
-      }
-    });
-  };
-  signInGoogle():void {
-    console.log('signInGoogle ::::: ', this.account);
-    this.firebase.auth.signInWithPopup(this.firebase.googleAuthProvider).then((res:any)=>{
-      console.log('signInWithPopup ::::: ', this.account);
-    })
-  };
-  signOut():void {
-    console.log('signOut ::::: ', this.account);
-    this.firebase.auth.signOut().then((res:any)=>{
-    console.log('signOut ::::: ', this.account);
-    });
-  };
+  account:any=null;
+  setAccount(acc:any){
+    this.account = acc;
+  }
 }
 </script>
 

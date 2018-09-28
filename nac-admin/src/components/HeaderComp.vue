@@ -11,21 +11,41 @@
       <button @click="signInGoogle()">구글아이디로 로그인하기</button>
     </div>
     <div id="nav">
-      <router-link :to="{ name: 'home', params: { account: account } }">Home</router-link> |
-      <router-link :to="{ name: 'management', params: { account: account } }">Management</router-link> |
-      <router-link :to="{ name: 'statistics', params: { account: account } }">Statistics</router-link> |
+      <router-link :to="{name : 'home', params:{testst:'testst'}, query:{tester:'testerAAA'}}">Home</router-link> |
+      <router-link :to="{name : 'management', params:{testst:'testst'}, query:{tester:'testerAAA'}}">Management</router-link> |
+      <router-link :to="{name : 'statistics', params:{testst:'testst'}, query:{tester:'testerAAA'}}">Statistics</router-link> |
+    </div>
+    <div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue, Emit } from 'vue-property-decorator';
+import { Firebase } from '../service/Firebase';
 
 @Component
-export default class HeaderComp extends Vue {
-  @Prop() account:any;
-  @Emit('signInGoogle') signInGoogle(){}
-  @Emit('signOut') signOut(){}
+export default class headerComp extends Vue {
+  @Prop() account: any;
+  @Emit('setAccount') setAccount(user:any){};
+  created(){
+    Firebase.auth.onAuthStateChanged((user:any)=>{
+      this.setAccount(user);
+    });
+  };
+  mounted(){
+    console.log('3 mounted this.account : ', this.account);
+  };
+  signInGoogle():void {
+    Firebase.auth.signInWithPopup(Firebase.googleAuthProvider).then((res:any)=>{
+      console.log('4 signInWithPopup ::::: ', this.account);
+    })
+  };
+  signOut():void {
+    Firebase.auth.signOut().then((user:any)=>{
+      console.log('5 signOut ::::: ', this.account);
+    });
+  };
 
 }
 </script>

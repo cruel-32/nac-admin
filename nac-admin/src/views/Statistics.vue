@@ -1,27 +1,24 @@
 <template>
   <div class="home">
     통계페이지
-    <button @click="signOut()">Prop 테스트</button>
+    <button @click="test()">Prop 테스트</button>
+    <h2>{{ account ? 'Statistics '+account.email : 'Statistics Logout'}}</h2>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { MemberApi } from '../service/MemberApi';
-import { Member } from '../model/member.model';
 
 @Component
 export default class Statistics extends Vue {
-  @Prop() account:any;
-  memberApi:any = MemberApi();
-  created(){
-    console.log("this.account : ", this.account);
-  }
-  signOut(){
-    // this.memberApi.signOut().then(()=>{
-    //   console.log('로그아웃');
-    // });
-    console.log('Prop : ', this.account);
+  @Prop() account: any;
+  @Prop() query: any;
+  @Prop() params: any;
+  test(){
+    console.log("account : ", this.account);
+    console.log("query : ", this.query);
+    console.log("params : ", this.params);
+    console.log("this : ", this);
   }
 }
 </script>

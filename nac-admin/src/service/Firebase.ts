@@ -13,7 +13,7 @@ const _actionCodeSettings:any = {
     minimumVersion: '12'
   }
 }
-const _config = {
+const config = {
   apiKey: 'AIzaSyBgwBKKnFovKtJJPUKwenS-AgQ59zwuhuk',
   authDomain: 'nac-admin.firebaseapp.com',
   databaseURL: 'https://nac-admin.firebaseio.com',
@@ -22,18 +22,16 @@ const _config = {
   messagingSenderId: '858334622417',
 };
 
-firebase.initializeApp(_config);
-const _database = firebase.database();
-const _auth = firebase.auth();
-const _googleAuthProvider:any = new firebase.auth.GoogleAuthProvider();
+firebase.initializeApp(config);
+const database = firebase.database();
+const auth = firebase.auth();
+const googleAuthProvider:any = new firebase.auth.GoogleAuthProvider();
 
-console.log("init fire base");
-
-export class Firebase {
-  fb:any = firebase;
-  fbui:any = firebaseui;
-  db:any = _database;
-  auth:any = _auth;
-  googleAuthProvider:any = _googleAuthProvider;
-  config:any = _config;
+export const Firebase = {
+  firebase,
+  firebaseui,
+  database,
+  auth,
+  googleAuthProvider,
+  config
 }
