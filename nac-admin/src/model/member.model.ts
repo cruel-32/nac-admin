@@ -1,8 +1,9 @@
-export default class Member {
+export class Member {
+    mail:string = "";
     name:string = '';
     birth:string = '';
     address:string = '';
-    joinDate:string = '20180923';
+    joinDate:string = '20180929';
     phone:number = 0;
     participation:[] = [];
     job:string = '';
