@@ -14,6 +14,15 @@ export default new Router({
       component: Home,
     },
     {
+      path: '/register',
+      name: 'register',
+      props : (route) => ({
+        params : route.params,
+        query : route.query
+      }),
+      component : () => import('./views/Register.vue'),
+    },
+    {
       path: '/management',
       name: 'management',
       props : (route) => ({
@@ -21,6 +30,15 @@ export default new Router({
         query : route.query
       }),
       component : () => import('./views/Management.vue'),
+    },
+    {
+      path: '/meetings',
+      name: 'meetings',
+      props: (route) => ({
+        params : route.params,
+        query: route.query
+      }),
+      component: () => import('./views/Meetings.vue'),
     },
     {
       path: '/statistics',

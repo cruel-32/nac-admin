@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    통계페이지
+    등록하기
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
-export default class Statistics extends Vue {
+export default class Register extends Vue {
   @Prop() account: any;
   @Prop() query: any;
   @Prop() params: any;

@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     멤버페이지
-    <button @click="signOut()">Prop 테스트</button>
   </div>
 </template>
 

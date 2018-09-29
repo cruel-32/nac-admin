@@ -11,9 +11,10 @@
       <button @click="signInGoogle()">구글아이디로 로그인하기</button>
     </div>
     <div id="nav">
-      <router-link :to="{name : 'home', params:{testst:'testst'}, query:{tester:'testerAAA'}}">Home</router-link> |
-      <router-link :to="{name : 'management', params:{testst:'testst'}, query:{tester:'testerAAA'}}">Management</router-link> |
-      <router-link :to="{name : 'statistics', params:{testst:'testst'}, query:{tester:'testerAAA'}}">Statistics</router-link> |
+      <router-link :to="{name : 'home'}">Home</router-link> |
+      <router-link :to="{name : 'management'}">Management</router-link> |
+      <router-link :to="{name : 'statistics'}">Statistics</router-link> |
+      <!-- , params:{testst:'testst'}, query:{tester:'testerAAA'}} -->
     </div>
     <div>
     </div>
@@ -33,17 +34,14 @@ export default class headerComp extends Vue {
       this.setAccount(user);
     });
   };
-  mounted(){
-    console.log('3 mounted this.account : ', this.account);
-  };
   signInGoogle():void {
     Firebase.auth.signInWithPopup(Firebase.googleAuthProvider).then((res:any)=>{
-      console.log('4 signInWithPopup ::::: ', this.account);
+      console.log('signInWithPopup ::::: ', res);
     })
   };
   signOut():void {
     Firebase.auth.signOut().then((user:any)=>{
-      console.log('5 signOut ::::: ', this.account);
+      console.log('signOut ::::: ', user);
     });
   };
 

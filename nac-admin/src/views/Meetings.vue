@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    통계페이지
+    모임
+    <button @click="historyBack()">뒤로가기</button>
+
   </div>
 </template>
 
@@ -8,10 +10,13 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
-export default class Statistics extends Vue {
+export default class Meetings extends Vue {
   @Prop() account: any;
   @Prop() query: any;
   @Prop() params: any;
+  historyBack(){
+    window.history.back();
+  }
 }
 </script>
 
