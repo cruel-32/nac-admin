@@ -1,18 +1,30 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <router-link to="/meetings" tag="div" class="menu">
+       <a>모임생성</a>
+    </router-link>
+    <router-link to="/register" tag="div" class="menu">
+       <a>회원등록</a>
+    </router-link>
+    <router-link to="/management" tag="div" class="menu">
+       <a>회원관리</a>
+    </router-link>
+    <router-link to="/statistics" tag="div" class="menu">
+       <a>통계보기</a>
+    </router-link>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
-@Component({
-  components: {
-    HelloWorld,
-  },
-})
-export default class Home extends Vue {}
+@Component
+export default class Home extends Vue {
+}
 </script>
+
+<style lang="scss">
+.home {
+  
+}
+</style>

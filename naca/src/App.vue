@@ -19,7 +19,7 @@
             <v-icon v-html="item.icon"></v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title v-text="item.title"></v-list-tile-title>
+              <router-link :to="{name : item.link}" class="menu">{{item.title}}</router-link>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
@@ -42,7 +42,9 @@
       <v-spacer></v-spacer>
     </v-toolbar>
     <v-content>
-      <HelloWorld/>
+      <v-container fluid>
+        <router-view></router-view>
+      </v-container>
     </v-content>
     <v-footer :fixed="fixed" app>
       <span>&copy; 2017</span>
@@ -51,7 +53,19 @@
 </template>
 
 <script>
+import { Firebase } from './service/Firebase';
+import HeaderComp from './components/HeaderComp.vue';
+import { Component, Vue} from 'vue-property-decorator';
+import Vuetify from 'vuetify'
 import HelloWorld from './components/HelloWorld'
+import colors from 'vuetify/es5/util/colors'
+Vue.use(Vuetify, {
+  theme: {
+    primary: colors.red.darken1,
+    secondary: colors.red.lighten4,
+    accent: colors.indigo.base
+  }
+})
 
 export default {
   name: 'App',
@@ -65,8 +79,22 @@ export default {
       fixed: false,
       items: [{
         icon: 'bubble_chart',
-        title: 'Inspire'
-      }],
+        title: '모임생성',
+        link:"meetings"
+      },{
+        icon: 'bubble_chart',
+        title: '회원등록',
+        link:"register"
+      },{
+        icon: 'bubble_chart',
+        title: '회원관리',
+        link:"management"
+      },{
+        icon: 'bubble_chart',
+        title: '통계보기',
+        link:"statistics"
+      }
+      ],
       miniVariant: false,
       title: 'Vuetify.js'
     }
