@@ -26,7 +26,7 @@ import { Component, Prop, Vue, Emit } from 'vue-property-decorator';
 import { Firebase } from '../service/Firebase';
 
 @Component
-export default class headerComp extends Vue {
+export default class HeaderComp extends Vue {
   @Prop() account: any;
   @Emit('setAccount') setAccount(user:any){};
   created(){

@@ -13,11 +13,11 @@ import { Firebase } from './service/Firebase';
 import { Component, Prop, Vue, Model } from 'vue-property-decorator';
 
 //component
-import headerComp from './components/headerComp.vue';
+import headerComp from './components/HeaderComp.vue';
 
 @Component({
   components: {
-    headerComp
+    HeaderComp
   }
 })
 export default class App extends Vue {
