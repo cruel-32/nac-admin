@@ -13,7 +13,7 @@ import { Firebase } from './service/Firebase';
 import { Component, Prop, Vue, Model } from 'vue-property-decorator';
 
 //component
-import headerComp from './components/HeaderComp.vue';
+import HeaderComp from './components/HeaderComp.vue';
 
 @Component({
   components: {
