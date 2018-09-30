@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app v-resize="onResize">
     <v-navigation-drawer
       persistent
       :mini-variant="miniVariant"
@@ -21,83 +21,108 @@
           <v-list-tile-content>
               <router-link :to="{name : item.link}" class="menu">{{item.title}}</router-link>
           </v-list-tile-content>
+          
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar
-      app
-      :clipped-left="clipped"
-    >
+
+    <v-toolbar app :clipped-left="clipped" dark>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <!-- <v-btn icon @click.stop="miniVariant = !miniVariant">
-        <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
-      </v-btn> -->
-      <!-- <v-btn icon @click.stop="clipped = !clipped">
-        <v-icon>web</v-icon>
-      </v-btn> -->
-      <!-- <v-btn icon @click.stop="fixed = !fixed">
-        <v-icon>web</v-icon>
-      </v-btn> -->
+      <router-link :to="{name : 'home'}">
+        <v-icon v-html="'home'"></v-icon>
+      </router-link>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
+      <!-- <v-list-title-sub-title>Login</v-list-title-sub-title> -->
+      
+      <HeaderComp :account="account" :windowSize="windowSize" v-on:setAccount="setAccount"></HeaderComp>
     </v-toolbar>
+
+
     <v-content>
-      <v-container fluid>
+      <v-container>
         <router-view></router-view>
       </v-container>
     </v-content>
+
     <v-footer :fixed="fixed" app>
       <span>&copy; 2017</span>
     </v-footer>
+
   </v-app>
 </template>
 
-<script>
+
+<script lang="ts">
 import { Firebase } from './service/Firebase';
-import HeaderComp from './components/HeaderComp.vue';
-import { Component, Vue} from 'vue-property-decorator';
+import { Component, Prop, Vue, Model } from 'vue-property-decorator';
 import Vuetify from 'vuetify'
-import HelloWorld from './components/HelloWorld'
-import colors from 'vuetify/es5/util/colors'
 Vue.use(Vuetify, {
   theme: {
-    primary: colors.red.darken1,
-    secondary: colors.red.lighten4,
-    accent: colors.indigo.base
+    primary: "#FF6D00",
+    secondary: "#e57373",
+    accent: "#9c27b0",
+    error: "#D50000",
+    warning: "#ffeb3b",
+    info: "#2196f3",
+    success: "#4caf50"
   }
 })
 
-export default {
-  name: 'App',
+//component
+import HeaderComp from './components/HeaderComp.vue';
+import HelloWorld from './components/HelloWorld.vue';
+
+
+@Component({
   components: {
-    HelloWorld
-  },
-  data () {
-    return {
-      clipped: true,
-      drawer: true,
-      fixed: false,
-      items: [{
-        icon: 'bubble_chart',
-        title: '모임생성',
-        link:"meetings"
-      },{
-        icon: 'bubble_chart',
-        title: '회원등록',
-        link:"register"
-      },{
-        icon: 'bubble_chart',
-        title: '회원관리',
-        link:"management"
-      },{
-        icon: 'bubble_chart',
-        title: '통계보기',
-        link:"statistics"
-      }
-      ],
-      miniVariant: false,
-      title: 'Vuetify.js'
-    }
+    HeaderComp,HelloWorld
+  }
+})
+export default class App extends Vue {
+  windowSize:any = {
+    x : 0,
+    y : 0
+  };
+  account:any=null;
+  clipped:boolean = true;
+  drawer:boolean = false;
+  fixed:boolean = false;
+  items:any = [{
+    icon: 'bubble_chart',
+    title: '모임생성',
+    link:"meetings"
+  },{
+    icon: 'bubble_chart',
+    title: '회원등록',
+    link:"register"
+  },{
+    icon: 'bubble_chart',
+    title: '회원관리',
+    link:"management"
+  },{
+    icon: 'bubble_chart',
+    title: '통계보기',
+    link:"statistics"
+  }
+  ];
+  miniVariant:boolean = false;
+  right:boolean = true;
+  rightDrawer:boolean = false;
+  title:string = '술없모 관리자';
+  mounted(){
+    this.onResize();
+  }
+  setAccount(acc:any){
+    this.account = acc;
+  }
+  onResize(){
+    this.windowSize = { x: window.innerWidth, y: window.innerHeight }
   }
 }
 </script>
+<style>
+.application a {
+  text-decoration: none;
+}
+</style>

@@ -1,22 +1,19 @@
 <template>
   <div class="hello">
-    <h1 class="title">
-      <router-link to="/">NACA</router-link>
-    </h1>
-    <h2>{{ account ? account.email : 'Logout'}}</h2>
-    <div class="user" v-if="account">
-      <button @click="signOut()">로그아웃</button>
+    <div class="user login" v-if="account && windowSize.x > 640">
+      <v-avatar
+        :tile="false"
+        :size="28"
+        color="grey lighten-4"
+      ><img :src="account.photoURL" alt="avatar">
+      </v-avatar>
+      &nbsp;-&nbsp;
+      <button @click="signOut()">Logout</button>
     </div>
     <div class="user" v-if="!account">
-      <button @click="signInGoogle()">구글아이디로 로그인하기</button>
-    </div>
-    <div id="nav">
-      <router-link :to="{name : 'home'}">Home</router-link> |
-      <router-link :to="{name : 'management'}">Management</router-link> |
-      <router-link :to="{name : 'statistics'}">Statistics</router-link> |
-      <!-- , params:{testst:'testst'}, query:{tester:'testerAAA'}} -->
-    </div>
-    <div>
+      <v-btn icon>
+        <v-icon @click="signInGoogle()">account_circle</v-icon>
+      </v-btn>
     </div>
   </div>
 </template>
@@ -27,24 +24,28 @@ import { Firebase } from '../service/Firebase';
 
 @Component
 export default class HeaderComp extends Vue {
+  @Prop() windowSize: any;
   @Prop() account: any;
-  @Emit('setAccount') setAccount(user:any){};
+  @Emit('setAccount') setAccount(user:any){}
   created(){
     Firebase.auth.onAuthStateChanged((user:any)=>{
-      this.setAccount(user);
+      if(user){
+        this.setAccount(user.providerData ? user.providerData[0] : user);
+      } else {
+        this.setAccount(null);
+      }
     });
-  };
+  }
   signInGoogle():void {
     Firebase.auth.signInWithPopup(Firebase.googleAuthProvider).then((res:any)=>{
       console.log('signInWithPopup ::::: ', res);
     })
-  };
+  }
   signOut():void {
     Firebase.auth.signOut().then((user:any)=>{
       console.log('signOut ::::: ', user);
     });
-  };
-
+  }
 }
 </script>
 
