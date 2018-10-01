@@ -1,50 +1,47 @@
 <template>
-  <div class="hello">
-    <div class="user login" v-if="account && windowSize.x > 640">
+  <v-toolbar app :clipped-left="true" dark>
+    <v-toolbar-side-icon @click.stop="toggleSideCompDrawer()"></v-toolbar-side-icon>
+    <router-link :to="{name : 'home'}">
+      <v-icon v-html="'home'"></v-icon>
+    </router-link>
+    <v-toolbar-title v-text="title"></v-toolbar-title>
+    <v-spacer></v-spacer>
+    <!-- <v-list-title-sub-title>Login</v-list-title-sub-title> -->
+    <div class="user login" v-if="currentUser">
       <v-avatar
         :tile="false"
-        :size="28"
+        :size="24"
         color="grey lighten-4"
-      ><img :src="account.photoURL" alt="avatar">
+      >
+        <v-btn icon :to="{name : 'account'}">
+          <img :src="currentUser.photoURL" :alt="currentUser.email">
+        </v-btn>
       </v-avatar>
-      &nbsp;-&nbsp;
-      <button @click="signOut()">Logout</button>
+      <v-btn class="logout hidden-xs-only" @click="signOut">로그아웃</v-btn>
     </div>
-    <div class="user" v-if="!account">
+    <div class="user" v-if="!currentUser">
       <v-btn icon>
         <v-icon @click="signInGoogle()">account_circle</v-icon>
       </v-btn>
     </div>
-  </div>
+  </v-toolbar>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue, Emit } from 'vue-property-decorator';
 import { Firebase } from '../service/Firebase';
 
-@Component
+@Component({})
 export default class HeaderComp extends Vue {
-  @Prop() windowSize: any;
-  @Prop() account: any;
-  @Emit('setAccount') setAccount(user:any){}
-  created(){
-    Firebase.auth.onAuthStateChanged((user:any)=>{
-      if(user){
-        this.setAccount(user.providerData ? user.providerData[0] : user);
-      } else {
-        this.setAccount(null);
-      }
-    });
-  }
-  signInGoogle():void {
-    Firebase.auth.signInWithPopup(Firebase.googleAuthProvider).then((res:any)=>{
-      console.log('signInWithPopup ::::: ', res);
-    })
-  }
-  signOut():void {
-    Firebase.auth.signOut().then((user:any)=>{
-      console.log('signOut ::::: ', user);
-    });
+  @Prop({default:{x:0,y:0}}) windowSize: any;
+  @Prop({default:null}) currentUser: any;
+  @Emit('signInGoogle') signInGoogle(user:any){}
+  @Emit('signOut') signOut(user:any){}
+  title:string = 'NACA';
+  toggleSideCompDrawer(){
+    if(this.$parent.$parent.$refs['sideComp']){
+      this.$parent.$parent.$refs['sideComp']['drawer'] = true;
+    }
   }
 }
 </script>

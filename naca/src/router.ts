@@ -14,6 +14,24 @@ export default new Router({
       component: Home,
     },
     {
+      path: '/account',
+      name: 'account',
+      props : (route) => ({
+        params : route.params,
+        query : route.query
+      }),
+      component : () => import('./views/Account.vue'),
+    },
+    {
+      path: '/register',
+      name: 'register',
+      props : (route) => ({
+        params : route.params,
+        query : route.query
+      }),
+      component : () => import('./views/Register.vue'),
+    },
+    {
       path: '/register',
       name: 'register',
       props : (route) => ({

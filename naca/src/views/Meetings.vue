@@ -11,11 +11,17 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class Meetings extends Vue {
-  @Prop() account: any;
+  @Prop({default:null}) windowSize: any;
+  @Prop({default:null}) currentUser: any;
   @Prop() query: any;
   @Prop() params: any;
   historyBack(){
     window.history.back();
+  }
+  created(){
+    console.log('currentUser : ', this.currentUser);
+    console.log('query : ', this.query);
+    console.log('params : ', this.params);
   }
 }
 </script>

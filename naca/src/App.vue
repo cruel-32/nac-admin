@@ -1,57 +1,32 @@
 <template>
   <v-app v-resize="onResize">
-    <v-navigation-drawer
-      persistent
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      v-model="drawer"
-      enable-resize-watcher
-      fixed
-      app
+    <SideComp
+      :currentUser="currentUser"
+      :windowSize="windowSize"
+      v-on:signInGoogle="signInGoogle"
+      v-on:signOut="signOut"
+      ref="sideComp"
     >
-      <v-list>
-        <v-list-tile
-          value="true"
-          v-for="(item, i) in items"
-          :key="i"
-        >
-          <v-list-tile-action>
-            <v-icon v-html="item.icon"></v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-              <router-link :to="{name : item.link}" class="menu">{{item.title}}</router-link>
-          </v-list-tile-content>
-          
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-
-    <v-toolbar app :clipped-left="clipped" dark>
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <router-link :to="{name : 'home'}">
-        <v-icon v-html="'home'"></v-icon>
-      </router-link>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
-      <v-spacer></v-spacer>
-      <!-- <v-list-title-sub-title>Login</v-list-title-sub-title> -->
-      
-      <HeaderComp :account="account" :windowSize="windowSize" v-on:setAccount="setAccount"></HeaderComp>
-    </v-toolbar>
-
-
+    </SideComp>
+    <HeaderComp
+      :currentUser="currentUser"
+      :windowSize="windowSize"
+      v-on:signInGoogle="signInGoogle"  
+      v-on:signOut="signOut"  
+    >
+    </HeaderComp>
     <v-content>
-      <v-container>
-        <router-view></router-view>
-      </v-container>
+      <router-view
+        :currentUser="currentUser">
+      </router-view>
     </v-content>
-
-    <v-footer :fixed="fixed" app>
-      <span>&copy; 2017</span>
-    </v-footer>
-
+    <FooterComp
+      :currentUser="currentUser"
+      :windowSize="windowSize"
+    >
+    </FooterComp>
   </v-app>
 </template>
-
 
 <script lang="ts">
 import { Firebase } from './service/Firebase';
@@ -71,12 +46,12 @@ Vue.use(Vuetify, {
 
 //component
 import HeaderComp from './components/HeaderComp.vue';
-import HelloWorld from './components/HelloWorld.vue';
-
+import FooterComp from './components/FooterComp.vue';
+import SideComp from './components/SideComp.vue';
 
 @Component({
   components: {
-    HeaderComp,HelloWorld
+    HeaderComp,FooterComp,SideComp,
   }
 })
 export default class App extends Vue {
@@ -84,45 +59,43 @@ export default class App extends Vue {
     x : 0,
     y : 0
   };
-  account:any=null;
-  clipped:boolean = true;
+  currentUser:any=null;
   drawer:boolean = false;
-  fixed:boolean = false;
-  items:any = [{
-    icon: 'bubble_chart',
-    title: '모임생성',
-    link:"meetings"
-  },{
-    icon: 'bubble_chart',
-    title: '회원등록',
-    link:"register"
-  },{
-    icon: 'bubble_chart',
-    title: '회원관리',
-    link:"management"
-  },{
-    icon: 'bubble_chart',
-    title: '통계보기',
-    link:"statistics"
-  }
-  ];
-  miniVariant:boolean = false;
-  right:boolean = true;
-  rightDrawer:boolean = false;
-  title:string = '술없모 관리자';
   mounted(){
     this.onResize();
   }
-  setAccount(acc:any){
-    this.account = acc;
+  setCurrentUser(acc:any){
+    this.currentUser = acc;
   }
   onResize(){
     this.windowSize = { x: window.innerWidth, y: window.innerHeight }
   }
+  created(){
+    Firebase.auth.onAuthStateChanged((user:any)=>{
+      if(user){
+        this.setCurrentUser(user.providerData ? user.providerData[0] : user);
+      } else {
+        this.setCurrentUser(null);
+      }
+    });
+  }
+  signInGoogle():void {
+    Firebase.auth.signInWithPopup(Firebase.googleAuthProvider).then((res:any)=>{
+      console.log('signInWithPopup ::::: ', res);
+    })
+  }
+  signOut():void {
+    Firebase.auth.signOut().then((user:any)=>{
+      console.log('signOut ::::: ', user);
+    });
+  }
+  goPage(link:string):void {
+    this.$router.push(link);
+  }
 }
 </script>
 <style>
-.application a {
-  text-decoration: none;
+.application {
+  font-family: 'Roboto', 'Noto Sans KR', sans-serif !important;
 }
 </style>
