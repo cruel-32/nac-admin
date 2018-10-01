@@ -17,7 +17,8 @@
     </HeaderComp>
     <v-content>
       <router-view
-        :currentUser="currentUser">
+      :currentUser="currentUser"
+      >
       </router-view>
     </v-content>
     <FooterComp
@@ -31,7 +32,7 @@
 <script lang="ts">
 import { Firebase } from './service/Firebase';
 import { Component, Prop, Vue, Model } from 'vue-property-decorator';
-import Vuetify from 'vuetify'
+import Vuetify from 'vuetify';
 Vue.use(Vuetify, {
   theme: {
     primary: "#FF6D00",
@@ -42,7 +43,11 @@ Vue.use(Vuetify, {
     info: "#2196f3",
     success: "#4caf50"
   }
-})
+});
+
+import moment from 'moment';
+import VueMomentJS from "vue-momentjs";
+Vue.use(VueMomentJS, moment);
 
 //component
 import HeaderComp from './components/HeaderComp.vue';
@@ -64,16 +69,17 @@ export default class App extends Vue {
   mounted(){
     this.onResize();
   }
-  setCurrentUser(acc:any){
-    this.currentUser = acc;
-  }
   onResize(){
     this.windowSize = { x: window.innerWidth, y: window.innerHeight }
+  }
+  setCurrentUser(acc:any){
+    this.currentUser = acc;
   }
   created(){
     Firebase.auth.onAuthStateChanged((user:any)=>{
       if(user){
-        this.setCurrentUser(user.providerData ? user.providerData[0] : user);
+        this.setCurrentUser(user);
+        // user.providerData ? user.providerData[0] : user);
       } else {
         this.setCurrentUser(null);
       }

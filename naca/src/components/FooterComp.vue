@@ -31,8 +31,8 @@ import { Component, Prop, Vue, Emit } from 'vue-property-decorator';
 
 @Component({})
 export default class FooterComp extends Vue {
-  @Prop({default:{x:0,y:0}}) windowSize: any;
-  @Prop({default:null}) currentUser: any;
+  @Prop() windowSize: any;
+  @Prop() currentUser: any;
   pageNum:number = 4;
   get pageColor() {
     switch (this.pageNum) {

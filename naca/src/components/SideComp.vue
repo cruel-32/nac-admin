@@ -13,9 +13,11 @@
     <v-btn icon @click="toggleDrawer()">
       <v-icon x-large>clear</v-icon>
     </v-btn>
-    <v-card-title dark class="py-5 d-flex">
+    <v-card-title dark class="pt-3 pb-3 d-flex">
       <div v-if="currentUser" style="text-align:center;">
-        <img class="draw-user" :src="currentUser.photoURL" alt="avatar">
+        <img class="draw-user" :src="currentUser.providerData[0].photoURL" alt="avatar">
+        <span class="d-block title" style="color:#fff;">{{currentUser.displayName}}</span>
+        <span class="d-block caption" style="color:#fff;">{{currentUser.email}}</span>
         <v-btn @click="signOut()" color="info">NACA에서 로그아웃</v-btn>
       </div>
       <div v-if="!currentUser" style="text-align:center;">
@@ -64,8 +66,8 @@ import { Firebase } from '../service/Firebase';
 
 @Component({})
 export default class SideComp extends Vue {
-  @Prop({default:{x:0,y:0}}) windowSize: any;
-  @Prop({default:null}) currentUser: any;
+  @Prop() windowSize: any;
+  @Prop() currentUser: any;
   @Emit('signInGoogle') signInGoogle(user:any){}
   @Emit('signOut') signOut(user:any){}
 
@@ -79,6 +81,9 @@ export default class SideComp extends Vue {
   ];
   toggleDrawer(){
     this.drawer = !this.drawer;
+  }
+  goPage(link:string){
+    this.$router.push(link);
   }
 }
 </script>

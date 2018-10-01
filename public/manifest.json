@@ -1,6 +1,6 @@
 {
-  "name": "nac-admin",
-  "short_name": "nac-admin",
+  "name": "naca",
+  "short_name": "naca",
   "icons": [
     {
       "src": "/img/icons/android-chrome-192x192.png",

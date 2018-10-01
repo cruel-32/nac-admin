@@ -11,13 +11,13 @@
  * See https://goo.gl/2aRDsh
  */
 
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.1/workbox-sw.js");
+importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.2/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.bd4f44cfb85f9b96bedf7fffbf6bbb66.js"
+  "/precache-manifest.3b3fdea806fcbb73e9760e5b3acd81d9.js"
 );
 
-workbox.core.setCacheNameDetails({prefix: "nac-admin"});
+workbox.core.setCacheNameDetails({prefix: "naca"});
 
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to

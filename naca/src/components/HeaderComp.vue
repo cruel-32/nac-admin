@@ -14,7 +14,7 @@
         color="grey lighten-4"
       >
         <v-btn icon :to="{name : 'account'}">
-          <img :src="currentUser.photoURL" :alt="currentUser.email">
+          <img :src="currentUser.providerData[0].photoURL" :alt="currentUser.email">
         </v-btn>
       </v-avatar>
       <v-btn class="logout hidden-xs-only" @click="signOut">로그아웃</v-btn>
@@ -31,10 +31,10 @@
 import { Component, Prop, Vue, Emit } from 'vue-property-decorator';
 import { Firebase } from '../service/Firebase';
 
-@Component({})
+@Component()
 export default class HeaderComp extends Vue {
-  @Prop({default:{x:0,y:0}}) windowSize: any;
-  @Prop({default:null}) currentUser: any;
+  @Prop() windowSize: any;
+  @Prop() currentUser: any;
   @Emit('signInGoogle') signInGoogle(user:any){}
   @Emit('signOut') signOut(user:any){}
   title:string = 'NACA';
