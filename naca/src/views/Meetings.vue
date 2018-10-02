@@ -254,12 +254,11 @@ export default class Meetings extends Vue {
         MeetingService.getIdToken(this.currentUser).then((auth:any)=>{
           if(this.isNew){
             console.log('생성');
-            MeetingService.createMeeting({
+            MeetingService.createMeeting(auth,{
               date : this.$moment(this.date).format('YYYYMMDD'),
               contents : this.selectedContents,
               title : this.title,
               place : this.place,
-              auth
             }).then((res:any)=>{
               console.log('createMeeting res : ', res);
               if(res){

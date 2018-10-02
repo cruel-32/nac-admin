@@ -6,8 +6,8 @@ export const MeetingService = Object.assign(DefaultApi,{
             print : `pretty`
         },params))
     },
-    createMeeting(params:any={}){
-        return DefaultApi.put(`meetings.json`, Object.assign({
+    createMeeting(auth:any,params:any={}){
+        return DefaultApi.put(`meetings.json?auth`+auth, Object.assign({
             print : `pretty`
         },params))
     }
