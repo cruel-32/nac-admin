@@ -32,6 +32,7 @@
 <script lang="ts">
 import { Firebase } from './service/Firebase';
 import { Component, Prop, Vue, Model } from 'vue-property-decorator';
+
 import Vuetify from 'vuetify';
 Vue.use(Vuetify, {
   theme: {
@@ -44,6 +45,9 @@ Vue.use(Vuetify, {
     success: "#4caf50"
   }
 });
+
+import VeeValidate, { Validator } from 'vee-validate';
+Vue.use(VeeValidate);
 
 import moment from 'moment';
 import VueMomentJS from "vue-momentjs";
@@ -68,6 +72,22 @@ export default class App extends Vue {
   drawer:boolean = false;
   mounted(){
     this.onResize();
+
+    this.$validator.localize('en', {
+      custom : {
+        title: {
+          required : (field:any) => `모임 ${field}을 적으세요`,
+          max: (field:any,count:number) => `${field}필드는 ${count} 자를 초과할 수 없습니다`
+        },
+        place: {
+          required : (field:any) => `모임 ${field}를 적으세요`,
+          max: (field:any,count:number) => `${field}필드는 ${count} 자를 초과할 수 없습니다`
+        },
+        date : {
+          required : (field:any) => `모임 ${field}를 선택하세요`
+        }
+      }
+    });
   }
   onResize(){
     this.windowSize = { x: window.innerWidth, y: window.innerHeight }

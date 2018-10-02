@@ -74,7 +74,7 @@ export default class SideComp extends Vue {
   drawer:boolean = false;
   miniVariant:boolean = false;
   items:any = [
-    { icon: 'date_range', iconClass: 'amber lighten-1 white--text', title: '모임생성', subtitle: '모임 생성과 삭제관리', link:"meetings"},
+    { icon: 'date_range', iconClass: 'amber lighten-1 white--text', title: '모임관리', subtitle: '모임 생성과 삭제관리', link:"meetings"},
     { icon: 'person_add', iconClass: 'amber lighten-1 white--text', title: '회원등록', subtitle: '신규 회원 등록', link:"register"},
     { icon: 'people', iconClass: 'amber lighten-1 white--text', title: '회원관리', subtitle: '회원목록과 기타 관리', link:"management"},
     { icon: 'insert_chart', iconClass: 'amber lighten-1 white--text', title: '통계보기', subtitle: '여러가지 통계 보기', link:"statistics"}

@@ -4,7 +4,7 @@
       <!-- <div class="my-card">
         <button class="cust-btn" @click="goPage('/meetings')">
           <v-icon color="amber">date_range</v-icon>
-          <span class="title d-block">모임생성</span>
+          <span class="title d-block">모임관리</span>
         </button>
       </div>
       <div class="my-card">
@@ -43,7 +43,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 @Component
 export default class Home extends Vue {
   items:any = [
-    {text:"모임생성", link:"/meetings", icon:"date_range", color:"amber" },
+    {text:"모임관리", link:"/meetings", icon:"date_range", color:"amber" },
     {text:"회원등록", link:"/register", icon:"person_add", color:"amber" },
     {text:"회원관리", link:"/management", icon:"people", color:"amber" },
     {text:"통계보기", link:"/statistics", icon:"insert_chart", color:"amber" },
