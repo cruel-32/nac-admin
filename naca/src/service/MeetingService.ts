@@ -5,5 +5,10 @@ export const MeetingService = Object.assign(DefaultApi,{
             orderByChild : `date`,
             print : `pretty`
         },params))
+    },
+    createMeeting(params:any={}){
+        return DefaultApi.put(`meetings.json`, Object.assign({
+            print : `pretty`
+        },params))
     }
 });

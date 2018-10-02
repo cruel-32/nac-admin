@@ -80,8 +80,11 @@ export default class App extends Vue {
           max: (field:any,count:number) => `${field}필드는 ${count} 자를 초과할 수 없습니다`
         },
         place: {
-          required : (field:any) => `모임 ${field}를 적으세요`,
-          max: (field:any,count:number) => `${field}필드는 ${count} 자를 초과할 수 없습니다`
+          required : (field:any) => `모임 ${field}를 선택하세요`,
+        },
+        contents: {
+          required : (field:any) => `모임 ${field}를 선택하세요`,
+          min : (field:any, count:number) => `모임 ${field}를 1개 이상 선택하세요`
         },
         date : {
           required : (field:any) => `모임 ${field}를 선택하세요`
@@ -120,8 +123,12 @@ export default class App extends Vue {
   }
 }
 </script>
-<style>
-.application {
+<style lang="scss">
+div.application {
   font-family: 'Roboto', 'Noto Sans KR', sans-serif !important;
+  &.theme--light {
+    background:#fff;
+  }
 }
+
 </style>

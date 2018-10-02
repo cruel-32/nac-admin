@@ -60,7 +60,7 @@ export default class Home extends Vue {
   display:table;
   table-layout:fixed;
   width:100%;
-  min-height:100%;
+  height: calc(100% - 100px);
   .cell {
     display:table-cell;
     text-align:center;

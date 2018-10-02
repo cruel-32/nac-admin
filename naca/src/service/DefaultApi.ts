@@ -7,7 +7,7 @@ const getIdToken = (currentUser:any)=>{
     return currentUser.getIdToken(true);
 };
 const put = (url:string, params={})=>{
-    return axios.put(`${baseURL}${url}`,{params})
+    return axios.put(`${baseURL}${url}`,params)
 };
 const get = (url:string, params:any={})=>{
     if(url.includes('.json')){
