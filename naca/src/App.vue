@@ -24,7 +24,7 @@
     >
     </HeaderComp>
     <v-content>
-      <router-view
+      <router-view v-scroll="onScroll"
       :currentUser="currentUser"
       >
       </router-view>
@@ -132,6 +132,9 @@ export default class App extends Vue {
   }
   goPage(link:string):void {
     this.$router.push(link);
+  }
+  onScroll(){
+    
   }
 }
 </script>

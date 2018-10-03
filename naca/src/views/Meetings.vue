@@ -95,16 +95,12 @@
                     </v-select>
                   </v-flex>
                   <v-flex xs12 sm6 md4>
-                    <v-menu
-                      :close-on-content-click="false"
+                    <v-dialog
+                      ref="dialog"
                       v-model="dateInput"
-                      :nudge-right="40"
-                      lazy
-                      transition="scale-transition"
-                      offset-y
+                      persistent
                       full-width
-                      max-width="290px"
-                      min-width="290px"
+                      width="290px"
                     >
                       <v-text-field
                         slot="activator"
@@ -126,7 +122,7 @@
                         :reactive="true"
                         :events="checkMeetingDay"
                       ></v-date-picker>
-                    </v-menu>
+                    </v-dialog>
                   </v-flex>
                 </v-layout>
               </v-container>
@@ -204,6 +200,7 @@ export default class Meetings extends Vue {
   }
 
   viewDialog:boolean = false;
+  viewDialogChild:boolean = false;
   title:string = '';
   Contents:string[] = Contents;
   selectedContents:string[] = [];
