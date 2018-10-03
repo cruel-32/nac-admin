@@ -1,5 +1,13 @@
 <template>
-  <v-app v-resize="onResize">
+  <v-app v-resize="onResize" app
+    v-touch="{
+      left: () => swipe('Left'),
+      right: () => swipe('Right'),
+      up: () => swipe('Up'),
+      down: () => swipe('Down')
+    }"
+  >
+    {{swipeDirection}}
     <SideComp
       :currentUser="currentUser"
       :windowSize="windowSize"
@@ -70,6 +78,7 @@ export default class App extends Vue {
   };
   currentUser:any=null;
   drawer:boolean = false;
+  swipeDirection:any = '';
   mounted(){
     this.onResize();
 
@@ -91,6 +100,9 @@ export default class App extends Vue {
         }
       }
     });
+  }
+  swipe (direction) {
+    this.swipeDirection = direction
   }
   onResize(){
     this.windowSize = { x: window.innerWidth, y: window.innerHeight }

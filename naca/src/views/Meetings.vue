@@ -116,7 +116,16 @@
                         required
                         readonly
                       ></v-text-field>
-                      <v-date-picker v-model="date" no-title @input="dateInput = false"></v-date-picker>
+                      <v-date-picker
+                        v-model="date"
+                        no-title
+                        @input="dateInput = false"
+                        ref="picker"
+                        event-color="green lighten-1"
+                        :picker-date.sync="pickerDate"
+                        :reactive="true"
+                        :events="checkMeetingDay"
+                      ></v-date-picker>
                     </v-menu>
                   </v-flex>
                 </v-layout>
@@ -128,6 +137,7 @@
               <v-btn color="blue darken-1" flat type="submit">
                 {{isNew ? 'Create' : 'Update'}}
               </v-btn>
+              <v-btn color="red darken-1" flat v-if="!isNew">Delete</v-btn>
             </v-card-actions>
         </v-card>
       </form>
@@ -165,21 +175,17 @@ export default class Meetings extends Vue {
   dateChanged(val:any){
     this.getMeetingsMonth(val);
   }
-  
+    
   @Watch('date')
   pickDay(pickDay:any){
-    if(this.dates){
-      const haveMeeting = this.dates.find((date:any)=>{
-        return date == pickDay
-      });
-      if(haveMeeting){
-        console.log('haveMeeting : ', haveMeeting);
-        this.isNew = false;
-      } else {
-        console.log('haveMeeting : ', haveMeeting);
-        this.viewDialog = true;
-        this.isNew = true;
-      }
+    const meetingAndKey = this.findMeetingAndKeyByDate(parseInt(this.$moment(pickDay).format('YYYYMMDD')));
+    this.isNew = true;
+    this.viewDialog = true;
+    if(meetingAndKey.meeting){
+      this.isNew = false;
+      this.selectedContents = meetingAndKey.meeting.contents
+      this.title = meetingAndKey.meeting.title
+      this.place = meetingAndKey.meeting.place
     }
   }
   get computedDateFormatted () {
@@ -202,14 +208,15 @@ export default class Meetings extends Vue {
   Contents:string[] = Contents;
   selectedContents:string[] = [];
   PlaceList:string[] = Place;
-  place:string = null;
+  place:string = '';
   date:any = this.$moment(new Date).format('YYYY-MM-DD');
   dates:any = null;
+  meetingsMonth:any = null;
   meeting:Meeting = new Meeting;
   pickerDate:any = null;
   dateInput:boolean = false;
   isNew:boolean = false;
-
+  
   created(){
     if(this.currentUser){
       this.getMeetingsMonth();
@@ -227,11 +234,14 @@ export default class Meetings extends Vue {
       endAt : parseInt(`${date}32`)
     })
     .then((res:any)=>{
+      console.log('getMeetingsMonth res : ', res);
       if(res){
-        this.dates = Object.keys(res).map((date:any)=>{
-          return that.$moment(date).format('YYYY-MM-DD')
+        this.meetingsMonth = res;
+        this.dates = Object.keys(res).map((key:any)=>{
+          return that.$moment(res[key].date.toString()).format('YYYY-MM-DD')
         })
       } else {
+        this.meetingsMonth = {};
         this.dates = [];
       }
     });
@@ -252,22 +262,35 @@ export default class Meetings extends Vue {
         // eslint-disable-next-line
         console.log('Form Submitted!');
         MeetingService.getIdToken(this.currentUser).then((auth:any)=>{
-          if(this.isNew){
+          const date = parseInt(this.$moment(this.date).format('YYYYMMDD'));
+          const meetingAndKey = this.findMeetingAndKeyByDate(date);
+          console.log('meetingAndKey : ', meetingAndKey);
+          const params = {
+            auth,
+            date,
+            contents : this.selectedContents,
+            title : this.title,
+            place : this.place,
+          }
+          if(!meetingAndKey.meeting){
             console.log('생성');
-            MeetingService.createMeeting(auth,{
-              date : this.$moment(this.date).format('YYYYMMDD'),
-              contents : this.selectedContents,
-              title : this.title,
-              place : this.place,
-            }).then((res:any)=>{
-              console.log('createMeeting res : ', res);
-              if(res){
-                this.viewDialog = false;
-                this.clear();
-              }
+            MeetingService.createMeeting(params).then((res:any)=>{
+              console.log('생성성공');
+              this.viewDialog = false;
+              this.clear();
+              this.getMeetingsMonth(this.date);
+            },(err:any)=>{
+              console.log('생성실패');
             })
           } else {
-            console.log('수정');
+            MeetingService.updateMeeting(meetingAndKey.meeting.key,params).then((res:any)=>{
+              console.log('수정성공');
+              this.viewDialog = false;
+              this.clear();
+              this.getMeetingsMonth(this.date);
+            },(err:any)=>{
+              console.log('수정실패');
+            })
           }
           console.log('auth : ', auth);
         });
@@ -277,10 +300,27 @@ export default class Meetings extends Vue {
       console.log('Correct them errors!');
     });
   }
+  findMeetingAndKeyByDate(date:number){
+    let meeting,key;
+    for(let meetingKey in this.meetingsMonth){
+      if(this.meetingsMonth[meetingKey]['date'] === date){
+        meeting = this.meetingsMonth[meetingKey];
+        key = meetingKey;
+        break
+      } else {
+        continue;
+      }
+    }
+    return {
+      meeting,
+      key
+    }
+  }
   clear(){
     this.selectedContents = [];
-    this.title = null
-    this.place = null
+    this.title = '';
+    this.place = '';
+    this.$validator.reset();
   }
   toggle () {
     this.$nextTick(() => {

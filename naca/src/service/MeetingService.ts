@@ -1,14 +1,15 @@
 import { DefaultApi } from './DefaultApi';
 export const MeetingService = Object.assign(DefaultApi,{
     getMeetings(params:any={}){
-        return DefaultApi.get(`meetings.json`, Object.assign({
+        return DefaultApi.get(`meetings`, Object.assign({
             orderByChild : `date`,
             print : `pretty`
         },params))
     },
-    createMeeting(auth:any,params:any={}){
-        return DefaultApi.put(`meetings.json?auth`+auth, Object.assign({
-            print : `pretty`
-        },params))
-    }
+    createMeeting(params:any={}){
+        return DefaultApi.post(`meetings`, params);
+    },
+    updateMeeting(key:any,params:any={}){
+        return DefaultApi.patch(`meetings/${key}`, params)
+    },
 });

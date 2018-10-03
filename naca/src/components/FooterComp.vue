@@ -1,5 +1,5 @@
 <template>
-  <v-card height="50px" flat>
+  <v-card height="56px" flat>
     <v-bottom-nav
       :active.sync="pageNum"
       :value="true"
