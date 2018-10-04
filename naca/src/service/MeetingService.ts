@@ -1,6 +1,7 @@
 import { DefaultApi } from './DefaultApi';
 export const MeetingService = Object.assign(DefaultApi,{
     getMeetings(params:any={}){
+        console.log('params : ', params);
         return DefaultApi.get(`meetings`, Object.assign({
             orderByChild : `date`,
             print : `pretty`
@@ -11,5 +12,8 @@ export const MeetingService = Object.assign(DefaultApi,{
     },
     updateMeeting(key:any,params:any={}){
         return DefaultApi.patch(`meetings/${key}`, params)
+    },
+    deleteMeeting(key:any,params:any={}){
+        return DefaultApi.del(`meetings/${key}`, params)
     },
 });

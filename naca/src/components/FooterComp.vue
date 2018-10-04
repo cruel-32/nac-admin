@@ -33,6 +33,8 @@ import { Component, Prop, Vue, Emit } from 'vue-property-decorator';
 export default class FooterComp extends Vue {
   @Prop() windowSize: any;
   @Prop() currentUser: any;
+  @Emit('showSnackbar') showSnackbar(color:string,text:string){}
+  
   pageNum:number = 4;
   get pageColor() {
     switch (this.pageNum) {

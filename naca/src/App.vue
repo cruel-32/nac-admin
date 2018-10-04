@@ -13,6 +13,7 @@
       :windowSize="windowSize"
       v-on:signInGoogle="signInGoogle"
       v-on:signOut="signOut"
+      v-on:showSnackbar="showSnackbar"
       ref="sideComp"
     >
     </SideComp>
@@ -20,25 +21,43 @@
       :currentUser="currentUser"
       :windowSize="windowSize"
       v-on:signInGoogle="signInGoogle"  
-      v-on:signOut="signOut"  
+      v-on:signOut="signOut"
+      v-on:showSnackbar="showSnackbar"
     >
     </HeaderComp>
     <v-content>
       <router-view v-scroll="onScroll"
       :currentUser="currentUser"
+      v-on:showSnackbar="showSnackbar"
       >
       </router-view>
     </v-content>
     <FooterComp
       :currentUser="currentUser"
       :windowSize="windowSize"
+      v-on:showSnackbar="showSnackbar"
     >
     </FooterComp>
+    <v-snackbar
+      v-model="snackbar"
+      :color="snackbarColor"
+      :multi-line="true"
+      :timeout="2000"
+    >
+      {{ snackbarText }}
+      <v-btn
+        dark
+        flat
+        @click="snackbar = false"
+      >
+        Close
+      </v-btn>
+    </v-snackbar>
   </v-app>
 </template>
 
 <script lang="ts">
-import { Firebase } from './service/Firebase';
+import { DefaultApi } from './service/DefaultApi';
 import { Component, Prop, Vue, Model } from 'vue-property-decorator';
 
 import Vuetify from 'vuetify';
@@ -79,6 +98,11 @@ export default class App extends Vue {
   currentUser:any=null;
   drawer:boolean = false;
   swipeDirection:any = '';
+
+  snackbar:boolean = false;
+  snackbarColor:string = 'success';
+  snackbarText:string = '성공했습니다.'
+
   mounted(){
     this.onResize();
 
@@ -101,7 +125,7 @@ export default class App extends Vue {
       }
     });
   }
-  swipe (direction) {
+  swipe (direction:any) {
     this.swipeDirection = direction
   }
   onResize(){
@@ -111,7 +135,7 @@ export default class App extends Vue {
     this.currentUser = acc;
   }
   created(){
-    Firebase.auth.onAuthStateChanged((user:any)=>{
+    DefaultApi.Firebase.auth.onAuthStateChanged((user:any)=>{
       if(user){
         this.setCurrentUser(user);
         // user.providerData ? user.providerData[0] : user);
@@ -121,13 +145,13 @@ export default class App extends Vue {
     });
   }
   signInGoogle():void {
-    Firebase.auth.signInWithPopup(Firebase.googleAuthProvider).then((res:any)=>{
-      console.log('signInWithPopup ::::: ', res);
+    DefaultApi.Firebase.auth.signInWithPopup(DefaultApi.Firebase.googleAuthProvider).then((res:any)=>{
+      this.showSnackbar('info',`어서오세요 ${res.user.displayName}님`);
     })
   }
   signOut():void {
-    Firebase.auth.signOut().then((user:any)=>{
-      console.log('signOut ::::: ', user);
+    DefaultApi.Firebase.auth.signOut().then((user:any)=>{
+      this.showSnackbar('info',`로그아웃 했습니다.`);
     });
   }
   goPage(link:string):void {
@@ -135,6 +159,11 @@ export default class App extends Vue {
   }
   onScroll(){
     
+  }
+  showSnackbar(color:string,text:string){
+    this.snackbar = true;
+    this.snackbarColor = color;
+    this.snackbarText = text;
   }
 }
 </script>

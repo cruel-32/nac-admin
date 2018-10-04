@@ -11,7 +11,7 @@ const put = (url:string, params={})=>{
 };
 const get = (url:string, params:any={})=>{
     return new Promise((resolve,reject)=>{
-        let ref = Firebase.database.ref(url);
+        let ref:any = Firebase.database.ref(url);
         for(let key in params){
             if(key == "orderByChild"
                 || key == "startAt"
@@ -48,8 +48,9 @@ const post = (url:string, params={})=>{
     })
     // return axios.post(`${baseURL}${url}`,params)
 };
-const del = (url:string, params={})=>{
-    return axios.delete(`${baseURL}${url}`,{params})
+const del = (url:string, params:any={})=>{
+    return Firebase.database.ref().child(url).remove();
+    // return axios.delete(`${baseURL}${url}`,{params})
 };
 const patch = (url:string, params={})=>{
     return new Promise((resolve,reject)=>{
@@ -66,6 +67,7 @@ const patch = (url:string, params={})=>{
     // return axios.patch(`${baseURL}${url}`,{params})
 };
 export const DefaultApi = {
+    Firebase,
     axios,
     qs,
     baseURL,

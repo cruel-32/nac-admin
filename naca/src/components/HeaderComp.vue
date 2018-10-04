@@ -37,6 +37,8 @@ export default class HeaderComp extends Vue {
   @Prop() currentUser: any;
   @Emit('signInGoogle') signInGoogle(user:any){}
   @Emit('signOut') signOut(user:any){}
+  @Emit('showSnackbar') showSnackbar(color:string,text:string){}
+
   title:string = 'NACA';
   toggleSideCompDrawer(){
     if(this.$parent.$parent.$refs['sideComp']){

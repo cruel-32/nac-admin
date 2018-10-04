@@ -1,5 +1,4 @@
 import firebase from 'firebase';
-import firebaseui from 'firebaseui';
 
 const _actionCodeSettings:any = {
   url: 'https://nac-admin.firebaseio.com/finishSignUp',
@@ -29,7 +28,6 @@ const googleAuthProvider:any = new firebase.auth.GoogleAuthProvider();
 
 export const Firebase = {
   firebase,
-  firebaseui,
   database,
   auth,
   googleAuthProvider,

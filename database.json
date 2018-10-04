@@ -1,809 +1,630 @@
 {
-    "members" : {
-        "최승희" : {
-            "mail" : "cshee8508@gmail.com",
-            "birth" : "1985-08-19",
-            "address" : "쌍문동",
-            "joinDate" : "2014-11-11",
-            "phone" : "01050544147",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "프리랜서",
-            "grade" : 0,
-            "uid" : null
-        },
-        "심이지" : {
-            "mail" : "tladlwl13@gmail.com",
-            "birth" : "1993-10-14",
-            "address" : "의정부 호원동",
-            "joinDate" : "2018-01-01",
-            "phone" : "01093924918",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "디자이너",
-            "grade" : 1,
-            "uid" : null
-        },
-        "최영환" : {
-            "mail" : "",
-            "birth" : "1985-12-29",
-            "address" : "외대앞",
-            "joinDate" : "2014-11-12",
-            "phone" : "01027857472",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "디자이너",
-            "grade" : 1,
-            "uid" : null
-        },
-        "고중민" : {
-            "mail" : "",
-            "birth" : "1986-08-05",
-            "address" : "도봉산",
-            "joinDate" : "2015-04-05",
-            "phone" : "01074547357",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "웹퍼블리셔",
-            "grade" : 1,
-            "uid" : null
-        },
-        "김비오" : {
-            "mail" : "",
-            "birth" : "1986-07-09",
-            "address" : "수유",
-            "joinDate" : "2015-10-20",
-            "phone" : "01027883334",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "프로그래머",
-            "grade" : 1,
-            "uid" : null
-        },
-        "신선하" : {
-            "mail" : "",
-            "birth" : "1991-12-13",
-            "address" : "수유",
-            "joinDate" : "2016-07-17",
-            "phone" : "01048609629",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "게임기획자",
-            "grade" : 1,
-            "uid" : null
-        },
-        "정상민" : {
-            "mail" : "",
-            "birth" : "1987-12-30",
-            "address" : "의정부",
-            "joinDate" : "2017-09-26",
-            "phone" : "01030517282",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "프로그래머",
-            "grade" : 1,
-            "uid" : null
-        },
-        "김예주" : {
-            "mail" : "",
-            "birth" : "1986-12-16",
-            "address" : "돌곶이",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "박세민" : {
-            "mail" : "",
-            "birth" : "1985-04-14",
-            "address" : "독바위",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "장경태" : {
-            "mail" : "",
-            "birth" : "1986-04-15",
-            "address" : "",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "조신재" : {
-            "mail" : "",
-            "birth" : "1981-09-25",
-            "address" : "남양주",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "배숙경" : {
-            "mail" : "",
-            "birth" : "1987-11-15",
-            "address" : "수유",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "노미혜" : {
-            "mail" : "",
-            "birth" : "1987-06-21",
-            "address" : "종로구",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "김민성" : {
-            "mail" : "",
-            "birth" : "1986-10-28",
-            "address" : "중계동",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "신지혁" : {
-            "mail" : "",
-            "name" : "신지혁",
-            "birth" : "1986-12-20",
-            "address" : "의정부",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "지승환" : {
-            "mail" : "",
-            "name" : "지승환",
-            "birth" : "1988-11-13",
-            "address" : "쌍문역",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "신나미" : {
-            "mail" : "",
-            "name" : "신나미",
-            "birth" : "1985-04-22",
-            "address" : "고양시",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "박요한" : {
-            "mail" : "",
-            "name" : "박요한",
-            "birth" : "1994-07-01",
-            "address" : "노원",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "고보경" : {
-            "mail" : "",
-            "name" : "고보경",
-            "birth" : "1994-01-14",
-            "address" : "제기동",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "박제연" : {
-            "mail" : "",
-            "name" : "박제연",
-            "birth" : "1986-02-07",
-            "address" : "중계동",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "정혜선" : {
-            "mail" : "",
-            "name" : "정혜선",
-            "birth" : "1982-08-13",
-            "address" : "우이동",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "유태종" : {
-            "mail" : "",
-            "name" : "유태종",
-            "birth" : "1987-03-07",
-            "address" : "마들역",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "김서우" : {
-            "mail" : "",
-            "name" : "김서우",
-            "birth" : "1993-05-25",
-            "address" : "의정부",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "손원우" : {
-            "mail" : "",
-            "name" : "손원우",
-            "birth" : "1993-09-14",
-            "address" : "의정부",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "하성운" : {
-            "mail" : "",
-            "name" : "하성운",
-            "birth" : "1989-04-06",
-            "address" : "의정부",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "권석환" : {
-            "mail" : "",
-            "name" : "권석환",
-            "birth" : "1992-08-31",
-            "address" : "미아동",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "이지은" : {
-            "mail" : "",
-            "name" : "이지은",
-            "birth" : "1990-03-21",
-            "address" : "노원구",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "홍기택" : {
-            "mail" : "",
-            "name" : "홍기택",
-            "birth" : "1991-05-23",
-            "address" : "수유동",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "박정현" : {
-            "mail" : "",
-            "name" : "박정현",
-            "birth" : "1992-10-23",
-            "address" : "미아동",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "김효석" : {
-            "mail" : "",
-            "name" : "김효석",
-            "birth" : "1991-10-25",
-            "address" : "포천",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "이평강" : {
-            "mail" : "",
-            "name" : "이평강",
-            "birth" : "1986-10-23",
-            "address" : "도봉",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "백종현" : {
-            "mail" : "",
-            "name" : "백종현",
-            "birth" : "1989-03-29",
-            "address" : "성북구",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "최상호" : {
-            "mail" : "",
-            "name" : "최상호",
-            "birth" : "1991-12-09",
-            "address" : "일산",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "김승범" : {
-            "mail" : "",
-            "name" : "김승범",
-            "birth" : "1990-08-25",
-            "address" : "도봉구",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "최세훈" : {
-            "mail" : "",
-            "name" : "최세훈",
-            "birth" : "1988-07-22",
-            "address" : "노원구",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "조세현" : {
-            "mail" : "",
-            "name" : "조세현",
-            "birth" : "1991-07-13",
-            "address" : "성북구",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 3,
-            "uid" : null
-        },
-        "배인지" : {
-            "mail" : "",
-            "name" : "배인지",
-            "birth" : "1994-12-14",
-            "address" : "쌍문동",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "홍혜란" : {
-            "mail" : "",
-            "name" : "홍혜란",
-            "birth" : "1987-12-29",
-            "address" : "쌍문동",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 4,
-            "uid" : null
-        },
-        "최재연" : {
-            "mail" : "",
-            "name" : "최재연",
-            "birth" : "1991-10-26",
-            "address" : "이문동",
-            "joinDate" : "2018-06-16",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "강숭욱" : {
-            "mail" : "",
-            "name" : "강숭욱",
-            "birth" : "1992-11-14",
-            "address" : "도봉동",
-            "joinDate" : "2018-06-20",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "권형구" : {
-            "mail" : "",
-            "name" : "권형구",
-            "birth" : "1990-04-14",
-            "address" : "의정부",
-            "joinDate" : "2018-06-25",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 3,
-            "uid" : null
-        },
-        "박수형" : {
-            "mail" : "",
-            "name" : "박수형",
-            "birth" : "1991-08-08",
-            "address" : "노원",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "남동우" : {
-            "mail" : "",
-            "name" : "남동우",
-            "birth" : "1988-11-08",
-            "address" : "일산",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 2,
-            "uid" : null
-        },
-        "황성철" : {
-            "mail" : "",
-            "name" : "황성철",
-            "birth" : "1991-12-02",
-            "address" : "",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 4,
-            "uid" : null
-        },
-        "이범탁" : {
-            "mail" : "",
-            "name" : "이범탁",
-            "birth" : "1993-08-25",
-            "address" : "노원",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 3,
-            "uid" : null
-        },
-        "한태구" : {
-            "mail" : "",
-            "name" : "한태구",
-            "birth" : "1995-02-09",
-            "address" : "",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 4,
-            "uid" : null
-        },
-        "김도희" : {
-            "mail" : "",
-            "name" : "김도희",
-            "birth" : "1993-11-19",
-            "address" : "",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 4,
-            "uid" : null
-        },
-        "김주현" : {
-            "mail" : "",
-            "name" : "김주현",
-            "birth" : "1993-11-19",
-            "address" : "의정부",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 3,
-            "uid" : null
-        },
-        "송은영" : {
-            "mail" : "",
-            "name" : "송은영",
-            "birth" : "1990-03-28",
-            "address" : "",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 4,
-            "uid" : null
-        },
-        "최한울" : {
-            "mail" : "",
-            "name" : "최한울",
-            "birth" : "1994-02-19",
-            "address" : "",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 4,
-            "uid" : null
-        },
-        "김희은" : {
-            "mail" : "",
-            "name" : "김희은",
-            "birth" : "1992-07-13",
-            "address" : "",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 4,
-            "uid" : null
-        },
-        "김현정" : {
-            "mail" : "",
-            "name" : "김현정",
-            "birth" : "1994-02-20",
-            "address" : "",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 4,
-            "uid" : null
-        },
-        "김도이" : {
-            "mail" : "",
-            "name" : "김도이",
-            "birth" : "1990-11-10",
-            "address" : "",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 4,
-            "uid" : null
-        },
-        "구영모" : {
-            "mail" : "",
-            "name" : "구영모",
-            "birth" : "1992-10-22",
-            "address" : "",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 4,
-            "uid" : null
-        },
-        "김경훈" : {
-            "mail" : "",
-            "name" : "김경훈",
-            "birth" : "1990-11-20",
-            "address" : "",
-            "joinDate" : "2018-09-29",
-            "phone" : "",
-            "participation" : [
-                "2018-09-29"
-            ],
-            "job" : "",
-            "grade" : 4
-        }
-    },
     "meetings" : {
-        "20180929" : {
-            "date" : 20180929,
-            "title" : "한강벙",
-            "place" : "한강",
-            "contents" : [
-                "보드게임", "먹방"
-            ]
-        },
-        "20181005" : {
-            "date" : 20181005,
-            "title" : "곰돌이푸",
-            "place" : "노원",
-            "contents" : [
-                "영화", "먹방"
-            ]
-        },
-        "20181025" : {
-            "date" : 20181025,
-            "title" : "한강벙",
-            "place" : "한강",
-            "contents" : [
-                "피크닉", "먹방"
-            ]
-        },
-        "20181111" : {
-            "date" : 20181111,
-            "title" : "곰돌이푸",
-            "place" : "노원",
-            "contents" : [
-                "보드게임", "먹방"
-            ]
-        },
-        "20181229" : {
-            "date" : 20181229,
-            "title" : "한강벙",
-            "place" : "한강",
-            "contents" : [
-                "보드게임", "먹방"
-            ]
-        },
-        "20190101" : {
-            "date" : 20190101,
-            "title" : "곰돌이푸",
-            "place" : "노원",
-            "contents" : [
-                "기타", "먹방"
-            ]
-        }
+      "LNyH_mgLTMhOe4pGN2S" : {
+        "contents" : [ "피크닉" ],
+        "date" : 20180929,
+        "place" : "기타",
+        "title" : "한강벙",
+        "members" : [
+          "심이지key", "최승희key"
+        ]
+      },
+      "LNyHen1YPR6NZ9epPR3" : {
+        "contents" : [ "영화", "먹방" ],
+        "date" : 20181005,
+        "place" : "노원",
+        "title" : "삼겸살과 곰돌이푸",
+        "members" : [
+          "박제연key", "최세훈key"
+        ]
+      }
+    },
+    "members" : {
+      "abc" : {
+        "address" : "도봉동",
+        "birth" : 19921114,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180620,
+        "mail" : "",
+        "name" : "강숭욱",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "고보경" : {
+        "address" : "제기동",
+        "birth" : 19940114,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "고보경",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "고중민" : {
+        "address" : "도봉산",
+        "birth" : 19860805,
+        "grade" : 1,
+        "job" : "웹퍼블리셔",
+        "joinDate" : 20150405,
+        "mail" : "",
+        "name" : "고중민",
+        "participation" : [20180929],
+        "phone" : 1074547357
+      },
+      "구영모" : {
+        "address" : "",
+        "birth" : 19921022,
+        "grade" : 4,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "구영모",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "권석환" : {
+        "address" : "미아동",
+        "birth" : 19920831,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "권석환",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "권형구" : {
+        "address" : "의정부",
+        "birth" : 19900414,
+        "grade" : 3,
+        "job" : "",
+        "joinDate" : 20180625,
+        "mail" : "",
+        "name" : "권형구",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "김경훈" : {
+        "address" : "",
+        "birth" : 19901120,
+        "grade" : 4,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "김경훈",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "김도이" : {
+        "address" : "",
+        "birth" : 19901110,
+        "grade" : 4,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "김도이",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "김도희" : {
+        "address" : "",
+        "birth" : 19931119,
+        "grade" : 4,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "김도희",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "김민성" : {
+        "addess" : "중계동",
+        "birth" : 19861028,
+        "grade" : 2,
+        "job" :"",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "김민성",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "김비오" : {
+        "address" : "수유",
+        "birth" : 19860709,
+        "grade" : 1,
+        "job" : "프로그래머",
+        "joinDate" : 20151020,
+        "mail" : "",
+        "name" : "김비오",
+        "participation" : [20180929],
+        "phone" : 1027883334
+      },
+      "김서우" : {
+        "address" : "의정부",
+        "birth" : 19930525,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "김서우",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "김승범" : {
+        "address" : "도봉구",
+        "birth" : 19900825,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "김승범",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "김예주" : {
+        "addess" : "돌곶이",
+        "birth" : 19861216,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "김예주",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "김주현" : {
+        "address" : "의정부",
+        "birth" : 19931119,
+        "grade" : 3,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "김주현",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "김현정" : {
+        "address" : "",
+        "birth" : 19940220,
+        "grade" : 4,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "김현정",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "김효석" : {
+        "address" : "포천",
+        "birth" : 19911025,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "김효석",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "김희은" : {
+        "address" : "",
+        "birth" : 19920713,
+        "grade" : 4,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "김희은",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "남동우" : {
+        "address" : "일산",
+        "birth" : 19881108,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "남동우",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "노미혜" : {
+        "addess" : "종로구",
+        "birth" : 19870621,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "노미혜",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "박세민" : {
+        "addess" : "독바위",
+        "birth" : 19850414,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "박세민",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "박수형" : {
+        "address" : "노원",
+        "birth" : 19910808,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "박수형",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "박요한" : {
+        "address" : "노원",
+        "birth" : 19940701,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "박요한",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "박정현" : {
+        "address" : "미아동",
+        "birth" : 19921023,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "박정현",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "박제연key" : {
+        "address" : "중계동",
+        "birth" : 19860207,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "박제연",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "배숙경" : {
+        "addess" : "수유",
+        "birth" : 19871115,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "배숙경",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "배인지" : {
+        "address" : "쌍문동",
+        "birth" : 19941214,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "배인지",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "백종현" : {
+        "address" : "성북구",
+        "birth" : 19890329,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "백종현",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "손원우" : {
+        "address" : "의정부",
+        "birth" : 19930914,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "손원우",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "송은영" : {
+        "address" : "",
+        "birth" : 19900328,
+        "grade" : 4,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "송은영",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "신나미" : {
+        "address" : "고양시",
+        "birth" : 19850422,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "신나미",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "신선하" : {
+        "address" : "수유",
+        "birth" : 19911213,
+        "grade" : 1,
+        "job" : "게임기획자",
+        "joinDate" : 20160717,
+        "mail" : "",
+        "name" : "신선하",
+        "participation" : [20180929],
+        "phone" : 1048609629
+      },
+      "신지혁" : {
+        "address" : "의정부",
+        "birth" : 19861220,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "신지혁",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "심이지key" : {
+        "address" : "의정부 호원동",
+        "birth" : 19931014,
+        "grade" : 1,
+        "job" : "디자이너",
+        "joinDate" : 20180101,
+        "mail" : "tladlwl13@gmail.com",
+        "name" : "심이지",
+        "participation" : [20180929],
+        "phone" : 1093924918
+      },
+      "유태종" : {
+        "address" : "마들역",
+        "birth" : 19870307,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "유태종",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "이범탁" : {
+        "address" : "노원",
+        "birth" : 19930825,
+        "grade" : 3,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "이범탁",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "이지은" : {
+        "address" : "노원구",
+        "birth" : 19900321,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "이지은",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "이평강" : {
+        "address" : "도봉",
+        "birth" : 19861023,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "이평강",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "장경태" : {
+        "addess" : "",
+        "birth" : 19860415,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "장경태",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "정상민" : {
+        "address" : "의정부",
+        "birth" : 19871230,
+        "grade" : 1,
+        "job" : "프로그래머",
+        "joinDate" : 20170926,
+        "mail" : "",
+        "name" : "정상민",
+        "participation" : [ 20180929],
+        "phone" : 1030517282
+      },
+      "정혜선" : {
+        "address" : "우이동",
+        "birth" : 19820813,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "정혜선",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "조세현" : {
+        "address" : "성북구",
+        "birth" : 19910713,
+        "grade" : 3,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "조세현",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "조신재" : {
+        "addess" : "남양주",
+        "birth" : 19810925,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "조신재",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "지승환" : {
+        "address" : "쌍문역",
+        "birth" : 19881113,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "지승환",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "최상호" : {
+        "address" : "일산",
+        "birth" : 19911209,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "최상호",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "최세훈key" : {
+        "address" : "노원구",
+        "birth" : 19880722,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "최세훈",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "최승희key" : {
+        "address" : "쌍문동",
+        "birth" : 19850819,
+        "grade" : 0,
+        "job" : "프리랜서",
+        "joinDate" : 20141111,
+        "mail" : "cshee8508@gmail.com",
+        "name" : "최승희",
+        "participation" : [20180929],
+        "phone" : 1050544147
+      },
+      "최영환" : {
+        "address" : "외대앞",
+        "birth" : 19851229,
+        "grade" : 1,
+        "job" : "디자이너",
+        "joinDate" : 20141112,
+        "mail" : "",
+        "name" : "최영환",
+        "participation" : [20180929],
+        "phone" : 1027857472
+      },
+      "최재연" : {
+        "address" : "이문동",
+        "birth" : 19911026,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180616,
+        "mail" : "",
+        "name" : "최재연",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "최한울" : {
+        "address" : "",
+        "birth" : 19940219,
+        "grade" : 4,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "최한울",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "하성운" : {
+        "address" : "의정부",
+        "birth" : 19890406,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "하성운",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "한태구" : {
+        "address" : "",
+        "birth" : 19950209,
+        "grade" : 4,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "한태구",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "홍기택" : {
+        "address" : "수유동",
+        "birth" : 19910523,
+        "grade" : 2,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "홍기택",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "홍혜란" : {
+        "address" : "쌍문동",
+        "birth" : 19871229,
+        "grade" : 4,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "홍혜란",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      },
+      "황성철" : {
+        "address" : "",
+        "birth" : 19911202,
+        "grade" : 4,
+        "job" : "",
+        "joinDate" : 20180929,
+        "mail" : "",
+        "name" : "황성철",
+        "participation" : [20180929],
+        "phone" : 1012345678
+      }
     }
-}
+  }
+  

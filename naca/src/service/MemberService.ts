@@ -1,9 +1,9 @@
 import { DefaultApi } from './DefaultApi';
-export const MeetingService = Object.assign(DefaultApi,{
-    getMeetings(token:any){
-        return DefaultApi.get(`/meetings.json`,{
-            'print' : 'pretty',
-            'auth' : `${token}`
-        })
-    }
+export const MemberService = Object.assign(DefaultApi,{
+    getMembers(params:any={}){
+        return DefaultApi.get(`members`, Object.assign({
+            orderByChild : `name`,
+            print : `pretty`
+        },params))
+    },
 });
