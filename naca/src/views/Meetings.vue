@@ -42,12 +42,51 @@
                     <v-layout wrap>
                       <v-flex xs12 sm6 md4>
                         <v-text-field
+                          v-validate="'required|date_format:YYYY-MM-DD'"
+                          v-model="computedDateFormatted"
+                          label="모임 날짜"
+                          required
+                          readonly
+                        ></v-text-field>
+                        <!-- <v-dialog
+                          ref="dateInput"
+                          v-model="dateInput"
+                          persistent
+                          full-width
+                        >
+                          <v-text-field
+                            slot="activator"
+                            v-validate="'required|date_format:YYYY-MM-DD'"
+                            v-model="computedDateFormatted"
+                            :error-messages="errors.collect('date')"
+                            label="모임 날짜"
+                            data-vv-name="date"
+                            required
+                            readonly
+                          ></v-text-field>
+                          <v-date-picker
+                            full-width
+                            v-model="date"
+                            no-title
+                            @input="$refs.dateInput.save(date)"
+                            ref="picker"
+                            event-color="green lighten-1"
+                            :picker-date.sync="pickerDate"
+                            :reactive="true"
+                            :events="checkMeetingDay"
+                            locale="ko"
+                          ></v-date-picker>
+                        </v-dialog> -->
+                      </v-flex>
+                      <v-flex xs12 sm6 md4>
+                        <v-text-field
                           v-validate="'required|min:1|max:20'"
                           v-model="title"
                           :counter="20"
                           :error-messages="errors.collect('title')"
                           label="타이틀"
                           data-vv-name="title"
+                          clearable
                         ></v-text-field>
                       </v-flex>
                       <v-flex xs12>
@@ -93,37 +132,7 @@
                           ></v-divider>
                         </v-select>
                       </v-flex>
-                      <v-flex xs12 sm6 md4>
-                        <v-dialog
-                          ref="dateInput"
-                          v-model="dateInput"
-                          persistent
-                          full-width
-                        >
-                          <v-text-field
-                            slot="activator"
-                            v-validate="'required|date_format:YYYY-MM-DD'"
-                            v-model="computedDateFormatted"
-                            :error-messages="errors.collect('date')"
-                            label="모임 날짜"
-                            data-vv-name="date"
-                            required
-                            readonly
-                          ></v-text-field>
-                          <v-date-picker
-                            full-width
-                            v-model="date"
-                            no-title
-                            @input="$refs.dateInput.save(date)"
-                            ref="picker"
-                            event-color="green lighten-1"
-                            :picker-date.sync="pickerDate"
-                            :reactive="true"
-                            :events="checkMeetingDay"
-                            locale="ko"
-                          ></v-date-picker>
-                        </v-dialog>
-                      </v-flex>
+                      
                       <v-flex xs12>
                         <v-select
                           v-model="selectedMembers"
@@ -305,7 +314,7 @@ export default class Meetings extends Vue {
   meetingsMonth:any = null;
   meeting:Meeting = new Meeting;
   pickerDate:any = null;
-  dateInput:boolean = false;
+  // dateInput:boolean = false;
   isNew:boolean = false;
   viewConfirmDelete:boolean = false;
 
