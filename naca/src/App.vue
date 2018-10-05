@@ -1,5 +1,5 @@
 <template>
-  <v-app v-resize="onResize" app
+  <v-app v-resize="onResize" app class="no-transition"
     v-touch="{
       left: () => swipe('Left'),
       right: () => swipe('Right'),
@@ -174,5 +174,10 @@ div.application {
     background:#fff;
   }
 }
-
+.no-transition {
+  transition:none !important;
+  * {
+    transition:none !important;
+  }
+}
 </style>

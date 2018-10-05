@@ -42,7 +42,6 @@
                     <v-layout wrap>
                       <v-flex xs12 sm6 md4>
                         <v-text-field
-                          v-validate="'required|date_format:YYYY-MM-DD'"
                           v-model="computedDateFormatted"
                           label="모임 날짜"
                           required
@@ -388,7 +387,7 @@ export default class Meetings extends Vue {
               contents : this.selectedContents,
               title : this.title,
               place : this.place,
-              members : this.selectedMembers,
+              members : this.selectedMembers || [],
             }
             if(!meetingAndKey.meeting){
               MeetingService.createMeeting(params).then((res:any)=>{
