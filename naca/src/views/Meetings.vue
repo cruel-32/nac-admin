@@ -47,6 +47,7 @@
                           label="모임 날짜"
                           required
                           readonly
+                          disabled
                         ></v-text-field>
                         <!-- <v-dialog
                           ref="dateInput"
