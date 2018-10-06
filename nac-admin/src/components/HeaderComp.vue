@@ -11,6 +11,9 @@
       <button @click="signInGoogle()">구글아이디로 로그인하기</button>
     </div>
     <div id="nav">
+      <v-btn flat icon Outline color="black" @click="historyBack()">
+        <v-icon>undo</v-icon>
+      </v-btn>
       <router-link :to="{name : 'home'}">Home</router-link> |
       <router-link :to="{name : 'management'}">Management</router-link> |
       <router-link :to="{name : 'statistic'}">Statistic</router-link> |
@@ -34,6 +37,9 @@ export default class HeaderComp extends Vue {
       this.setAccount(user);
     });
   };
+  historyBack(){
+    this.$router.go(-1);
+  }
   signInGoogle():void {
     Firebase.auth.signInWithPopup(Firebase.googleAuthProvider).then((res:any)=>{
       console.log('signInWithPopup ::::: ', res);

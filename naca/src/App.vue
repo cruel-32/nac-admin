@@ -92,7 +92,6 @@ export default class App extends Vue {
   };
   currentUser:any=null;
   drawer:boolean = false;
-
   snackbar:boolean = false;
   snackbarColor:string = 'success';
   snackbarText:string = '성공했습니다.'

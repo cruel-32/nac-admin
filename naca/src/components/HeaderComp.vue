@@ -1,5 +1,8 @@
 <template>
   <v-toolbar app :clipped-left="true" dark>
+    <!-- <v-btn flat icon Outline @click="historyBack()" >
+      <v-icon>arrow_back_ios</v-icon>
+    </v-btn> -->
     <v-toolbar-side-icon @click.stop="toggleSideCompDrawer()"></v-toolbar-side-icon>
     <router-link :to="{name : 'home'}">
       <v-icon v-html="'home'"></v-icon>
@@ -39,7 +42,10 @@ export default class HeaderComp extends Vue {
   @Emit('signOut') signOut(user:any){}
   @Emit('showSnackbar') showSnackbar(color:string,text:string){}
 
-  title:string = 'NACA';
+  title:string = 'NACA System';
+  // historyBack(){
+  //   this.$router.go(-1);
+  // }
   toggleSideCompDrawer(){
     if(this.$parent.$parent.$refs['sideComp']){
       this.$parent.$parent.$refs['sideComp']['drawer'] = true;

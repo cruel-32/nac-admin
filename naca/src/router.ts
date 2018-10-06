@@ -23,24 +23,6 @@ export default new Router({
       component : () => import('./views/Account.vue'),
     },
     {
-      path: '/register',
-      name: 'register',
-      props : (route) => ({
-        params : route.params,
-        query : route.query
-      }),
-      component : () => import('./views/Register.vue'),
-    },
-    {
-      path: '/register',
-      name: 'register',
-      props : (route) => ({
-        params : route.params,
-        query : route.query
-      }),
-      component : () => import('./views/Register.vue'),
-    },
-    {
       path: '/management',
       name: 'management',
       props : (route) => ({
@@ -50,17 +32,26 @@ export default new Router({
       component : () => import('./views/Management.vue'),
     },
     {
-      path: '/meeting',
-      name: 'meeting',
+      path: '/meetings',
+      name: 'meetings',
       props: (route) => ({
         params : route.params,
         query: route.query
       }),
-      component: () => import('./views/Meeting.vue'),
+      component: () => import('./views/Meetings.vue'),
+    },
+    {
+      path: '/meeting',
+      name: 'meetingCreate',
+      props: (route) => ({
+        params : route.params,
+        query: route.query
+      }),
+      component: () => import('./views/MeetingCreate.vue'),
     },
     {
       path: '/meeting/:key',
-      name: 'meetingCreate',
+      name: 'meetingUpdate',
       props: (route) => ({
         params : route.params,
         query: route.query
@@ -77,13 +68,22 @@ export default new Router({
       component: () => import('./views/Statistic.vue'),
     },
     {
-      path: '/member/:id',
-      name: 'memberView',
+      path: '/member',
+      name: 'memberCreate',
       props: (route) => ({
         params : route.params,
         query : route.query
       }),
-      component: () => import('./views/MemberView.vue'),
-    }
+      component: () => import('./views/MemberCreate.vue'),
+    },
+    {
+      path: '/member/:id',
+      name: 'memberUpdate',
+      props: (route) => ({
+        params : route.params,
+        query : route.query
+      }),
+      component: () => import('./views/MemberCreate.vue'),
+    },
   ],
 });

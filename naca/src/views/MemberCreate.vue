@@ -192,7 +192,7 @@ import ProgressComp from '../components/ProgressComp.vue';
     ProgressComp
   }
 })
-export default class MeetingCreate extends Vue {
+export default class MemberCreate extends Vue {
   @Prop() currentUser: any;
   @Prop() windowSize: any;
   @Prop() query: any;

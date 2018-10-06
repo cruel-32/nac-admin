@@ -1,14 +1,27 @@
 <template>
-  <div class="home-wrap">
-    <div class="cell">
-      <div class="my-card" v-for="item in items">
-        <button class="cust-btn" @click="goPage(item.link)">
-          <v-icon :color="item.color">{{item.icon}}</v-icon>
-          <span class="title d-block">{{item.text}}</span>
-        </button>
-      </div>
-    </div>
-  </div>
+  <v-container fluid>
+    <v-slide-y-transition mode="out-in">
+      <v-layout column align-left>
+
+        <v-list-tile three-line
+          class="custom_tile"
+          v-for="item in items"
+          :key="item.title"
+          avatar
+          @click="goPage(item.link)"
+        >
+          <v-list-tile-avatar>
+            <v-icon :color="item.color" :class="[item.iconClass]" >{{ item.icon }}</v-icon>
+          </v-list-tile-avatar>
+          <v-list-tile-content>
+            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+            <v-list-tile-sub-title>{{ item.subtitle }}</v-list-tile-sub-title>
+          </v-list-tile-content>
+        </v-list-tile>
+
+      </v-layout>
+    </v-slide-y-transition>
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -17,10 +30,10 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 @Component
 export default class Home extends Vue {
   items:any = [
-    {text:"모임관리", link:"/meeting", icon:"date_range", color:"amber" },
-    {text:"회원등록", link:"/register", icon:"person_add", color:"amber" },
-    {text:"회원관리", link:"/management", icon:"people", color:"amber" },
-    {text:"통계보기", link:"/statistic", icon:"insert_chart", color:"amber" },
+    {title:"모임관리", subtitle:"모임 생성,삭제 출석관리", link:"/meetings", icon:"date_range", color:"amber", iconClass:"" },
+    {title:"회원등록", subtitle:"신규 회원 등록", link:"/member", icon:"person_add", color:"teal", iconClass:"" },
+    {title:"회원관리", subtitle:"회원목록과 기타 관리", link:"/management", icon:"people", color:"brown", iconClass:"" },
+    {title:"통계보기", subtitle:"여러가지 통계 보기", link:"/statistic", icon:"insert_chart", color:"blue-grey", iconClass:"" },
   ];
   goPage(link:string){
     this.$router.push(link);
@@ -29,33 +42,17 @@ export default class Home extends Vue {
 </script>
 
 <style scoped lang="scss">
-.home-wrap {
-  background: #fff !important;
-  display:table;
-  table-layout:fixed;
-  width:100%;
-  height: calc(100% - 100px);
-  .cell {
-    display:table-cell;
-    text-align:center;
-    vertical-align:middle;
-    .my-card {
-      display:inline-block;
-      width: 48%;
-      margin: 1% 1% 3% 1%;
-      .cust-btn {
-        width:100%;
-        height:100%;
-        text-align:center;
-        .v-icon {
-          font-size:9rem;
-        }
-      } 
-      .title {
-        color:#666;
-        font-family: 'Noto Sans KR', sans-serif !important;
-      }
-    }
+.custom_tile {
+  margin: 15px 0 15px 5%;
+  .v-icon {
+    font-size:40px;
   }
+  .v-list__tile__title {
+    font-size:24px;
+  }
+  .v-list__tile__sub-title {
+    font-size:18px;
+  }
+
 }
 </style>

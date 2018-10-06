@@ -3,9 +3,6 @@
     <v-slide-y-transition mode="out-in">
       <v-layout column align-center>
         <ProgressComp :propData="meetingsMonth"></ProgressComp>
-        <v-btn flat icon Outline fixed left color="black" style="z-index:2; left: 2px; top: 60px;" @click="historyBack()">
-          <v-icon>undo</v-icon>
-        </v-btn>
         <v-card class="pt-3 pa-3">
           <h1 class="headline">
             <v-icon color="#009688">date_range</v-icon>
@@ -67,7 +64,7 @@ export default class Meeting extends Vue {
       )
     {
       const meetingAndKey = this.findMeetingAndKeyByDateNumber(parseInt(this.$moment(pick).format('YYYYMMDD')));
-      const path = `/meeting/${meetingAndKey.key ? meetingAndKey.key :'create'}`
+      const path = `/meeting${meetingAndKey.key ? '/'+meetingAndKey.key :''}`
       if(this.currentUser){
         this.$router.push({
           path,
@@ -84,10 +81,6 @@ export default class Meeting extends Vue {
   dates:any = null;
   meetingsMonth:any = null;
   pickerDate:any = null;
-
-  historyBack(){
-    this.$router.go(-1);
-  }
 
   getMeetingsMonth(pDate:Date=new Date()){
     const date:string = this.$moment(pDate).format('YYYYMM');

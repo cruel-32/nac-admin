@@ -7,12 +7,12 @@
       shift
       :color="pageColor"
     >
-      <v-btn dark flat :to="{name : 'register'}">
+      <v-btn dark flat :to="{name : 'memberCreate'}">
         <span>Register</span>
         <v-icon>person_add</v-icon>
       </v-btn>
 
-      <v-btn dark flat :to="{name : 'meeting'}">
+      <v-btn dark flat :to="{name : 'meetings'}">
         <span>Meeting</span>
         <v-icon>date_range</v-icon>
       </v-btn>
