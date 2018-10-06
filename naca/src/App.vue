@@ -1,13 +1,8 @@
 <template>
-  <v-app v-resize="onResize" app class="no-transition"
-    v-touch="{
-      left: () => swipe('Left'),
-      right: () => swipe('Right'),
-      up: () => swipe('Up'),
-      down: () => swipe('Down')
-    }"
+  <v-app
+    v-resize="onResize"
+    app
   >
-    {{swipeDirection}}
     <SideComp
       :currentUser="currentUser"
       :windowSize="windowSize"
@@ -97,7 +92,6 @@ export default class App extends Vue {
   };
   currentUser:any=null;
   drawer:boolean = false;
-  swipeDirection:any = '';
 
   snackbar:boolean = false;
   snackbarColor:string = 'success';
@@ -124,9 +118,6 @@ export default class App extends Vue {
         }
       }
     });
-  }
-  swipe (direction:any) {
-    this.swipeDirection = direction
   }
   onResize(){
     this.windowSize = { x: window.innerWidth, y: window.innerHeight }
@@ -172,12 +163,6 @@ div.application {
   font-family: 'Roboto', 'Noto Sans KR', sans-serif !important;
   &.theme--light {
     background:#fff;
-  }
-}
-.no-transition {
-  transition:none !important;
-  * {
-    transition:none !important;
   }
 }
 </style>

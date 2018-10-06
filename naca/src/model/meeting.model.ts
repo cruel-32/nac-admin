@@ -1,13 +1,15 @@
 export class Meeting {
-    date:Date;
+    date:number;
     title:string = '';
     place:string = '';
-    category:string[] = ['먹방'];
+    contents:string[] = [];
+    members:string[] = [];
     
-    constructor(date:Date=new Date, title:string='', place:string='', category:string[]=['먹방']) {
+    constructor(date:number, title:string='', place:string='', contents:string[]=[],members:string[]=[]) {
         this.date = date;
         this.title = title;
         this.place = place;
-        this.category = category;
+        this.contents = contents;
+        this.members = members;
     }
 }

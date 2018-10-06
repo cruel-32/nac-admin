@@ -12,8 +12,8 @@
         <v-icon>person_add</v-icon>
       </v-btn>
 
-      <v-btn dark flat :to="{name : 'meetings'}">
-        <span>Meetings</span>
+      <v-btn dark flat :to="{name : 'meeting'}">
+        <span>Meeting</span>
         <v-icon>date_range</v-icon>
       </v-btn>
 

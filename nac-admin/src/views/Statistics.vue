@@ -8,7 +8,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
-export default class Statistics extends Vue {
+export default class Statistic extends Vue {
   @Prop() account: any;
   @Prop() query: any;
   @Prop() params: any;

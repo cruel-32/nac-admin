@@ -9,7 +9,7 @@
     <router-link to="/management" tag="div" class="menu">
        <a>회원관리</a>
     </router-link>
-    <router-link to="/statistics" tag="div" class="menu">
+    <router-link to="/statistic" tag="div" class="menu">
        <a>통계보기</a>
     </router-link>
   </div>

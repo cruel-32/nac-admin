@@ -13,7 +13,7 @@
     <div id="nav">
       <router-link :to="{name : 'home'}">Home</router-link> |
       <router-link :to="{name : 'management'}">Management</router-link> |
-      <router-link :to="{name : 'statistics'}">Statistics</router-link> |
+      <router-link :to="{name : 'statistic'}">Statistic</router-link> |
       <!-- , params:{testst:'testst'}, query:{tester:'testerAAA'}} -->
     </div>
     <div>

@@ -50,22 +50,31 @@ export default new Router({
       component : () => import('./views/Management.vue'),
     },
     {
-      path: '/meetings',
-      name: 'meetings',
+      path: '/meeting',
+      name: 'meeting',
       props: (route) => ({
         params : route.params,
         query: route.query
       }),
-      component: () => import('./views/Meetings.vue'),
+      component: () => import('./views/Meeting.vue'),
     },
     {
-      path: '/statistics',
-      name: 'statistics',
+      path: '/meeting/:key',
+      name: 'meetingCreate',
       props: (route) => ({
         params : route.params,
         query: route.query
       }),
-      component: () => import('./views/Statistics.vue'),
+      component: () => import('./views/MeetingCreate.vue'),
+    },
+    {
+      path: '/statistic',
+      name: 'statistic',
+      props: (route) => ({
+        params : route.params,
+        query: route.query
+      }),
+      component: () => import('./views/Statistic.vue'),
     },
     {
       path: '/member/:id',
@@ -75,6 +84,6 @@ export default new Router({
         query : route.query
       }),
       component: () => import('./views/MemberView.vue'),
-    },
+    }
   ],
 });

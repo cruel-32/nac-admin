@@ -32,8 +32,8 @@ export default new Router({
       component : () => import('./views/Management.vue'),
     },
     {
-      path: '/meetings',
-      name: 'meetings',
+      path: '/meeting',
+      name: 'meeting',
       props: (route) => ({
         params : route.params,
         query: route.query
@@ -41,13 +41,13 @@ export default new Router({
       component: () => import('./views/Meetings.vue'),
     },
     {
-      path: '/statistics',
-      name: 'statistics',
+      path: '/statistic',
+      name: 'statistic',
       props: (route) => ({
         params : route.params,
         query: route.query
       }),
-      component: () => import('./views/Statistics.vue'),
+      component: () => import('./views/Statistic.vue'),
     },
     {
       path: '/member/:id',

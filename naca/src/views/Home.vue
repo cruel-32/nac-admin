@@ -1,38 +1,12 @@
 <template>
   <div class="home-wrap">
     <div class="cell">
-      <!-- <div class="my-card">
-        <button class="cust-btn" @click="goPage('/meetings')">
-          <v-icon color="amber">date_range</v-icon>
-          <span class="title d-block">모임관리</span>
-        </button>
-      </div>
-      <div class="my-card">
-        <button class="cust-btn"  @click="goPage('/register')">
-          <v-icon color="amber">person_add</v-icon>
-          <span class="title d-block">회원등록</span>
-        </button>
-      </div>
-      <div class="my-card">
-        <button class="cust-btn" @click="goPage('/management')">
-          <v-icon color="amber">people</v-icon>
-          <span class="title d-block">회원관리</span>
-        </button>
-      </div>
-      <div class="my-card">
-        <button class="cust-btn" @click="goPage('/statistics')">
-          <v-icon color="amber">insert_chart</v-icon>
-          <span class="title d-block">통계보기</span>
-        </button>
-      </div> -->
-
       <div class="my-card" v-for="item in items">
         <button class="cust-btn" @click="goPage(item.link)">
           <v-icon :color="item.color">{{item.icon}}</v-icon>
           <span class="title d-block">{{item.text}}</span>
         </button>
       </div>
-
     </div>
   </div>
 </template>
@@ -43,10 +17,10 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 @Component
 export default class Home extends Vue {
   items:any = [
-    {text:"모임관리", link:"/meetings", icon:"date_range", color:"amber" },
+    {text:"모임관리", link:"/meeting", icon:"date_range", color:"amber" },
     {text:"회원등록", link:"/register", icon:"person_add", color:"amber" },
     {text:"회원관리", link:"/management", icon:"people", color:"amber" },
-    {text:"통계보기", link:"/statistics", icon:"insert_chart", color:"amber" },
+    {text:"통계보기", link:"/statistic", icon:"insert_chart", color:"amber" },
   ];
   goPage(link:string){
     this.$router.push(link);
