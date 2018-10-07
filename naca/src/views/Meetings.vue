@@ -55,12 +55,13 @@ export default class Meeting extends Vue {
     
   @Watch('date')
   pickDay(pick:any,prev:any){
-    const today:any = this.$moment(new Date()).format('DD');
-    const pickDay = pick.split('-')[2];
+    const today:any = this.$moment(new Date()).format('MMDD');
+    const pickDay = pick.split('-');
 
-    if(pick.length == 10
-        && (pickDay != prev.split('-')[2])
-        && (pickDay != today)
+if(
+        (prev && pickDay[2] != prev.split('-')[2])
+        || (pickDay[2] != today.slice(2,4))
+        || (pickDay[1] == today.slice(0,2))
       )
     {
       const meetingAndKey = this.findMeetingAndKeyByDateNumber(parseInt(this.$moment(pick).format('YYYYMMDD')));

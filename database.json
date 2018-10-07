@@ -34,22 +34,22 @@
     "name": "MT"
   }],
   "grade": [{
-    "key": "a0sjgujebrjrm",
+    "key": "0",
     "name": "모임장"
   }, {
-    "key": "b00fd7v7uv99c",
+    "key": "1",
     "name": "운영진"
   }, {
-    "key": "ccvdet033jgjg",
+    "key": "2",
     "name": "일반회원"
   }, {
-    "key": "ddffe2jjyjkkd",
+    "key": "3",
     "name": "신입(1회~3회 참여)"
   }, {
-    "key": "eeety50jjrgrb",
+    "key": "4",
     "name": "신입(0회 참여)"
   }, {
-    "key": "fg9jkklrjyobb",
+    "key": "5",
     "name": "보류"
   }],
   "meeting": {

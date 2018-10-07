@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    관리페이지
+    통계페이지
   </div>
 </template>
 
@@ -8,11 +8,11 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
-export default class Management extends Vue {
-  @Prop() windowSize: any;
+export default class Statistics extends Vue {
   @Prop() currentUser: any;
   @Prop() query: any;
   @Prop() params: any;
+
   created(){
     console.log('currentUser : ', this.currentUser);
     console.log('query : ', this.query);

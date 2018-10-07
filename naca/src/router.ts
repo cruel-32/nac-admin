@@ -23,15 +23,6 @@ export default new Router({
       component : () => import('./views/Account.vue'),
     },
     {
-      path: '/management',
-      name: 'management',
-      props : (route) => ({
-        params : route.params,
-        query : route.query
-      }),
-      component : () => import('./views/Management.vue'),
-    },
-    {
       path: '/meetings',
       name: 'meetings',
       props: (route) => ({
@@ -59,13 +50,13 @@ export default new Router({
       component: () => import('./views/MeetingCreate.vue'),
     },
     {
-      path: '/statistic',
-      name: 'statistic',
+      path: '/members',
+      name: 'members',
       props: (route) => ({
         params : route.params,
         query: route.query
       }),
-      component: () => import('./views/Statistic.vue'),
+      component: () => import('./views/Members.vue'),
     },
     {
       path: '/member',
@@ -77,13 +68,22 @@ export default new Router({
       component: () => import('./views/MemberCreate.vue'),
     },
     {
-      path: '/member/:id',
+      path: '/member/:key',
       name: 'memberUpdate',
       props: (route) => ({
         params : route.params,
         query : route.query
       }),
       component: () => import('./views/MemberCreate.vue'),
+    },
+    {
+      path: '/statistics',
+      name: 'statistics',
+      props: (route) => ({
+        params : route.params,
+        query: route.query
+      }),
+      component: () => import('./views/Statistics.vue'),
     },
   ],
 });

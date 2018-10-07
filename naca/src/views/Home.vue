@@ -31,9 +31,8 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 export default class Home extends Vue {
   items:any = [
     {title:"모임관리", subtitle:"모임 생성,삭제 출석관리", link:"/meetings", icon:"date_range", color:"amber", iconClass:"" },
-    {title:"회원등록", subtitle:"신규 회원 등록", link:"/member", icon:"person_add", color:"teal", iconClass:"" },
-    {title:"회원관리", subtitle:"회원목록과 기타 관리", link:"/management", icon:"people", color:"brown", iconClass:"" },
-    {title:"통계보기", subtitle:"여러가지 통계 보기", link:"/statistic", icon:"insert_chart", color:"blue-grey", iconClass:"" },
+    {title:"회원관리", subtitle:"회원목록과 기타 관리", link:"/members", icon:"people", color:"brown", iconClass:"" },
+    {title:"통계보기", subtitle:"여러가지 통계 보기", link:"/statistics", icon:"insert_chart", color:"blue-grey", iconClass:"" },
   ];
   goPage(link:string){
     this.$router.push(link);
@@ -43,7 +42,7 @@ export default class Home extends Vue {
 
 <style scoped lang="scss">
 .custom_tile {
-  margin: 15px 0 15px 5%;
+  margin: 30px 0 15px 5%;
   .v-icon {
     font-size:40px;
   }

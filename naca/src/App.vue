@@ -20,7 +20,7 @@
       v-on:showSnackbar="showSnackbar"
     >
     </HeaderComp>
-    <v-content>
+    <v-content class="pb-5">
       <router-view v-scroll="onScroll"
       :currentUser="currentUser"
       v-on:showSnackbar="showSnackbar"
@@ -33,6 +33,7 @@
       v-on:showSnackbar="showSnackbar"
     >
     </FooterComp>
+
     <v-snackbar
       v-model="snackbar"
       :color="snackbarColor"

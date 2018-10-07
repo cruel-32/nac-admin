@@ -5,8 +5,10 @@
         <!-- <ProgressComp :propData="dates"></ProgressComp> -->
         <form id="create-meeting-dialog" class="ui form" @submit.prevent="putMeeting">
           <v-card>
-            <v-card-title>
-              <span class="headline">모임 생성</span>
+            <v-card-title class="pb-0">
+              <span class="headline">
+                {{params.key ? "모임 수정": "모임 생성"}}
+              </span>
             </v-card-title>
             <v-card-text class="pa-0">
                 <v-container grid-list-md>
@@ -235,6 +237,8 @@ export default class MeetingCreate extends Vue {
   memberList:any[] = [];
 
   created(){
+    console.log('this.query : ', this.query);
+    console.log('this.params : ', this.params);
     this.getPlaces();
     this.getContents();
     if(this.currentUser){
