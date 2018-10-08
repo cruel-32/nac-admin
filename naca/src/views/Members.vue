@@ -24,6 +24,7 @@
           <td class="text-xs-center custom-padding">{{ props.item.birth }}</td>
           <td class="text-xs-center custom-padding">{{ props.item.joinDate }}</td>
           <td class="text-xs-left custom-padding">{{ props.item.address }}</td>
+          <td class="text-xs-right custom-padding">{{ props.item.lastParticipation }}</td>
         </tr>
       </template>
     </v-data-table>
@@ -63,6 +64,11 @@ export default class Management extends Vue {
       text : '사는곳',
       align: 'left',
       value: 'address'
+    },
+    {
+      text : '잔여일수',
+      align: 'right',
+      value: 'lastParticipation'
     }
   ];
   memberList:any[] = [];
@@ -72,9 +78,9 @@ export default class Management extends Vue {
     console.log('query : ', this.query);
     console.log('params : ', this.params);
 
-    GradeService.getGrades().then((gradeList:any)=>{
-      console.log('gradeList : ', gradeList);
-    });
+    // GradeService.getGrades().then((gradeList:any)=>{
+    //   console.log('gradeList : ', gradeList);
+    // });
     this.getMembers();
   }
   getMembers(){
@@ -88,12 +94,17 @@ export default class Management extends Vue {
             "name" : memberList[memberKey].name || "-",
             "birth" : this.$moment(memberList[memberKey].birth.toString()).format('YYYY.MM.DD') || "-",
             "joinDate" : this.$moment(memberList[memberKey].joinDate.toString()).format('YYYY.MM.DD') || "-",
-            "address" : memberList[memberKey].address || "-"
+            "address" : memberList[memberKey].address || "-",
+            "lastParticipation" : this.getLastParticipation(memberList[memberKey])
           }
         });
         console.log('this.memberList : ', this.memberList);
       }
     });
+  }
+  getLastParticipation(memberObj:any){
+    console.log('memberObj : ', memberObj);
+    return 0
   }
   meberDetail(key:string){
     console.log('key : ', key);

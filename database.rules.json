@@ -4,7 +4,7 @@
     "member" : {
       ".read": "auth != null",
       ".write": "auth.uid === '1qKjeQg5NJVkJgGse4AQU6zP7Jp1' || auth.uid === 'MP6nhPUIdtYeeyM5dkY4qpO6pYW2'",
-      ".indexOn" : ["name"]
+      ".indexOn" : ["name","grade"]
     },
     "meeting" : {
       ".read": true,

@@ -1,5 +1,22 @@
 <template>
   <v-card height="56px" flat>
+    <v-speed-dial
+      bottom
+      left
+      fixed
+      direction="top"
+      transition="slide-y-reverse-transition"
+    >
+      <v-btn
+        slot="activator"
+        color="amber darken-2"
+        dark
+        fab
+        @click="$router.go(-1)"
+      >
+        <v-icon>arrow_back</v-icon>
+      </v-btn>
+    </v-speed-dial>
 
     <v-speed-dial
       v-model="fab"
