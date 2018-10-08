@@ -233,6 +233,7 @@ export default class MeetingCreate extends Vue {
   contentsList:any = []
   placeList:any[] = [];
   meeting:Meeting = new Meeting(this.query.date);
+  meetingOrigin:Meeting = new Meeting(this.query.date);
   viewConfirmDelete:boolean = false;
   memberList:any[] = [];
 
@@ -274,6 +275,13 @@ export default class MeetingCreate extends Vue {
         res.contents,
         res.members
       );
+      this.meetingOrigin = new Meeting(
+        res.date,
+        res.title,
+        res.place,
+        res.contents,
+        res.members
+      );
     })
   }
   getMembers(){
@@ -291,25 +299,67 @@ export default class MeetingCreate extends Vue {
       }
     });
   }
-  afterCreate(){
+  goMeetings(){
     this.$router.push('/meetings');
   }
   putMeeting(){
+    console.log('this.meeting.members : ', this.meeting.members);
     this.$validator.validateAll().then((result:any) => {
       if (result) {
         if(this.currentUser){
           MeetingService.getIdToken(this.currentUser).then((auth:any)=>{
-            if(!this.params.key){
+            if(!this.params.key){//신규생성
               MeetingService.createMeeting(this.meeting).then((res:any)=>{
-                this.showSnackbar('success','모임을 생성했습니다');
-                this.afterCreate();
+                if(this.meeting.members.length){
+                  let membersKeys = {};
+                  this.meeting.members.forEach(item=>{
+                    membersKeys[item] = {
+                      participation : {
+                        [this.params.key] : this.query
+                      }
+                    }
+                  });
+                  console.log('membersKeys : ', membersKeys);
+                  MemberService.updateMembers(membersKeys).then((res:any)=>{
+                    console.log('res : ', res);
+                    if(res){
+                      this.showSnackbar('success','모임을 생성했습니다');
+                      this.goMeetings();
+                    }
+                  });
+                } else {
+                  this.showSnackbar('success','모임을 생성했습니다');
+                  this.goMeetings();
+                }
               },(err:any)=>{
                 this.showSnackbar('error','모임을 생성 실패했습니다');
               })
-            } else {
+            } else {//기존수정
               MeetingService.updateMeeting(this.params.key, this.meeting).then((res:any)=>{
+                console.log('res ::: ', res);
+                console.log('this.meeting ::: ', this.meeting);
+                console.log('this.meetingOrigin ::: ', this.meetingOrigin);
+
+                let updateMember = {};
+
+                //member/멤버키/participation/모임키
+
+                this.meeting.members.forEach((member:any) => {
+                  if(!this.meetingOrigin.members.includes(member)){
+                    updateMember[member].participation = this.params.key;
+                  }
+                });
+
+                this.meetingOrigin.members.forEach((memberOrigin:any) => {
+                  if(!this.meeting.members.includes(memberOrigin)){
+                    updateMember[memberOrigin].participation = null;
+                  }
+                });
+
+                console.log('updateMember : ', updateMember);
+
                 this.showSnackbar('success','모임을 수정했습니다');
-                this.afterCreate();
+                this.goMeetings();
               },(err:any)=>{
                 this.showSnackbar('error','모임을 수정 실패했습니다');
               })
@@ -329,7 +379,7 @@ export default class MeetingCreate extends Vue {
       MeetingService.getIdToken(this.currentUser).then((auth:any)=>{
         MeetingService.deleteMeeting(this.params.key,{auth}).then(()=>{
           this.showSnackbar('success','모임을 삭제했습니다');
-          this.afterCreate();
+          this.goMeetings();
         },(err:any)=>{
         })
         .catch((error:any)=>{

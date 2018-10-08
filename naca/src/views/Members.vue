@@ -20,11 +20,11 @@
     >
       <template slot="items" slot-scope="props" >
         <tr @click="meberDetail(props.item.key)">
-          <td class="text-xs-center custom-padding">{{ props.item.name }}</td>
-          <td class="text-xs-center custom-padding">{{ props.item.birth }}</td>
-          <td class="text-xs-center custom-padding">{{ props.item.joinDate }}</td>
-          <td class="text-xs-left custom-padding">{{ props.item.address }}</td>
-          <td class="text-xs-right custom-padding">{{ props.item.lastParticipation }}</td>
+          <td class="text-xs-center">{{ props.item.name }}</td>
+          <td class="text-xs-center">{{ props.item.birth }}</td>
+          <td class="text-xs-center">{{ props.item.joinDate }}</td>
+          <td class="text-xs-left">{{ props.item.address }}</td>
+          <td class="text-xs-left">{{ props.item.exitDay }}</td>
         </tr>
       </template>
     </v-data-table>
@@ -66,10 +66,10 @@ export default class Management extends Vue {
       value: 'address'
     },
     {
-      text : '잔여일수',
-      align: 'right',
-      value: 'lastParticipation'
-    }
+      text : '강퇴날(D-?)',
+      align: 'left',
+      value: 'exitDay'
+    },
   ];
   memberList:any[] = [];
 
@@ -78,9 +78,9 @@ export default class Management extends Vue {
     console.log('query : ', this.query);
     console.log('params : ', this.params);
 
-    // GradeService.getGrades().then((gradeList:any)=>{
-    //   console.log('gradeList : ', gradeList);
-    // });
+    GradeService.getGrades().then((gradeList:any)=>{
+      console.log('gradeList : ', gradeList);
+    });
     this.getMembers();
   }
   getMembers(){
@@ -95,16 +95,47 @@ export default class Management extends Vue {
             "birth" : this.$moment(memberList[memberKey].birth.toString()).format('YYYY.MM.DD') || "-",
             "joinDate" : this.$moment(memberList[memberKey].joinDate.toString()).format('YYYY.MM.DD') || "-",
             "address" : memberList[memberKey].address || "-",
-            "lastParticipation" : this.getLastParticipation(memberList[memberKey])
+            "exitDay" : this.computeExitDay(memberList[memberKey])
           }
         });
         console.log('this.memberList : ', this.memberList);
       }
     });
   }
-  getLastParticipation(memberObj:any){
-    console.log('memberObj : ', memberObj);
-    return 0
+  computeExitDay(member){
+    let ExitDay
+    let lastDay:any;
+    let grade = member.grade;
+
+    if(grade == 0){
+      return '모임장';
+    } else if(grade == 1){
+      return '운영진';
+    } else if(grade == 2 || grade == 3 || grade == 4){
+      let memberPart = member.participation;
+      if(memberPart){
+        let memberPartArr = Object.keys(memberPart);
+        if(memberPartArr.length){
+          lastDay = this.$moment(
+            memberPartArr.map((key:any)=>{
+              return memberPart[key]
+            }).sort((a:any,b:any)=>{
+              return b-a;
+            })[0].toString()
+          )
+        } else {
+          lastDay = this.$moment(member.joinDate.toString())
+        }
+      } else {
+        lastDay = this.$moment(member.joinDate.toString())
+      }
+      // console.log('lastDay : ', lastDay);
+      ExitDay = (grade == 2 ? 90 : (grade == 3 ? 60 : 30))
+        - this.$moment(new Date).diff(lastDay, 'days');
+      return ExitDay < 1 ? "강퇴대상" : ExitDay;
+    } else {
+      return '-'
+    }
   }
   meberDetail(key:string){
     console.log('key : ', key);
@@ -112,10 +143,10 @@ export default class Management extends Vue {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .custom-table {
-  .custom-padding {
-    padding: 0 15px !important;
+  th,td {
+    padding: 0 10px !important;
   }
 }
 </style>

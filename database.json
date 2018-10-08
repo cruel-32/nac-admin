@@ -44,10 +44,10 @@
     "name" : "일반회원"
   }, {
     "key" : 3,
-    "name" : "신입(1회~3회 참여)"
+    "name" : "신입(1회~3회 참석)"
   }, {
     "key" : 4,
-    "name" : "신입(0회 참여)"
+    "name" : "신입(미참석)"
   }, {
     "key" : 5,
     "name" : "특수회원"
@@ -70,12 +70,19 @@
       "place" : "wervwtbwrtbetrh",
       "title" : "마리오 파티벙"
     },
-    "-LOFl9uR0kJxEVFSvO6h" : {
-      "contents" : [ "dsfoopjeroeo", "wererwrtttyy" ],
-      "date" : 20181012,
-      "members" : [ "cccbryiumrtbryb", "mmruihthjevi", "ertveynrtun", "bretyv3456n3", "sdfgbesrtb", "dfgbtujkyn", "ertbunrtu", "fgryntubtn" ],
+    "-LOHgwKx0rQxnQ3QobqP" : {
+      "contents" : [ "wererwrtttyy" ],
+      "date" : 20181010,
+      "members" : [ "bretyv3456n3", "fgryntubtn", "wervwerv" ],
+      "place" : "opwitywueyyytte",
+      "title" : "파스타 먹으러가요"
+    },
+    "-LOHhQK2maqy6ZMr1GWk" : {
+      "contents" : [ "wererwrtttyy", "dsfoopjeroeo" ],
+      "date" : 20181013,
+      "members" : [ "cccbryiumrtbryb", "mmruihthjevi", "bretyv3456n3", "fgryntubtn", "sdfgbesrtb", "dfgbtujkyn", "ertbunrtu", "ertveynrtun" ],
       "place" : "xxxxxxdffffeeer",
-      "title" : "대하축제"
+      "title" : "강화도 대하축제"
     },
     "LNyH_mgLTMhOe4pGN2S" : {
       "contents" : [ "wererwrtttyy", "eeerfccaqycw" ],
@@ -101,18 +108,20 @@
       "joinDate" : 20180620,
       "mail" : "",
       "name" : "강숭욱",
-      "participation" : [ 20180929 ],
+      "participation" : {
+        "-LO9LTAuiHlvkISqSGVs" : 20181002
+      },
       "phone" : 1012345678
     },
     "bbhjkrtebwwrte" : {
       "address" : "제기동",
-      "birth" : 19940114,
+      "birth" : 19930114,
       "grade" : 2,
       "job" : "",
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "고보경",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "bdyberrr" : {
@@ -123,7 +132,7 @@
       "joinDate" : 20180616,
       "mail" : "",
       "name" : "최재연",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "bretyv3456n3" : {
@@ -134,7 +143,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "박세민",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "cccbryiumrtbryb" : {
@@ -145,7 +154,7 @@
       "joinDate" : 20150405,
       "mail" : "",
       "name" : "고중민",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1074547357
     },
     "ddefhsxxzzpkml" : {
@@ -156,7 +165,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "구영모",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "dfgberyvy" : {
@@ -167,7 +176,7 @@
       "joinDate" : 20160717,
       "mail" : "",
       "name" : "신선하",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1048609629
     },
     "dfgbrb" : {
@@ -178,7 +187,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "유태종",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "dfgbserybjh" : {
@@ -189,7 +198,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "이범탁",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "dfgbtujkyn" : {
@@ -200,7 +209,7 @@
       "joinDate" : 20180101,
       "mail" : "tladlwl13@gmail.com",
       "name" : "심이지",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1093924918
     },
     "dfgbujrnu" : {
@@ -211,7 +220,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "정혜선",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "eeevyntvryb" : {
@@ -222,7 +231,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "권석환",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "enrtnrnrt" : {
@@ -233,7 +242,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "한태구",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "ertbebrtjhbr" : {
@@ -244,7 +253,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "신지혁",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "ertbeynru" : {
@@ -255,7 +264,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "최상호",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "ertbujnrtjh" : {
@@ -266,7 +275,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "장경태",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "ertbunrtu" : {
@@ -277,7 +286,7 @@
       "joinDate" : 20141111,
       "mail" : "cshee8508@gmail.com",
       "name" : "최승희",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1050544147
     },
     "ertveynrtun" : {
@@ -288,7 +297,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "노미혜",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "ertvuj56ub" : {
@@ -299,7 +308,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "배인지",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "eryneyneeenen" : {
@@ -310,7 +319,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "하성운",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "eybtunttt" : {
@@ -321,7 +330,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "최한울",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "ffffefvrnvvvz2" : {
@@ -332,7 +341,7 @@
       "joinDate" : 20180625,
       "mail" : "",
       "name" : "권형구",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "fgryntubtn" : {
@@ -343,7 +352,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "박정현",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "ggrtvbrtynyjfgbv1" : {
@@ -354,7 +363,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "김경훈",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "hbrtuyb" : {
@@ -365,7 +374,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "배숙경",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "hhhkejkronjrbrv" : {
@@ -376,7 +385,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "김도이",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "iifmgnehhgmgjt" : {
@@ -387,7 +396,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "김도희",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "iiirtbuy" : {
@@ -398,7 +407,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "백종현",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "jjdfetrbgg" : {
@@ -409,7 +418,7 @@
       "joinDate" : 20151020,
       "mail" : "",
       "name" : "김비오",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1027883334
     },
     "llmfgnurnrb" : {
@@ -420,7 +429,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "김서우",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "mmruihthjevi" : {
@@ -431,7 +440,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "김승범",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "nnnnghtyrtbrtyb" : {
@@ -442,7 +451,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "김예주",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "ooopghfghfg" : {
@@ -453,7 +462,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "김주현",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "ppdfnjrnvtv" : {
@@ -464,7 +473,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "김현정",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "rrwervwevhbrty" : {
@@ -475,7 +484,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "김효석",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "rtnrtnrybryb" : {
@@ -486,7 +495,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "홍기택",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "rtybyjn" : {
@@ -497,7 +506,7 @@
       "joinDate" : 20170926,
       "mail" : "",
       "name" : "정상민",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1030517282
     },
     "rtynrtbrthn" : {
@@ -508,7 +517,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "황성철",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "rtynrtybrtyn" : {
@@ -519,7 +528,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "홍혜란",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "sdfbertyu" : {
@@ -530,7 +539,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "이평강",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "sdfgbesrtb" : {
@@ -541,7 +550,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "신나미",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "sdfgbeunrjntyjb" : {
@@ -552,7 +561,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "조신재",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "sdfgbtyunrt" : {
@@ -563,7 +572,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "이지은",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "ssdvwrtvrety" : {
@@ -574,7 +583,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "김희은",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "tb3545bvv" : {
@@ -585,7 +594,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "박요한",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "ttttevrtvrt" : {
@@ -596,7 +605,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "남동우",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "tynyuknyukn" : {
@@ -607,7 +616,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "조세현",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "vthbfghdnthn" : {
@@ -618,7 +627,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "송은영",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "vvtybtybyb" : {
@@ -629,7 +638,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "손원우",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "wefvwefv235" : {
@@ -640,7 +649,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "박수형",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "wervwerv" : {
@@ -651,7 +660,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "박제연",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "wevterybxxxx" : {
@@ -662,7 +671,7 @@
       "joinDate" : 20141112,
       "mail" : "",
       "name" : "최영환",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1027857472
     },
     "wrtbeynunrtub" : {
@@ -673,7 +682,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "최세훈",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     },
     "wtwbtwtbhn" : {
@@ -684,7 +693,7 @@
       "joinDate" : 20180929,
       "mail" : "",
       "name" : "지승환",
-      "participation" : [ 20180929 ],
+      "participation" : {},
       "phone" : 1012345678
     }
   },

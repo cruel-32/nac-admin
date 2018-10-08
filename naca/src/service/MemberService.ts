@@ -8,4 +8,15 @@ export const MemberService = Object.assign(DefaultApi,{
             print : `pretty`
         },params))
     },
+    updateMembers(params:any={}){
+        console.log('updateMembers params : ', params);
+        return DefaultApi.put(`member`, Object.assign({
+            print : `pretty`
+        },params))
+    },
+    deleteMembersParticipation(params:any={}){
+        return DefaultApi.del(`member`, Object.assign({
+            print : `pretty`
+        },params))
+    }
 });
