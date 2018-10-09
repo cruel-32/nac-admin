@@ -92,7 +92,8 @@ if(
       endAt : parseInt(`${date}32`)
     })
     .then((res:any)=>{
-      if(res){
+      if(res.val()){
+        res = res.val();
         this.meetingsMonth = res;
         this.dates = Object.keys(res).map((key:any)=>{
           return that.$moment(res[key].date.toString()).format('YYYY-MM-DD')

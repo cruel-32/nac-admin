@@ -24,7 +24,13 @@
           <td class="text-xs-center">{{ props.item.birth }}</td>
           <td class="text-xs-center">{{ props.item.joinDate }}</td>
           <td class="text-xs-left">{{ props.item.address }}</td>
-          <td class="text-xs-left">{{ props.item.exitDay }}</td>
+          <td class="text-xs-left" >
+            <span v-if="props.item.exitDay<1" class="custom-red">강퇴대상</span>
+            <span v-else-if="props.item.exitDay>=100 && props.item.exitDay<200" class="custom-amber">특수회원</span>
+            <span v-else-if="props.item.exitDay>=200 && props.item.exitDay<300" class="custom-blue">운영진</span>
+            <span v-else-if="props.item.exitDay>=300" class="custom-green">모임장</span>
+            <span v-else>{{props.item.exitDay}}일</span>
+          </td>
         </tr>
       </template>
     </v-data-table>
@@ -74,10 +80,6 @@ export default class Management extends Vue {
   memberList:any[] = [];
 
   created(){
-    console.log('currentUser : ', this.currentUser);
-    console.log('query : ', this.query);
-    console.log('params : ', this.params);
-
     GradeService.getGrades().then((gradeList:any)=>{
       console.log('gradeList : ', gradeList);
     });
@@ -85,9 +87,10 @@ export default class Management extends Vue {
   }
   getMembers(){
     MemberService.getMembers()
-    .then((memberList:any)=>{
-      if(memberList){
-        console.log('memberList : ', memberList);
+    .then((snapShot:any)=>{
+      if(snapShot){
+        console.log('snapShot : ', snapShot);
+        let memberList= snapShot.val();
         this.memberList = Object.keys(memberList).map(memberKey=>{
           return {
             "key" : memberKey,
@@ -98,7 +101,6 @@ export default class Management extends Vue {
             "exitDay" : this.computeExitDay(memberList[memberKey])
           }
         });
-        console.log('this.memberList : ', this.memberList);
       }
     });
   }
@@ -108,9 +110,9 @@ export default class Management extends Vue {
     let grade = member.grade;
 
     if(grade == 0){
-      return '모임장';
+      return 300;
     } else if(grade == 1){
-      return '운영진';
+      return 200;
     } else if(grade == 2 || grade == 3 || grade == 4){
       let memberPart = member.participation;
       if(memberPart){
@@ -129,12 +131,11 @@ export default class Management extends Vue {
       } else {
         lastDay = this.$moment(member.joinDate.toString())
       }
-      // console.log('lastDay : ', lastDay);
       ExitDay = (grade == 2 ? 90 : (grade == 3 ? 60 : 30))
         - this.$moment(new Date).diff(lastDay, 'days');
-      return ExitDay < 1 ? "강퇴대상" : ExitDay;
+      return ExitDay;
     } else {
-      return '-'
+      return 100
     }
   }
   meberDetail(key:string){
@@ -148,5 +149,18 @@ export default class Management extends Vue {
   th,td {
     padding: 0 10px !important;
   }
+}
+
+.custom-red { 
+  color:red !important
+}
+.custom-amber { 
+  color:#ffa000!important
+}
+.custom-blue { 
+  color:#1976d2!important
+}
+.custom-green { 
+  color:green !important
 }
 </style>

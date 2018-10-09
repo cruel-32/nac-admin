@@ -5,19 +5,19 @@ export const MeetingService = Object.assign(DefaultApi,{
             print : `pretty`
         },params))
     },
-    getMeetings(params:any={}){
+    getMeetings(params:any){
         return DefaultApi.get(`meeting`, Object.assign({
             orderByChild : `date`,
             print : `pretty`
         },params))
     },
-    createMeeting(params:any={}){
+    createMeeting(params:any){
         return DefaultApi.post(`meeting`, params);
     },
-    updateMeeting(key:any,params:any={}){
+    updateMeeting(key:any,params:any){
         return DefaultApi.patch(`meeting/${key}`, params)
     },
-    deleteMeeting(key:any,params:any={}){
+    deleteMeeting(key:any,params:any){
         return DefaultApi.del(`meeting/${key}`, params)
     },
 });

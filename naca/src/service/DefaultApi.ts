@@ -6,10 +6,10 @@ const baseURL = 'https://nac-admin.firebaseio.com/';
 const getIdToken = (currentUser:any)=>{
     return currentUser.getIdToken(true);
 };
-const put = (url:string, params={})=>{
+const put = (url:string, params:any)=>{
     return axios.put(`${baseURL}${url}`,params)
 };
-const get = (url:string, params:any={})=>{
+const get = (url:string, params:any)=>{
     return new Promise((resolve,reject)=>{
         let ref:any = Firebase.database.ref(url);
         for(let key in params){
@@ -25,7 +25,7 @@ const get = (url:string, params:any={})=>{
         }
         ref.once("value", (Data:any)=>{
             if(Data){
-                resolve(Data.val());
+                resolve(Data);
             } else {
                 reject(Data);
             }
@@ -33,7 +33,7 @@ const get = (url:string, params:any={})=>{
     })
     // return axios.get(`${baseURL}${url}`,{params})
 };
-const post = (url:string, params={})=>{
+const post = (url:string, params:any)=>{
     return new Promise((resolve,reject)=>{
         let newKey = Firebase.database.ref().child(url).push().key;
         Firebase.database.ref().update({
@@ -42,17 +42,17 @@ const post = (url:string, params={})=>{
             if(error){
                 reject(error);
             } else {
-                resolve();
+                resolve(newKey);
             }
         });
     })
     // return axios.post(`${baseURL}${url}`,params)
 };
-const del = (url:string, params:any={})=>{
+const del = (url:string, params:any)=>{
     return Firebase.database.ref().child(url).remove();
     // return axios.delete(`${baseURL}${url}`,{params})
 };
-const patch = (url:string, params={})=>{
+const patch = (url:string, params:any)=>{
     return new Promise((resolve,reject)=>{
         Firebase.database.ref().update({
             [`/${url}`] : params
@@ -60,12 +60,41 @@ const patch = (url:string, params={})=>{
             if(error){
                 reject(error);
             } else {
-                resolve();
+                resolve(true);
             }
         });
     })
     // return axios.patch(`${baseURL}${url}`,{params})
 };
+
+// const patchs = (url:string, params:any)=>{
+//     return new Promise((resolve,reject)=>{
+//         let ref = Firebase.database.ref(url);
+//         ref.once('value',(snapShot)=>{
+//             let val = snapShot.val();
+//             console.log('val : ', val);
+//             console.log('params : ', params);
+
+//             let keys = Object.keys(params);
+
+//             keys.forEach((key)=>{
+//                 let meetingKey = Object.keys(params[key]['participation'])[0];
+//                 val[key]['participation'] ? 
+//                 Object.assign(val[key]['participation'], params[key]['participation'])
+//                 : val[key]['participation'] = params[key]['participation']
+//             })
+
+//             ref.update(val,(error)=>{
+//                 if(error){
+//                     reject(error);
+//                 } else {
+//                     resolve(true);
+//                 }
+//             });
+//         });
+//     });
+// };
+
 export const DefaultApi = {
     Firebase,
     axios,
