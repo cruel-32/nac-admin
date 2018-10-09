@@ -48,6 +48,8 @@ export default class Management extends Vue {
   @Prop() currentUser: any;
   @Prop() query: any;
   @Prop() params: any;
+  @Emit('showSnackbar') showSnackbar(color:string,text:string){}
+
   search:string = '';
   options:any[] = [10,20,{"text":"$vuetify.dataIterator.rowsPerPageAll","value":-1}];
   headers:any[] = [
