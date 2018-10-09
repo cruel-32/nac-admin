@@ -1,11 +1,33 @@
 export class Member {
-    address:string = "도봉동";
-    birth:number = 19921114;
-    grade:number = 2;
+    address:string = "서울";
+    birth:number = 0;
+    grade:number = 4;
     job:string = "";
     joinDate:number = 20180620;
-    mail:string = "";
-    name:string = "강숭욱";
-    participation:number[] = [20180929];
-    phone:number = 1012345678
+    mail:string = "a@b.com";
+    name:string = "홍길동";
+    participation:any = {};
+    phone:number = 1012345678;
+
+    constructor(
+        address:string,
+        birth:number,
+        joinDate:number,
+        name:string,
+        job:string = "",
+        mail:string = "",
+        grade:number = 4,
+        participation:any = {},
+        phone:number = 1012345678,
+    ) {
+        this.address = address;
+        this.birth = birth;
+        this.joinDate = joinDate;
+        this.name = name;
+        this.job = job;
+        this.mail = mail;
+        this.grade = grade;
+        this.participation = participation;
+        this.phone = phone;
+    }
 }

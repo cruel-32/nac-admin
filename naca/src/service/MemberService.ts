@@ -1,5 +1,10 @@
 import { DefaultApi } from './DefaultApi';
 export const MemberService = Object.assign(DefaultApi,{
+    getMember(key:any,params:any={}){
+        return DefaultApi.get(`member/${key}`, Object.assign({
+            print : `pretty`
+        },params))
+    },
     getMembers(params:any={}){
         return DefaultApi.get(`member`, Object.assign({
             orderByChild : `grade`,
@@ -14,7 +19,6 @@ export const MemberService = Object.assign(DefaultApi,{
     updateMembers(params:any){
         return new Promise((resolve,reject)=>{
             this.getMembers().then((snapShot:any)=>{
-                console.log('snapShot : ', snapShot);
                 if(snapShot){
                     let members = snapShot.val();
                     let keys = Object.keys(params);

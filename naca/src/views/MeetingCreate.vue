@@ -306,7 +306,7 @@ export default class MeetingCreate extends Vue {
   }
   putMeeting(){
     this.$validator.validateAll().then((result:any) => {
-      if (result) {
+      if(result){
         if(this.currentUser){
           MeetingService.getIdToken(this.currentUser).then((auth:any)=>{
             let mMembers = this.meeting.members;

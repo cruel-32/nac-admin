@@ -115,7 +115,19 @@ export default class App extends Vue {
         },
         date : {
           required : (field:any) => `모임 ${field}를 선택하세요`
-        }
+        },
+        name: {
+          required : (field:any) => `회원 ${field} 을 적으세요`,
+          max: (field:any,count:number) => `${field}필드는 ${count} 자를 초과할 수 없습니다`
+        },
+        address: {
+          required : (field:any) => `회원 ${field} 을 적으세요`,
+          max: (field:any,count:number) => `${field}필드는 ${count} 자를 초과할 수 없습니다`
+        },
+        job: {
+          required : (field:any) => `회원 ${field} 을 적으세요`,
+          max: (field:any,count:number) => `${field}필드는 ${count} 자를 초과할 수 없습니다`
+        },
       }
     });
   }

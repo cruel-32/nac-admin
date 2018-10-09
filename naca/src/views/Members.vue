@@ -80,29 +80,29 @@ export default class Management extends Vue {
   memberList:any[] = [];
 
   created(){
-    GradeService.getGrades().then((gradeList:any)=>{
-      console.log('gradeList : ', gradeList);
-    });
     this.getMembers();
   }
   getMembers(){
-    MemberService.getMembers()
-    .then((snapShot:any)=>{
-      if(snapShot){
-        console.log('snapShot : ', snapShot);
-        let memberList= snapShot.val();
-        this.memberList = Object.keys(memberList).map(memberKey=>{
-          return {
-            "key" : memberKey,
-            "name" : memberList[memberKey].name || "-",
-            "birth" : this.$moment(memberList[memberKey].birth.toString()).format('YYYY.MM.DD') || "-",
-            "joinDate" : this.$moment(memberList[memberKey].joinDate.toString()).format('YYYY.MM.DD') || "-",
-            "address" : memberList[memberKey].address || "-",
-            "exitDay" : this.computeExitDay(memberList[memberKey])
-          }
-        });
-      }
-    });
+    if(this.currentUser){
+      MemberService.getMembers()
+      .then((snapShot:any)=>{
+        if(snapShot){
+          let memberList= snapShot.val();
+          this.memberList = Object.keys(memberList).map(memberKey=>{
+            return {
+              "key" : memberKey,
+              "name" : memberList[memberKey].name || "-",
+              "birth" : this.$moment(memberList[memberKey].birth.toString()).format('YYYY.MM.DD') || "-",
+              "joinDate" : this.$moment(memberList[memberKey].joinDate.toString()).format('YYYY.MM.DD') || "-",
+              "address" : memberList[memberKey].address || "-",
+              "exitDay" : this.computeExitDay(memberList[memberKey])
+            }
+          });
+        }
+      });
+    } else {
+      this.showSnackbar('error','로그인이 필요합니다');
+    }
   }
   computeExitDay(member){
     let ExitDay
@@ -138,8 +138,8 @@ export default class Management extends Vue {
       return 100
     }
   }
-  meberDetail(key:string){
-    console.log('key : ', key);
+  meberDetail(memberKey:any){
+    this.$router.push(`/member/${memberKey}`);
   }
 }
 </script>

@@ -19,8 +19,9 @@
             ref="picker"
             event-color="green lighten-1"
             :reactive="true"
-            :events="checkMeetingDay"
             :picker-date.sync="pickerDate"
+            :events="checkMeetingDay"
+            @change="changePickDay"
             locale="ko"
           ></v-date-picker>
         </v-card>
@@ -46,38 +47,28 @@ export default class Meeting extends Vue {
   @Prop() params: any;
   @Emit('showSnackbar') showSnackbar(color:string,text:string){}
 
-  @Watch('pickerDate')
-  dateChanged(val:any,val2:any){
-    if(val.length > 4){
-      this.getMeetingsMonth(this.$moment(val)._d);
+  changePickDay(){
+    const meetingAndKey = this.findMeetingAndKeyByDateNumber(parseInt(this.$moment(this.date).format('YYYYMMDD')));
+    const path = `/meeting${meetingAndKey.key ? '/'+meetingAndKey.key :''}`
+    if(this.currentUser){
+      this.$router.push({
+        path,
+        query : {
+          'date' : meetingAndKey.meeting.date
+        }
+      })
+    } else {
+      this.showSnackbar('error','로그인이 필요합니다');
     }
   }
-    
-  @Watch('date')
-  pickDay(pick:any,prev:any){
-    const today:any = this.$moment(new Date()).format('MMDD');
-    const pickDay = pick.split('-');
 
-if(
-        (prev && pickDay[2] != prev.split('-')[2])
-        || (pickDay[2] != today.slice(2,4))
-        || (pickDay[1] == today.slice(0,2))
-      )
-    {
-      const meetingAndKey = this.findMeetingAndKeyByDateNumber(parseInt(this.$moment(pick).format('YYYYMMDD')));
-      const path = `/meeting${meetingAndKey.key ? '/'+meetingAndKey.key :''}`
-      if(this.currentUser){
-        this.$router.push({
-          path,
-          query : {
-            'date' : meetingAndKey.meeting.date
-          }
-        })
-      } else {
-        this.showSnackbar('error','로그인이 필요합니다');
-      }
+  @Watch('pickerDate')
+  dateChanged(changedDate:any){
+    if(changedDate.length > 4){
+      this.getMeetingsMonth(this.$moment(changedDate)._d);
     }
   }
+  
   date:any = '';//this.$moment(new Date).format('YYYY-MM-DD');
   dates:any = null;
   meetingsMonth:any = null;
