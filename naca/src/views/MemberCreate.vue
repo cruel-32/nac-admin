@@ -99,6 +99,22 @@
                         disabled
                       ></v-text-field>
                     </v-flex>
+                    <v-flex xs12 sm6 md4 v-if="this.params.key">
+                      <v-text-field
+                        v-model="lastDay"
+                        label="최근 참여 벙 날짜"
+                        readonly
+                        disabled
+                      ></v-text-field>
+                    </v-flex>
+                    <v-flex xs12 sm6 md4 v-if="this.params.key">
+                      <v-text-field
+                        v-model="exitDay"
+                        label="강퇴까지 남은 일수 (D-XX)"
+                        readonly
+                        disabled
+                      ></v-text-field>
+                    </v-flex>
                   </v-layout>
                 </v-container>
               </v-card-text>
@@ -200,13 +216,14 @@ export default class MemberCreate extends Vue {
   }
   joinDate:any = this.$moment(new Date).format('YYYY-MM-DD');
   birth:any = null;
-  grade:any = "신입(미참석";
+  grade:any = "신입(미참석)";
   loading:boolean = false;
-
+  exitDay:any = '';
   viewConfirmUpdate:boolean = false;
   viewConfirmDelete:boolean = false;
   viewJoinDate:boolean = false;
   viewBirth:boolean = false;
+  lastDay:string = '';
   member:Member = new Member(
     '',
     19900101,
@@ -248,6 +265,23 @@ export default class MemberCreate extends Vue {
         member.participation,
         member.phone
       );
+      
+      let memberPart = member.participation;
+      if(memberPart){
+        let memberPartArr = Object.keys(memberPart);
+        if(memberPartArr.length){
+          this.lastDay = this.$moment(
+            memberPartArr.map((key:any)=>{
+              return memberPart[key]
+            }).sort((a:any,b:any)=>{
+              return b-a;
+            })[0].toString()
+          ).format('YYYY-MM-DD');
+        } else {
+          this.lastDay = this.$moment(member.joinDate.toString())
+        }
+      }
+
       switch(member.grade){
         case 0 : 
           this.grade = '모임장';
@@ -257,12 +291,15 @@ export default class MemberCreate extends Vue {
           break;
         case 2 : 
           this.grade = '일반회원';
+          this.exitDay = 90 - this.$moment(new Date).diff(this.lastDay, 'days');
           break;
         case 3 : 
           this.grade = '신입(1~3회 참석)';
+          this.exitDay = 60 - this.$moment(new Date).diff(this.lastDay, 'days');
           break;
         case 4 : 
           this.grade = '신입(미참석)';
+          this.exitDay = 30 - this.$moment(new Date).diff(this.lastDay, 'days');
           break;
         case 5 : 
           this.grade = '특수회원';
