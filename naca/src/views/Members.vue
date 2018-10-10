@@ -1,5 +1,6 @@
 <template>
   <v-card>
+    <ProgressComp :propData="loading"></ProgressComp>
     <v-card-title>
       회원목록
       <v-spacer></v-spacer>
@@ -26,9 +27,10 @@
           <td class="text-xs-left">{{ props.item.address }}</td>
           <td class="text-xs-left" >
             <span v-if="props.item.exitDay<1" class="custom-red">강퇴대상</span>
-            <span v-else-if="props.item.exitDay>=100 && props.item.exitDay<200" class="custom-amber">특수회원</span>
+            <span v-else-if="props.item.exitDay>=100 && props.item.exitDay<200" class="custom-blue">특수회원</span>
             <span v-else-if="props.item.exitDay>=200 && props.item.exitDay<300" class="custom-blue">운영진</span>
             <span v-else-if="props.item.exitDay>=300" class="custom-green">모임장</span>
+            <span v-else-if="props.item.exitDay>=1 && props.item.exitDay<15" class="custom-amber">{{props.item.exitDay}}일</span>
             <span v-else>{{props.item.exitDay}}일</span>
           </td>
         </tr>
@@ -38,11 +40,16 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Emit } from 'vue-property-decorator';
+import { Component, Prop, Vue, Emit, Watch } from 'vue-property-decorator';
 import { MemberService } from '../service/MemberService';
 import { GradeService } from '../service/GradeService';
+import ProgressComp from '../components/ProgressComp.vue';
 
-@Component
+@Component({
+  components : {
+    ProgressComp
+  }
+})
 export default class Management extends Vue {
   @Prop() windowSize: any;
   @Prop() currentUser: any;
@@ -50,6 +57,13 @@ export default class Management extends Vue {
   @Prop() params: any;
   @Emit('showSnackbar') showSnackbar(color:string,text:string){}
 
+  @Watch('currentUser')
+  changedUser(){
+    if(this.currentUser && !this.memberList.length){
+      this.getMembers();
+    }
+  }
+  loading:boolean = false;
   search:string = '';
   options:any[] = [10,20,{"text":"$vuetify.dataIterator.rowsPerPageAll","value":-1}];
   headers:any[] = [
@@ -86,8 +100,10 @@ export default class Management extends Vue {
   }
   getMembers(){
     if(this.currentUser){
+      this.loading = true;
       MemberService.getMembers()
       .then((snapShot:any)=>{
+        this.loading = false;
         if(snapShot){
           let memberList= snapShot.val();
           this.memberList = Object.keys(memberList).map(memberKey=>{

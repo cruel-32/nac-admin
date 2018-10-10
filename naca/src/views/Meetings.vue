@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-slide-y-transition mode="out-in">
       <v-layout column align-center>
-        <ProgressComp :propData="meetingsMonth"></ProgressComp>
+        <ProgressComp :propData="meetingsMonth == null"></ProgressComp>
         <v-card class="pt-3 pa-3">
           <h1 class="headline">
             <v-icon color="#009688">date_range</v-icon>

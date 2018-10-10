@@ -38,7 +38,7 @@
       v-model="snackbar"
       :color="snackbarColor"
       :multi-line="true"
-      :timeout="2000"
+      :timeout="3000"
     >
       {{ snackbarText }}
       <v-btn
