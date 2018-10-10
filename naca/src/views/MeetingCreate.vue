@@ -309,7 +309,11 @@ export default class MeetingCreate extends Vue {
       if(result){
         if(this.currentUser){
           MeetingService.getIdToken(this.currentUser).then((auth:any)=>{
-            let mMembers = this.meeting.members;
+            let mMembers = this.allMembers ? this.memberList.map(member=>{
+              return member.key
+            }) : this.meeting.members;
+            console.log('mMembers : ', mMembers);
+            console.log('memberList : ', this.memberList);
             if(!this.params.key){
               //신규생성
               MeetingService.createMeeting(this.meeting).then((key:any)=>{
@@ -365,7 +369,7 @@ export default class MeetingCreate extends Vue {
                 });
 
                 let memberKeys = Object.keys(updateMemberList);
-                if(memberKeys.length){
+                if(mMembers.length){
                   MemberService.updateMembers(updateMemberList).then((res:any)=>{
                     if(res){
                       this.showSnackbar('success','모임을 수정 성공했습니다');

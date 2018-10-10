@@ -22,7 +22,6 @@ export const MemberService = Object.assign(DefaultApi,{
                 if(snapShot){
                     let members = snapShot.val();
                     let keys = Object.keys(params);
-    
                     keys.forEach((key)=>{
                         let meetingKey = Object.keys(params[key]['participation'])[0];
                         members[key]['participation'] ? 
