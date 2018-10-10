@@ -38,7 +38,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue, Emit } from 'vue-property-decorator';
 import { MemberService } from '../service/MemberService';
 import { GradeService } from '../service/GradeService';
 

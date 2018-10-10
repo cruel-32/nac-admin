@@ -162,7 +162,6 @@ import { MemberService } from '../service/MemberService';
 import { Member }  from '../model/member.model';
 import ProgressComp from '../components/ProgressComp.vue';
 
-
 @Component({
   components : {
     ProgressComp
