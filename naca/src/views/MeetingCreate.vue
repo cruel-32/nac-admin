@@ -275,7 +275,6 @@ export default class MeetingCreate extends Vue {
       this.loading = false;
       if(snapShot){
         let res = snapShot.val();
-        console.log('this.allMembers : ', this.allMembers);
         this.meeting = new Meeting(
           res.date,
           res.title,
@@ -283,8 +282,6 @@ export default class MeetingCreate extends Vue {
           res.contents,
           res.members
         );
-        console.log('res : ', res);
-        console.log('this.allMembers : ', this.allMembers);
         this.meetingOrigin = new Meeting(
           res.date,
           res.title,
@@ -292,7 +289,6 @@ export default class MeetingCreate extends Vue {
           res.contents,
           res.members
         );
-        console.log('this.allMembers : ', this.allMembers);
         if(this.allMembers){
           // this.memberList.map(member=>{
           //   return member.key
@@ -429,7 +425,6 @@ export default class MeetingCreate extends Vue {
         MeetingService.deleteMeeting(this.params.key,{auth}).then(()=>{
           //member/멤버키/participation/모임키
           let mMembers = this.meetingOrigin.members;
-          console.log('mMembers : ', mMembers);
           if(mMembers.length){
             let deleteMemberList = {};
             mMembers.forEach((member:any) => {
@@ -477,7 +472,6 @@ export default class MeetingCreate extends Vue {
     })
   }
   toggleSelectAllMembers () {
-    console.log('toggleSelectAllMembers');
     this.$nextTick(() => {
       if(this.allMembers) {
         this.meeting.members = []
