@@ -41,7 +41,7 @@
         fab
         dark
         color="green"
-        @click="showSnackbar('info','오늘 날짜로 빠르게 신규멤버를 생성합니다')"
+        @click="showSnackbar('info','퀵메뉴 : 신규멤버를 생성합니다')"
         :to="{name : 'memberCreate', query :{
           'joinDate' : parseInt($moment(new Date()).format('YYYYMMDD'))
         }}"
@@ -53,7 +53,7 @@
         fab
         dark
         color="indigo"
-        @click="showSnackbar('info','오늘 날짜로 빠르게 모임을 생성합니다')"
+        @click="showSnackbar('info','퀵메뉴 : 오늘 날짜로 모임을 생성합니다')"
         :to="{name : 'meetingCreate', query :{
           'date' : parseInt($moment(new Date()).format('YYYYMMDD'))
         }}"
