@@ -22,7 +22,7 @@
                       >
                         <v-text-field
                           slot="activator"
-                          v-model="computedJoinDateFormatted"
+                          v-model="joinDate"
                           label="가입일을 입력하세요"
                           readonly
                         ></v-text-field>
@@ -42,12 +42,15 @@
                         v-model="viewBirth"
                         lazy
                         full-width
-                      >
+                      >   
                         <v-text-field
                           slot="activator"
                           v-model="birth"
                           label="생년월일을 입력하세요"
+                          v-validate="'required'"
+                          :error-messages="errors.collect('date')"
                           readonly
+                          data-vv-name="birth"
                         ></v-text-field>
                         <v-date-picker
                           ref="picker"
@@ -107,10 +110,18 @@
                         disabled
                       ></v-text-field>
                     </v-flex>
-                    <v-flex xs12 sm6 md4 v-if="this.params.key">
+                    <v-flex xs12 sm6 md4 v-if="this.params.key && !member.outDay">
                       <v-text-field
                         v-model="exitDay"
                         label="강퇴까지 남은 일수 (D-XX)"
+                        readonly
+                        disabled
+                      ></v-text-field>
+                    </v-flex>
+                    <v-flex xs12 sm6 md4 v-if="this.params.key && member.outDay">
+                      <v-text-field
+                        v-model="outDay"
+                        label="탈퇴날짜"
                         readonly
                         disabled
                       ></v-text-field>
@@ -206,15 +217,9 @@ export default class MemberCreate extends Vue {
   setYear(val) {
     val && this.$nextTick(() => (this.$refs.picker.activePicker = 'YEAR'))
   }
-
-  get computedJoinDateFormatted () {
-    return this.$moment(this.joinDate.toString()).format('YYYY-MM-DD');
-  }
-  get computedBirthFormatted () {
-    return this.$moment(this.birth.toString()).format('YYYY-MM-DD');
-  }
+  
   joinDate:any = this.$moment(new Date).format('YYYY-MM-DD');
-  birth:any = null;
+  birth:any = this.$moment(new Date).format('YYYY-MM-DD');
   grade:any = "신입(미참석)";
   loading:boolean = false;
   exitDay:any = '';
@@ -225,10 +230,11 @@ export default class MemberCreate extends Vue {
   lastDay:string = '';
   member:Member = new Member(
     '',
-    19900101,
     parseInt(this.$moment(new Date).format('YYYYMMDD')),
+    this.query.joinDate || parseInt(this.$moment(new Date).format('YYYYMMDD')),
     ''
-  );
+  );;
+  memberOrigin:Member = null;
 
   created(){
     // this.getPlaces();
@@ -239,40 +245,49 @@ export default class MemberCreate extends Vue {
       } else {
         this.showSnackbar('error','로그인이 필요합니다');
       }
-    } else {
-      if(this.query.joinDate){
-        this.joinDate = this.$moment(this.query.joinDate.toString()).format('YYYY-MM-DD');
-      } else {
-        this.showSnackbar('error','잘못된 url입니다');
-        this.$router.go(-1);
-      }
     }
+  }
+  setMemberInfo(memberInfo:any){
+    this.member = new Member(
+      memberInfo.address,
+      memberInfo.birth,
+      memberInfo.joinDate,
+      memberInfo.name,
+      memberInfo.job,
+      memberInfo.mail,
+      memberInfo.grade,
+      memberInfo.participation,
+      memberInfo.phone,
+      memberInfo.outDay
+    );
+    this.memberOrigin = new Member(
+      memberInfo.address,
+      memberInfo.birth,
+      memberInfo.joinDate,
+      memberInfo.name,
+      memberInfo.job,
+      memberInfo.mail,
+      memberInfo.grade,
+      memberInfo.participation,
+      memberInfo.phone,
+      memberInfo.outDay
+    )
+    this.birth = this.$moment(memberInfo.birth.toString()).format('YYYY-MM-DD');
+    this.joinDate = this.$moment(memberInfo.joinDate.toString()).format('YYYY-MM-DD');
   }
   getMember(){
     this.loading = true;
     MemberService.getMember(this.params.key).then((snapShot:any)=>{
       this.loading = false;
       let member = snapShot.val();
-      this.member = new Member(
-        member.address,
-        member.birth,
-        member.joinDate,
-        member.name,
-        member.job,
-        member.mail,
-        member.grade,
-        member.participation,
-        member.phone
-      );
+      this.setMemberInfo(member)
       
       let memberPart = member.participation;
       if(memberPart){
         let memberPartArr = Object.keys(memberPart);
         if(memberPartArr.length){
           this.lastDay = this.$moment(
-            memberPartArr.map((key:any)=>{
-              return memberPart[key]
-            }).sort((a:any,b:any)=>{
+            memberPartArr.sort((a:any,b:any)=>{
               return b-a;
             })[0].toString()
           ).format('YYYY-MM-DD');
@@ -290,15 +305,15 @@ export default class MemberCreate extends Vue {
           break;
         case 2 : 
           this.grade = '일반회원';
-          this.exitDay = 90 - this.$moment(new Date).diff(this.lastDay, 'days');
+          this.exitDay = `${90 - this.$moment(new Date).diff(this.lastDay || this.$moment(member.joinDate.toString()).format('YYYYMMDD'), 'days')}일`;
           break;
         case 3 : 
           this.grade = '신입(1~3회 참석)';
-          this.exitDay = 60 - this.$moment(new Date).diff(this.lastDay, 'days');
+          this.exitDay = `${60 - this.$moment(new Date).diff(this.lastDay || this.$moment(member.joinDate.toString()).format('YYYYMMDD'), 'days')}일`;
           break;
         case 4 : 
           this.grade = '신입(미참석)';
-          this.exitDay = 30 - this.$moment(new Date).diff(this.lastDay, 'days');
+          this.exitDay = `${30 - this.$moment(new Date).diff(this.lastDay || this.$moment(member.joinDate.toString()).format('YYYYMMDD'), 'days')}일`;
           break;
         case 5 : 
           this.grade = '특수회원';
@@ -310,8 +325,6 @@ export default class MemberCreate extends Vue {
           this.grade = '신입(미참석)';
           break;
       }
-      this.birth = this.$moment(member.birth.toString()).format('YYYY-MM-DD');
-      this.joinDate = this.$moment(member.joinDate.toString()).format('YYYY-MM-DD');
     },(err:any)=>{
         this.showSnackbar('error','회원정보를 가져오지 못했습니다');
     });
@@ -362,18 +375,18 @@ export default class MemberCreate extends Vue {
   deleteMember(){
     if(this.currentUser){
       this.loading = true;
-      MemberService.updateMember(this.params.key, {
-        "grade" : 6
-      }).then((res:any)=>{
+      MemberService.updateMember(this.params.key, Object.assign(this.memberOrigin,{
+        "grade" : 6,
+        "outDay" : parseInt(this.$moment(new Date()).format('YYYYMMDD'))
+      })).then((res:any)=>{
         this.loading = false;
         if(res){
           this.showSnackbar('success','회원정보를 삭제했습니다');
           this.$router.go(-1);
         }
       }).catch((err:any)=>{
-        console.log('22 err : ', err);
         this.loading = false;
-        this.showSnackbar('error','회원정보 삭제에 실패했습니다');
+        this.showSnackbar('error','권한이 없습니다.');
       });
     } else {
       this.showSnackbar('error','권한이 없습니다.');

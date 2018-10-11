@@ -8,7 +8,8 @@ export class Member {
     name:string = "홍길동";
     participation:any = {};
     phone:number = 1012345678;
-
+    outDay:number = 0;
+    
     constructor(
         address:string,
         birth:number,
@@ -19,6 +20,7 @@ export class Member {
         grade:number = 4,
         participation:any = {},
         phone:number = 1012345678,
+        outDay:number = 0
     ) {
         this.address = address;
         this.birth = birth;
@@ -29,5 +31,6 @@ export class Member {
         this.grade = grade;
         this.participation = participation;
         this.phone = phone;
+        this.outDay = outDay;
     }
 }

@@ -23,16 +23,16 @@
     >
       <template slot="items" slot-scope="props" >
         <tr @click="meberDetail(props.item.key)">
-          <td class="text-xs-center">{{ props.item.name }}</td>
-          <td class="text-xs-center">{{ props.item.birth }}</td>
-          <td class="text-xs-center">{{ props.item.age }}세</td>
-          <td class="text-xs-center">{{ props.item.joinDate }}</td>
+          <td class="text-xs-left">{{ props.item.name }}</td>
+          <td class="text-xs-left">{{ props.item.birth }}</td>
+          <td class="text-xs-left">{{ props.item.age }}세</td>
+          <td class="text-xs-left">{{ props.item.joinDate }}</td>
           <td class="text-xs-left">{{ props.item.address }}</td>
           <td class="text-xs-left" >
             <span v-if="props.item.exitDay<1" class="custom-red">강퇴대상</span>
-            <span v-else-if="props.item.exitDay>=100 && props.item.exitDay<200" class="custom-blue">특수회원</span>
-            <span v-else-if="props.item.exitDay>=200 && props.item.exitDay<300" class="custom-blue">운영진</span>
-            <span v-else-if="props.item.exitDay>=300" class="custom-green">모임장</span>
+            <span v-else-if="props.item.grade == 5" class="custom-blue">특수회원</span>
+            <span v-else-if="props.item.grade == 1" class="custom-blue">운영진</span>
+            <span v-else-if="props.item.grade == 0" class="custom-green">모임장</span>
             <span v-else-if="props.item.exitDay>=1 && props.item.exitDay<15" class="custom-amber">{{props.item.exitDay}}일</span>
             <span v-else>{{props.item.exitDay}}일</span>
           </td>
@@ -73,32 +73,32 @@ export default class Management extends Vue {
   options:any[] = [10,20,{"text":"$vuetify.dataIterator.rowsPerPageAll","value":-1}];
   headers:any[] = [
     {
-      text: '회원이름',
-      align: 'center',
+      text: '이름',
+      align: 'left',
       value: 'name'
     },
     {
       text : '생년월일',
-      align: 'center',
+      align: 'left',
       value: 'birth'
     },
     {
       text : '나이',
-      align: 'center',
+      align: 'left',
       value: 'age'
     },
     {
       text : '가입일',
-      align: 'center',
+      align: 'left',
       value: 'joinDate'
     },
     {
       text : '사는곳',
       align: 'left',
-      value: 'address'
+      value: 'address',
     },
     {
-      text : '강퇴날(D-?)',
+      text : 'D-XX)',
       align: 'left',
       value: 'exitDay'
     },
@@ -121,6 +121,7 @@ export default class Management extends Vue {
           this.memberList = Object.keys(memberList).map(memberKey=>{
             return {
               "key" : memberKey,
+              "grade" : memberList[memberKey].grade,
               "name" : memberList[memberKey].name || "-",
               "birth" : this.$moment(memberList[memberKey].birth.toString()).format('YYYY.MM.DD') || "-",
               "age" : (1+this.today - parseInt(this.$moment(memberList[memberKey].birth.toString()).format('YYYY'))),
@@ -140,7 +141,7 @@ export default class Management extends Vue {
     }
   }
   computeExitDay(member){
-    let ExitDay
+    let ExitDay:any;
     let lastDay:any;
     let grade = member.grade;
 
@@ -154,9 +155,7 @@ export default class Management extends Vue {
         let memberPartArr = Object.keys(memberPart);
         if(memberPartArr.length){
           lastDay = this.$moment(
-            memberPartArr.map((key:any)=>{
-              return memberPart[key]
-            }).sort((a:any,b:any)=>{
+            memberPartArr.sort((a:any,b:any)=>{
               return b-a;
             })[0].toString()
           )

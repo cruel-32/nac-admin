@@ -13,13 +13,20 @@ const get = (url:string, params:any)=>{
     return new Promise((resolve,reject)=>{
         let ref:any = Firebase.database.ref(url);
         for(let key in params){
-            if(key == "orderByChild"
+            if(
+                key == "orderByKey"
+                || key == "orderByValue"
+                || key == "orderByChild"
                 || key == "startAt"
                 || key == "endAt"
-                || key == "orderBy"
             ){
-                ref = ref[key](params[key])
-            } else {
+                if(params[key]){
+                    ref = ref[key](params[key])
+                } else {
+                    ref = ref[key]()
+                }
+            }  
+            else {
                 continue;
             }
         }

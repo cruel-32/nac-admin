@@ -103,31 +103,27 @@ export default class App extends Vue {
     this.$validator.localize('en', {
       custom : {
         title: {
-          required : (field:any) => `모임 ${field}을 적으세요`,
+          required : (field:any) => `모임 제목을 적으세요`,
           max: (field:any,count:number) => `${field}필드는 ${count} 자를 초과할 수 없습니다`
         },
         place: {
-          required : (field:any) => `모임 ${field}를 선택하세요`,
+          required : (field:any) => `모임 장소를 선택하세요`,
         },
         contents: {
-          required : (field:any) => `모임 ${field}를 선택하세요`,
+          required : (field:any) => `모임 컨텐츠를 선택하세요`,
           min : (field:any, count:number) => `모임 ${field}를 1개 이상 선택하세요`
         },
         date : {
-          required : (field:any) => `모임 ${field}를 선택하세요`
+          required : (field:any) => `날짜를 선택하세요`
         },
         name: {
-          required : (field:any) => `회원 ${field} 을 적으세요`,
+          required : (field:any) => `회원 이름을 적으세요`,
           max: (field:any,count:number) => `${field}필드는 ${count} 자를 초과할 수 없습니다`
         },
         address: {
-          required : (field:any) => `회원 ${field} 을 적으세요`,
+          required : (field:any) => `사는 곳을 적으세요`,
           max: (field:any,count:number) => `${field}필드는 ${count} 자를 초과할 수 없습니다`
-        },
-        job: {
-          required : (field:any) => `회원 ${field} 을 적으세요`,
-          max: (field:any,count:number) => `${field}필드는 ${count} 자를 초과할 수 없습니다`
-        },
+        }
       }
     });
   }

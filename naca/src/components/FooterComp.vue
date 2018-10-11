@@ -54,9 +54,7 @@
         dark
         color="indigo"
         @click="showSnackbar('info','퀵메뉴 : 오늘 날짜로 모임을 생성합니다')"
-        :to="{name : 'meetingCreate', query :{
-          'date' : parseInt($moment(new Date()).format('YYYYMMDD'))
-        }}"
+        :to="{path : `/meeting/${$moment(new Date()).format('YYYYMMDD')}`}"
       >
         <v-icon>add_alarm</v-icon>
       </v-btn>

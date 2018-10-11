@@ -19,32 +19,60 @@ export const MemberService = Object.assign(DefaultApi,{
     updateMember(key:string,params:any){
         return DefaultApi.patch(`member/${key}`, params)
     },
-    updateMembers(params:any){
+    updateMembersParticipation(params:any){
         return new Promise((resolve,reject)=>{
             this.getMembers().then((snapShot:any)=>{
                 if(snapShot){
                     let members = snapShot.val();
-                    let keys = Object.keys(params);
-                    keys.forEach((key)=>{
-                        // let meetingKey = Object.keys(params[key]['participation'])[0];
-                        members[key]['participation'] ? 
-                        Object.assign(members[key]['participation'], params[key]['participation'])
-                        : members[key]['participation'] = params[key]['participation']
+                    let membersArr = Object.keys(members);
+                    const key = params.key.toString();
+                    const method = params.method;
+                    const prevMembers = params.membersOrigin;
+                    const nextMembers = params.members;
 
-                        const participation = members[key]['participation'];
-                        if(participation){
-                            const participationArr = Object.keys(participation);
-                            if(members[key].grade == 3){
-                                if(participationArr.length >= 4){
-                                    members[key].grade = 2
-                                }
-                            } else if(members[key].grade == 4){
-                                if(participationArr.length <= 3){
-                                    members[key].grade = 3
-                                }
+                    const gradeChanger = (member:any,participation:any)=>{
+                        const participationKeys = Object.keys(participation);
+                        if(member.grade == 2 || member.grade == 3 || member.grade == 4){
+                            if(participationKeys.length >= 4){
+                                member.grade = 2
+                            } else if(participationKeys.length >= 1){
+                                member.grade = 3
+                            } else {
+                                member.grade = 4
                             }
                         }
-                    });
+                    }
+                    
+                    if(method == 'post'){
+                        membersArr.forEach((memberKey:any)=>{
+                            const isNext = nextMembers.includes(memberKey);
+                            if(isNext){
+                                members[memberKey]['participation'] ? (members[memberKey]['participation'][key] = true) : (members[memberKey]['participation'] = {[key]:true});
+                                gradeChanger(members[memberKey], members[memberKey]['participation']);
+                            }
+                        });
+                    } else if(method == 'put'){
+                        membersArr.forEach((memberKey:any)=>{
+                            const isPrev = prevMembers.includes(memberKey);
+                            const isNext = nextMembers.includes(memberKey);
+
+                            if(isPrev && !isNext){
+                                members[memberKey]['participation'] && delete members[memberKey]['participation'][key]
+                                gradeChanger(members[memberKey], members[memberKey]['participation']);
+                            } else if(!isPrev && isNext){
+                                members[memberKey]['participation'] ? members[memberKey]['participation'][key] = true : members[memberKey]['participation'] = {[key]:true};
+                                gradeChanger(members[memberKey], members[memberKey]['participation']);
+                            }
+                        });
+                    } else if(method == 'delete'){
+                        membersArr.forEach((memberKey:any)=>{
+                            const isPrev = prevMembers.includes(memberKey);
+                            if(isPrev){
+                                members[memberKey]['participation'] && delete members[memberKey]['participation'][key]
+                                gradeChanger(members[memberKey], members[memberKey]['participation']);
+                            }
+                        });
+                    }
                     return DefaultApi.patch(`member`, members)
                 }
             }).then((res:any)=>{

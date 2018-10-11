@@ -7,7 +7,7 @@
           <v-card>
             <v-card-title class="pb-0">
               <span class="headline">
-                {{params.key ? "모임 수정": "모임 생성"}}
+                {{isNew ? "모임 생성" : "모임 수정"}}
               </span>
             </v-card-title>
             <v-card-text class="pa-0">
@@ -124,7 +124,7 @@
               <v-card-actions>
                 <v-btn
                   color="error"
-                  v-if="params.key"
+                  v-if="!isNew"
                   @click="viewConfirmDelete = true"
                   depressed
                   outline
@@ -168,7 +168,7 @@
                   outline
                   depressed
                 >
-                  {{!params.key ? 'Create' : 'Update'}}
+                  {{isNew ? 'Create' : 'Update'}}
                 </v-btn>
               </v-card-actions>
           </v-card>
@@ -209,7 +209,7 @@ export default class MeetingCreate extends Vue {
     }
   }
   get computedDateFormatted () {
-    return this.$moment(this.meeting.date.toString()).format('YYYY-MM-DD');
+    return this.$moment(this.params.key.toString()).format('YYYY-MM-DD');
   }
   get allContents () {
     return this.meeting.contents.length === this.contentsList.length
@@ -236,19 +236,27 @@ export default class MeetingCreate extends Vue {
 
   contentsList:any = []
   placeList:any[] = [];
-  meeting:Meeting = new Meeting(this.query.date);
-  meetingOrigin:Meeting = new Meeting(this.query.date);
+  meeting:Meeting = new Meeting();
+  meetingOrigin:Meeting = new Meeting();
   viewConfirmDelete:boolean = false;
   memberList:any[] = [];
   loading:boolean = false;
+  isNew:boolean = true;
 
-  created(){
-    this.getPlaces();
-    this.getContents();
+  @Watch('params.key')
+  keyChange(){
     if(this.currentUser){
+      this.getPlaces();
+      this.getContents();
       this.getMembers();
+      this.getMeeting();
     }
-    if(this.params.key){
+  }
+  created(){
+    if(this.currentUser){
+      this.getPlaces();
+      this.getContents();
+      this.getMembers();
       this.getMeeting();
     }
   }
@@ -273,28 +281,23 @@ export default class MeetingCreate extends Vue {
     MeetingService.getMeeting(this.params.key)
     .then((snapShot:any)=>{
       this.loading = false;
-      if(snapShot){
-        let res = snapShot.val();
+      let res = snapShot.val();
+      if(res){
         this.meeting = new Meeting(
-          res.date,
           res.title,
           res.place,
           res.contents,
           res.members
         );
         this.meetingOrigin = new Meeting(
-          res.date,
           res.title,
           res.place,
           res.contents,
           res.members
         );
-        if(this.allMembers){
-          // this.memberList.map(member=>{
-          //   return member.key
-          // }) : this.meeting.members;
-        }
-        
+        this.isNew = false;
+      } else {
+        this.isNew = true;
       }
     })
   }
@@ -324,88 +327,30 @@ export default class MeetingCreate extends Vue {
         if(this.currentUser){
           this.loading = true;
           MeetingService.getIdToken(this.currentUser).then((auth:any)=>{
-            let mMembers = this.meeting.members;
-            // let mMembers = this.allMembers ? this.memberList.map(member=>{
-            //   return member.key
-            // }) : this.meeting.members;
-            if(!this.params.key){
-              //신규생성
-              MeetingService.createMeeting(this.meeting).then((key:any)=>{
-                if(mMembers.length){
-                  let updateMemberList = {};
-                  mMembers.forEach((member:any) => {
-                    updateMemberList[member] = {
-                      "participation" : {
-                        [key] : this.meeting.date
-                      }
-                    }
-                  });
-                  let memberKeys = Object.keys(updateMemberList);
-
-                  MemberService.updateMembers(updateMemberList).then((res:any)=>{
-                    this.loading = false;
-                    if(res){
-                      this.showSnackbar('success','모임을 생성했습니다');
-                      this.goMeetings();
-                    } else {
-                      this.showSnackbar('error','모임을 생성 실패했습니다');
-                    }
-                  })
-                } else {
+            this.meeting.members;
+            MeetingService.updateMeeting(this.params.key,this.meeting).then((res:any)=>{
+              if(res){
+                MemberService.updateMembersParticipation({
+                  key : this.params.key,
+                  members : this.meeting.members,
+                  membersOrigin : this.meetingOrigin.members,
+                  method : this.isNew ? 'post' : 'put'
+                }).then((res:any)=>{
                   this.loading = false;
-                  this.showSnackbar('success','모임을 생성했습니다');
-                  this.goMeetings();
-                }
-              },(err:any)=>{
-                this.loading = false;
+                  if(res){
+                    this.showSnackbar('success','모임을 생성했습니다');
+                    this.goMeetings();
+                  } else {
+                    this.showSnackbar('error','모임을 생성 실패했습니다');
+                  }
+                })
+              } else {
                 this.showSnackbar('error','모임을 생성 실패했습니다');
-              })
-            } else {
-              //기존수정
-              MeetingService.updateMeeting(this.params.key, this.meeting).then((res:any)=>{
-                let updateMemberList = {};
-                //member/멤버키/participation/모임키
-                mMembers.forEach((member:any) => {
-                  if(!this.meetingOrigin.members.includes(member)){
-                    updateMemberList[member] = {
-                      "participation" : {
-                        [this.params.key] : this.meeting.date
-                      }
-                    }
-                  }
-                });
-
-                this.meetingOrigin.members.forEach((memberOrigin:any) => {
-                  if(!mMembers.includes(memberOrigin)){
-                    updateMemberList[memberOrigin] = {
-                      "participation" : {
-                        [this.params.key] : null
-                      }
-                    }
-                  }
-                });
-
-                let memberKeys = Object.keys(updateMemberList);
-                if(mMembers.length){
-                  MemberService.updateMembers(updateMemberList).then((res:any)=>{
-                    this.loading = false;
-                    if(res){
-                      this.showSnackbar('success','모임을 수정 성공했습니다');
-                      this.goMeetings();
-                    } else {
-                      this.showSnackbar('error','모임을 수정 실패했습니다');
-                    }
-                  })
-                } else {
-                  this.loading = false;
-                  this.showSnackbar('success','모임을 수정 성공했습니다');
-                  this.goMeetings();
-                }
-              },(err:any)=>{
-                this.loading = false;
-                this.showSnackbar('error','권한이 없습니다.');
-              })
-            }
+              }
+            },(err:any)=>{
+              this.loading = false;
+              this.showSnackbar('error','모임을 생성 실패했습니다');
+            })
           },(err:any)=>{
             this.loading = false;
             this.showSnackbar('error','권한이 없습니다.');
@@ -422,36 +367,23 @@ export default class MeetingCreate extends Vue {
     if(this.currentUser && this.params.key){
       this.loading = true;
       MeetingService.getIdToken(this.currentUser).then((auth:any)=>{
-        MeetingService.deleteMeeting(this.params.key,{auth}).then(()=>{
-          //member/멤버키/participation/모임키
-          let mMembers = this.meetingOrigin.members;
-          if(mMembers.length){
-            let deleteMemberList = {};
-            mMembers.forEach((member:any) => {
-              deleteMemberList[member] = {
-                "participation" : {
-                  [this.params.key] : null
-                }
-              }
-            });
-            let memberKeys = Object.keys(deleteMemberList);
-            MemberService.updateMembers(deleteMemberList).then((res:any)=>{
-              this.loading = false;
-              if(res){
-                this.showSnackbar('success','모임을 삭제했습니다');
-                this.goMeetings();
-              } else {
-                this.showSnackbar('error','모임을 삭제 실패했습니다');
-              }
-            })
+        MeetingService.deleteMeeting(this.params.key,{auth}).then((res:any)=>{
+          MemberService.updateMembersParticipation({
+            key : this.params.key,
+            membersOrigin : this.meetingOrigin.members,
+            method : 'delete'
+          }).then((res:any)=>{
             this.loading = false;
-            this.showSnackbar('success','모임을 삭제했습니다');
-            this.goMeetings();
-          } else {
-            this.loading = false;
-            this.showSnackbar('success','모임을 삭제했습니다');
-            this.goMeetings();
-          }
+            if(res){
+              this.showSnackbar('success','모임을 삭제했습니다');
+              this.goMeetings();
+            } else {
+              this.showSnackbar('error','모임을 삭제 실패했습니다');
+            }
+          })
+          this.loading = false;
+          this.showSnackbar('success','모임을 삭제했습니다');
+          this.goMeetings();
         })
         .catch((error:any)=>{
           this.loading = false;

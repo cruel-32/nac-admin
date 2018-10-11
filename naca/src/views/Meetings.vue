@@ -48,15 +48,10 @@ export default class Meeting extends Vue {
   @Emit('showSnackbar') showSnackbar(color:string,text:string){}
 
   changePickDay(){
-    const meetingAndKey = this.findMeetingAndKeyByDateNumber(parseInt(this.$moment(this.date).format('YYYYMMDD')));
-    const path = `/meeting${meetingAndKey.key ? '/'+meetingAndKey.key :''}`
+    const meetingKey = this.$moment(this.date).format('YYYYMMDD');
+    const path = `/meeting/${meetingKey}`;
     if(this.currentUser){
-      this.$router.push({
-        path,
-        query : {
-          'date' : meetingAndKey.meeting.date
-        }
-      })
+      this.$router.push(path)
     } else {
       this.showSnackbar('error','로그인이 필요합니다');
     }
@@ -76,18 +71,17 @@ export default class Meeting extends Vue {
 
   getMeetingsMonth(pDate:Date=new Date()){
     const date:string = this.$moment(pDate).format('YYYYMM');
-    const that = this;
     this.dates = [];  
     MeetingService.getMeetings({
-      startAt : parseInt(`${date}01`),
-      endAt : parseInt(`${date}32`)
+      startAt : `${date}01`,
+      endAt : `${date}32`
     })
     .then((res:any)=>{
       if(res.val()){
         res = res.val();
         this.meetingsMonth = res;
         this.dates = Object.keys(res).map((key:any)=>{
-          return that.$moment(res[key].date.toString()).format('YYYY-MM-DD')
+          return this.$moment(key.toString()).format('YYYY-MM-DD')
         })
       } else {
         this.meetingsMonth = {};
@@ -100,27 +94,6 @@ export default class Meeting extends Vue {
         return date == event;
       })
       : false
-  }
-  findMeetingAndKeyByDateNumber(date:number){
-    let meeting,key;
-    for(let meetingKey in this.meetingsMonth){
-      if(this.meetingsMonth[meetingKey]['date'] === date){
-        meeting = this.meetingsMonth[meetingKey];
-        key = meetingKey;
-        break
-      } else {
-        continue;
-      }
-    }
-    if(!meeting){
-      meeting = {
-        date
-      }
-    }
-    return {
-      meeting,
-      key
-    }
   }
 }
 </script>
