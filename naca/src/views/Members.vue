@@ -17,6 +17,7 @@
       :items="memberList"
       :search="search"
       :rows-per-page-items="options"
+      rows-per-page-text="한 페이지당 목록수"
       class="elevation-1 custom-table"
     >
       <template slot="items" slot-scope="props" >
@@ -96,7 +97,9 @@ export default class Management extends Vue {
   memberList:any[] = [];
 
   created(){
-    this.getMembers();
+    if(this.currentUser){
+      this.getMembers();
+    }
   }
   getMembers(){
     if(this.currentUser){

@@ -403,12 +403,12 @@ export default class MeetingCreate extends Vue {
                 }
               },(err:any)=>{
                 this.loading = false;
-                this.showSnackbar('error','모임을 수정 실패했습니다');
+                this.showSnackbar('error','권한이 없습니다.');
               })
             }
           },(err:any)=>{
             this.loading = false;
-            this.showSnackbar('error', err);
+            this.showSnackbar('error','권한이 없습니다.');
           });
         } else {
           this.showSnackbar('error','권한이 없습니다.');

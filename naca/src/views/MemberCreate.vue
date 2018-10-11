@@ -332,9 +332,9 @@ export default class MemberCreate extends Vue {
                 this.showSnackbar('success','회원정보를 입력했습니다');
                 this.$router.go(-1);
               }
-            }).catch((any:any)=>{
+            }).catch((err:any)=>{
               this.loading = false;
-              this.showSnackbar('error','회원정보 수정에 실패했습니다');
+              this.showSnackbar('error','권한이 없습니다.');
             });
           } else {
             MemberService.createMember(Object.assign(this.member,{
@@ -346,9 +346,9 @@ export default class MemberCreate extends Vue {
                 this.showSnackbar('success','회원정보를 입력했습니다');
                 this.$router.go(-1);
               }
-            }).catch((any:any)=>{
+            }).catch((err:any)=>{
               this.loading = false;
-              this.showSnackbar('error','회원정보 수정에 실패했습니다');
+              this.showSnackbar('error','권한이 없습니다.');
             });
           }
           
@@ -370,7 +370,8 @@ export default class MemberCreate extends Vue {
           this.showSnackbar('success','회원정보를 삭제했습니다');
           this.$router.go(-1);
         }
-      }).catch((any:any)=>{
+      }).catch((err:any)=>{
+        console.log('22 err : ', err);
         this.loading = false;
         this.showSnackbar('error','회원정보 삭제에 실패했습니다');
       });
