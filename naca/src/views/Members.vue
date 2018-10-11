@@ -2,7 +2,8 @@
   <v-card>
     <ProgressComp :propData="loading"></ProgressComp>
     <v-card-title>
-      회원목록
+      <h1 class="headline">회원목록</h1>
+      <p class="caption" style="margin:0 0 0 10px !important;">회원평균연령 : {{average}}세</p>
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -24,6 +25,7 @@
         <tr @click="meberDetail(props.item.key)">
           <td class="text-xs-center">{{ props.item.name }}</td>
           <td class="text-xs-center">{{ props.item.birth }}</td>
+          <td class="text-xs-center">{{ props.item.age }}세</td>
           <td class="text-xs-center">{{ props.item.joinDate }}</td>
           <td class="text-xs-left">{{ props.item.address }}</td>
           <td class="text-xs-left" >
@@ -64,6 +66,8 @@ export default class Management extends Vue {
       this.getMembers();
     }
   }
+  today:number = parseInt(this.$moment(new Date()).format('YYYY'));
+  average:any = 0;
   loading:boolean = false;
   search:string = '';
   options:any[] = [10,20,{"text":"$vuetify.dataIterator.rowsPerPageAll","value":-1}];
@@ -77,6 +81,11 @@ export default class Management extends Vue {
       text : '생년월일',
       align: 'center',
       value: 'birth'
+    },
+    {
+      text : '나이',
+      align: 'center',
+      value: 'age'
     },
     {
       text : '가입일',
@@ -114,11 +123,16 @@ export default class Management extends Vue {
               "key" : memberKey,
               "name" : memberList[memberKey].name || "-",
               "birth" : this.$moment(memberList[memberKey].birth.toString()).format('YYYY.MM.DD') || "-",
+              "age" : (1+this.today - parseInt(this.$moment(memberList[memberKey].birth.toString()).format('YYYY'))),
               "joinDate" : this.$moment(memberList[memberKey].joinDate.toString()).format('YYYY.MM.DD') || "-",
               "address" : memberList[memberKey].address || "-",
               "exitDay" : this.computeExitDay(memberList[memberKey])
             }
           });
+          this.memberList.forEach((member:any)=>{
+            this.average+=member.age;
+          });
+          this.average = (this.average/this.memberList.length).toFixed(2);
         }
       });
     } else {
