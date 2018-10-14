@@ -98,7 +98,7 @@ export default class Management extends Vue {
       value: 'address',
     },
     {
-      text : 'D-XX)',
+      text : 'D-XX',
       align: 'left',
       value: 'exitDay'
     },
