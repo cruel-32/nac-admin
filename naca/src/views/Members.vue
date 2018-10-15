@@ -2,7 +2,7 @@
   <v-card>
     <ProgressComp :propData="loading"></ProgressComp>
     <v-card-title>
-      <h1 class="headline">회원목록</h1>
+      <h1 class="headline"><v-icon color="green">people</v-icon> 회원목록</h1>
       <p class="caption" style="margin:0 0 0 10px !important;">회원평균연령 : {{average}}세</p>
       <v-spacer></v-spacer>
       <v-text-field

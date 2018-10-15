@@ -78,9 +78,9 @@
         <v-icon>people</v-icon>
       </v-btn>
 
-      <v-btn dark flat :to="{name : 'account'}">
-        <span>My Account</span>
-        <v-icon>account_circle</v-icon>
+      <v-btn dark flat :to="{name : 'statistics'}">
+        <span>statistics</span>
+        <v-icon>insert_chart</v-icon>
       </v-btn>
       
     </v-bottom-nav>
