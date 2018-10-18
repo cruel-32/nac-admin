@@ -214,7 +214,7 @@ export default class MemberCreate extends Vue {
     changeCurrentUser() {
   }
   @Watch('viewBirth')
-  setYear(val) {
+  setYear(val:any) {
     val && this.$nextTick(() => (this.$refs.picker.activePicker = 'YEAR'))
   }
   
@@ -305,15 +305,15 @@ export default class MemberCreate extends Vue {
           break;
         case 2 : 
           this.grade = '일반회원';
-          this.exitDay = `${90 - this.$moment(new Date).diff(this.lastDay || this.$moment(member.joinDate.toString()).format('YYYYMMDD'), 'days')}일`;
+          this.exitDay = `${105 - this.$moment(new Date).diff(this.lastDay || this.$moment(member.joinDate.toString()).format('YYYYMMDD'), 'days')}일`;
           break;
         case 3 : 
           this.grade = '신입(1~3회 참석)';
-          this.exitDay = `${60 - this.$moment(new Date).diff(this.lastDay || this.$moment(member.joinDate.toString()).format('YYYYMMDD'), 'days')}일`;
+          this.exitDay = `${70 - this.$moment(new Date).diff(this.lastDay || this.$moment(member.joinDate.toString()).format('YYYYMMDD'), 'days')}일`;
           break;
         case 4 : 
           this.grade = '신입(미참석)';
-          this.exitDay = `${30 - this.$moment(new Date).diff(this.lastDay || this.$moment(member.joinDate.toString()).format('YYYYMMDD'), 'days')}일`;
+          this.exitDay = `${35 - this.$moment(new Date).diff(this.lastDay || this.$moment(member.joinDate.toString()).format('YYYYMMDD'), 'days')}일`;
           break;
         case 5 : 
           this.grade = '특수회원';
@@ -392,7 +392,7 @@ export default class MemberCreate extends Vue {
       this.showSnackbar('error','권한이 없습니다.');
     }
   }
-  saveBirth(param){
+  saveBirth(param:any){
     this.$refs.birthMenu.save(this.birth);
   }
 }

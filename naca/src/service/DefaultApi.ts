@@ -42,7 +42,7 @@ const get = (url:string, params:any)=>{
 };
 const post = (url:string, params:any)=>{
     return new Promise((resolve,reject)=>{
-        let newKey = Firebase.database.ref().child(url).push().key;
+        let newKey:any = Firebase.database.ref().child(url).push().key;
         Firebase.database.ref().update({
             [`/${url}/${newKey}`] : params
         },(error)=>{

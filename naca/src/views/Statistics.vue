@@ -30,7 +30,7 @@
       <v-list-tile
         v-else
         :key="item.title"
-        @click="viewStatistic(item.link)"
+        @click="viewStatistic(item.title)"
       >
         <v-list-tile-content>
           <v-list-tile-title v-html="item.title"></v-list-tile-title>
@@ -43,13 +43,16 @@
 
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue, Emit } from 'vue-property-decorator';
 
 @Component
 export default class Statistics extends Vue {
   @Prop() currentUser: any;
   @Prop() query: any;
   @Prop() params: any;
+  @Emit('showSnackbar') showSnackbar(color:string,text:string){}
+
+
   items:any = [
     { header: '통계목록',icon:'insert_chart'},
     {
@@ -77,12 +80,13 @@ export default class Statistics extends Vue {
     }
   ]
   created(){
-    console.log('currentUser : ', this.currentUser);
-    console.log('query : ', this.query);
-    console.log('params : ', this.params);
+    // console.log('currentUser : ', this.currentUser);
+    // console.log('query : ', this.query);
+    // console.log('params : ', this.params);
   }
-  viewStatistic(link){
-    console.log('link : ', link)
+  viewStatistic(link:string){
+    // console.log('link : ', link)
+    this.showSnackbar('info', `${link} : 내년 구현예정입니다.`);
   }
 }
 </script>

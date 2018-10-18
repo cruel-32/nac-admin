@@ -140,7 +140,7 @@ export default class Management extends Vue {
       this.showSnackbar('error','로그인이 필요합니다');
     }
   }
-  computeExitDay(member){
+  computeExitDay(member:any){
     let ExitDay:any;
     let lastDay:any;
     let grade = member.grade;
@@ -165,7 +165,7 @@ export default class Management extends Vue {
       } else {
         lastDay = this.$moment(member.joinDate.toString())
       }
-      ExitDay = (grade == 2 ? 90 : (grade == 3 ? 60 : 30))
+      ExitDay = (grade == 2 ? 105 : (grade == 3 ? 70 : 35))
         - this.$moment(new Date).diff(lastDay, 'days');
       return ExitDay;
     } else {
