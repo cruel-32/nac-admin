@@ -338,18 +338,18 @@ export default class MeetingCreate extends Vue {
                 }).then((res:any)=>{
                   this.loading = false;
                   if(res){
-                    this.showSnackbar('success','모임을 생성했습니다');
+                    this.showSnackbar('success', this.isNew ? '모임을 생성했습니다' : '모임을 수정했습니다');
                     this.goMeetings();
                   } else {
-                    this.showSnackbar('error','모임을 생성 실패했습니다');
+                    this.showSnackbar('error', this.isNew ? '모임을 생성 실패했습니다' : '모임수정을 실패했습니다');
                   }
                 })
               } else {
-                this.showSnackbar('error','모임을 생성 실패했습니다');
+                this.showSnackbar('error', this.isNew ? '모임을 생성 실패했습니다' : '모임수정을 실패했습니다');
               }
             },(err:any)=>{
               this.loading = false;
-              this.showSnackbar('error','모임을 생성 실패했습니다');
+              this.showSnackbar('error', this.isNew ? '모임을 생성 실패했습니다' : '모임수정을 실패했습니다');
             })
           },(err:any)=>{
             this.loading = false;
