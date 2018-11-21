@@ -197,6 +197,8 @@ import { MemberService } from '../service/MemberService';
 import { Member }  from '../model/member.model';
 import ProgressComp from '../components/ProgressComp.vue';
 import { debounce } from "typescript-debounce-decorator";
+import moment from 'moment';
+import VueMomentJS from "vue-momentjs";
 
 @Component({
   components : {
@@ -215,11 +217,11 @@ export default class MemberCreate extends Vue {
   }
   @Watch('viewBirth')
   setYear(val:any) {
-    val && this.$nextTick(() => (this.$refs.picker.activePicker = 'YEAR'))
+    val && this.$nextTick(() => (this.$refs.picker['activePicker'] = 'YEAR'))
   }
   
-  joinDate:any = this.$moment(new Date).format('YYYY-MM-DD');
-  birth:any = this.$moment(new Date).format('YYYY-MM-DD');
+  joinDate:any = moment(new Date).format('YYYY-MM-DD');
+  birth:any = moment(new Date).format('YYYY-MM-DD');
   grade:any = "신입(미참석)";
   loading:boolean = false;
   exitDay:any = '';
@@ -230,11 +232,11 @@ export default class MemberCreate extends Vue {
   lastDay:string = '';
   member:Member = new Member(
     '',
-    parseInt(this.$moment(new Date).format('YYYYMMDD')),
-    this.query.joinDate || parseInt(this.$moment(new Date).format('YYYYMMDD')),
+    parseInt(moment(new Date).format('YYYYMMDD')),
+    this.query.joinDate || parseInt(moment(new Date).format('YYYYMMDD')),
     ''
   );;
-  memberOrigin:Member = null;
+  memberOrigin:Member;
 
   created(){
     // this.getPlaces();
@@ -272,8 +274,8 @@ export default class MemberCreate extends Vue {
       memberInfo.phone,
       memberInfo.outDay
     )
-    this.birth = this.$moment(memberInfo.birth.toString()).format('YYYY-MM-DD');
-    this.joinDate = this.$moment(memberInfo.joinDate.toString()).format('YYYY-MM-DD');
+    this.birth = moment(memberInfo.birth.toString()).format('YYYY-MM-DD');
+    this.joinDate = moment(memberInfo.joinDate.toString()).format('YYYY-MM-DD');
   }
   getMember(){
     this.loading = true;
@@ -286,13 +288,13 @@ export default class MemberCreate extends Vue {
       if(memberPart){
         let memberPartArr = Object.keys(memberPart);
         if(memberPartArr.length){
-          this.lastDay = this.$moment(
+          this.lastDay = moment(
             memberPartArr.sort((a:any,b:any)=>{
               return b-a;
             })[0].toString()
           ).format('YYYY-MM-DD');
         } else {
-          this.lastDay = this.$moment(member.joinDate.toString())
+          this.lastDay = VueMomentJS(member.joinDate.toString())
         }
       }
 
@@ -305,15 +307,15 @@ export default class MemberCreate extends Vue {
           break;
         case 2 : 
           this.grade = '일반회원';
-          this.exitDay = `${105 - this.$moment(new Date).diff(this.lastDay || this.$moment(member.joinDate.toString()).format('YYYYMMDD'), 'days')}일`;
+          this.exitDay = `${105 - moment(new Date).diff(this.lastDay || moment(member.joinDate.toString()).format('YYYYMMDD'), 'days')}일`;
           break;
         case 3 : 
           this.grade = '신입(1~3회 참석)';
-          this.exitDay = `${70 - this.$moment(new Date).diff(this.lastDay || this.$moment(member.joinDate.toString()).format('YYYYMMDD'), 'days')}일`;
+          this.exitDay = `${70 - moment(new Date).diff(this.lastDay || moment(member.joinDate.toString()).format('YYYYMMDD'), 'days')}일`;
           break;
         case 4 : 
           this.grade = '신입(미참석)';
-          this.exitDay = `${35 - this.$moment(new Date).diff(this.lastDay || this.$moment(member.joinDate.toString()).format('YYYYMMDD'), 'days')}일`;
+          this.exitDay = `${35 - moment(new Date).diff(this.lastDay || moment(member.joinDate.toString()).format('YYYYMMDD'), 'days')}일`;
           break;
         case 5 : 
           this.grade = '특수회원';
@@ -337,8 +339,8 @@ export default class MemberCreate extends Vue {
           this.loading = true;
           if(this.params.key){
             MemberService.updateMember(this.params.key, Object.assign(this.member,{
-              'birth' : parseInt(this.$moment(this.birth).format('YYYYMMDD')),
-              'joinDate' :  parseInt(this.$moment(this.joinDate).format('YYYYMMDD'))
+              'birth' : parseInt(moment(this.birth).format('YYYYMMDD')),
+              'joinDate' :  parseInt(moment(this.joinDate).format('YYYYMMDD'))
             })).then((res:any)=>{
               this.loading = false;
               if(res){
@@ -351,8 +353,8 @@ export default class MemberCreate extends Vue {
             });
           } else {
             MemberService.createMember(Object.assign(this.member,{
-              'birth' : parseInt(this.$moment(this.birth).format('YYYYMMDD')),
-              'joinDate' :  parseInt(this.$moment(this.joinDate).format('YYYYMMDD'))
+              'birth' : parseInt(moment(this.birth).format('YYYYMMDD')),
+              'joinDate' :  parseInt(moment(this.joinDate).format('YYYYMMDD'))
             })).then((res:any)=>{
               this.loading = false;
               if(res){
@@ -377,7 +379,7 @@ export default class MemberCreate extends Vue {
       this.loading = true;
       MemberService.updateMember(this.params.key, Object.assign(this.memberOrigin,{
         "grade" : 6,
-        "outDay" : parseInt(this.$moment(new Date()).format('YYYYMMDD'))
+        "outDay" : parseInt(moment(new Date()).format('YYYYMMDD'))
       })).then((res:any)=>{
         this.loading = false;
         if(res){
@@ -393,7 +395,7 @@ export default class MemberCreate extends Vue {
     }
   }
   saveBirth(param:any){
-    this.$refs.birthMenu.save(this.birth);
+    this.$refs.birthMenu['save'](this.birth);
   }
 }
 </script>

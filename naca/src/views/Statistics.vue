@@ -30,7 +30,7 @@
       <v-list-tile
         v-else
         :key="item.title"
-        @click="viewStatistic(item.title)"
+        @click="viewStatistic(item.link)"
       >
         <v-list-tile-content>
           <v-list-tile-title v-html="item.title"></v-list-tile-title>
@@ -58,25 +58,19 @@ export default class Statistics extends Vue {
     {
       title: '회원별 참여도 통계',
       subtitle: "회원별 참여날짜 및 기타 통계를 봅니다.",
-      link: 'statisticsMembersParti'
+      link: '/statistics/membersParti'
     },
     { divider: true},
     {
       title: '회원 나이대 통계',
       subtitle: "평균연령 및 나이대별 회원 분포도 등의 통계를 봅니다.",
-      link: 'statisticsMembersAge'
+      link: '/statistics/membersAge'
     },
     { divider: true},
     {
-      title: '월별 모임 관련 통계',
-      subtitle: "올해의 월별 모임 관련 통계를 봅니다.",
-      link: 'statisticsMeetingsMonth'
-    },
-    { divider: true},
-    {
-      title: '연별 모임 관련 통계',
-      subtitle: "연별 모임 관련 통계를 봅니다.",
-      link: 'statisticsMeetingsYear'
+      title: '월별/연별 모임 관련 통계',
+      subtitle: "월별/연별 모임 관련 통계를 봅니다.",
+      link: '/statistics/meetingsStats'
     }
   ]
   created(){
@@ -86,7 +80,8 @@ export default class Statistics extends Vue {
   }
   viewStatistic(link:string){
     // console.log('link : ', link)
-    this.showSnackbar('info', `${link} : 내년 구현예정입니다.`);
+    // this.showSnackbar('info', `${link} : 내년 구현예정입니다.`);
+    this.$router.push(link);
   }
 }
 </script>

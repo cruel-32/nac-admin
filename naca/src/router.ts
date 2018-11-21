@@ -85,5 +85,41 @@ export default new Router({
       }),
       component: () => import('./views/Statistics.vue'),
     },
+    {
+      path: '/statistics/membersParti',
+      name: 'membersParti',
+      props: (route) => ({
+        params : route.params,
+        query: route.query
+      }),
+      component: () => import('./views/MembersParti.vue'),
+    },
+    {
+      path: '/statistics/membersParti/:key',
+      name: 'membersPartiDetail',
+      props: (route) => ({
+        params : route.params,
+        query: route.query
+      }),
+      component: () => import('./views/MembersPartiDetail.vue'),
+    },
+    {
+      path: '/statistics/membersAge',
+      name: 'membersAge',
+      props: (route) => ({
+        params : route.params,
+        query: route.query
+      }),
+      component: () => import('./views/MembersAge.vue'),
+    },
+    {
+      path: '/statistics/meetingsStats',
+      name: 'meetingsStats',
+      props: (route) => ({
+        params : route.params,
+        query: route.query
+      }),
+      component: () => import('./views/MeetingsStats.vue'),
+    },
   ],
 });

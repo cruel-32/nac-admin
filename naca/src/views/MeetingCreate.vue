@@ -188,6 +188,7 @@ import { Meeting }  from '../model/meeting.model';
 import { Member }  from '../model/member.model';
 import ProgressComp from '../components/ProgressComp.vue';
 import { debounce } from "typescript-debounce-decorator";
+import moment from 'moment';
 
 
 @Component({
@@ -209,7 +210,7 @@ export default class MeetingCreate extends Vue {
     }
   }
   get computedDateFormatted () {
-    return this.$moment(this.params.key.toString()).format('YYYY-MM-DD');
+    return moment(this.params.key.toString()).format('YYYY-MM-DD');
   }
   get allContents () {
     return this.meeting.contents.length === this.contentsList.length

@@ -34,6 +34,7 @@
 import { Component, Prop, Vue, Watch, Emit } from 'vue-property-decorator';
 import { MeetingService } from '../service/MeetingService';
 import ProgressComp from '../components/ProgressComp.vue';
+import moment from 'moment';
 
 @Component({
   components : {
@@ -48,7 +49,7 @@ export default class Meeting extends Vue {
   @Emit('showSnackbar') showSnackbar(color:string,text:string){}
 
   changePickDay(){
-    const meetingKey = this.$moment(this.date).format('YYYYMMDD');
+    const meetingKey = moment(this.date).format('YYYYMMDD');
     const path = `/meeting/${meetingKey}`;
     if(this.currentUser){
       this.$router.push(path)
@@ -60,17 +61,17 @@ export default class Meeting extends Vue {
   @Watch('pickerDate')
   dateChanged(changedDate:any){
     if(changedDate.length > 4){
-      this.getMeetingsMonth(this.$moment(changedDate)._d);
+      this.getMeetingsMonth(moment(changedDate)['_d']);
     }
   }
   
-  date:any = '';//this.$moment(new Date).format('YYYY-MM-DD');
+  date:any = '';//moment(new Date).format('YYYY-MM-DD');
   dates:any = null;
   meetingsMonth:any = null;
   pickerDate:any = null;
 
   getMeetingsMonth(pDate:Date=new Date()){
-    const date:string = this.$moment(pDate).format('YYYYMM');
+    const date:string = moment(pDate).format('YYYYMM');
     this.dates = [];  
     MeetingService.getMeetings({
       startAt : `${date}01`,
@@ -81,7 +82,7 @@ export default class Meeting extends Vue {
         res = res.val();
         this.meetingsMonth = res;
         this.dates = Object.keys(res).map((key:any)=>{
-          return this.$moment(key.toString()).format('YYYY-MM-DD')
+          return moment(key.toString()).format('YYYY-MM-DD')
         })
       } else {
         this.meetingsMonth = {};

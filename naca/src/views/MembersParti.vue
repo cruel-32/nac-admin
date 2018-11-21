@@ -2,8 +2,8 @@
   <v-card>
     <ProgressComp :propData="loading"></ProgressComp>
     <v-card-title>
-      <h1 class="headline"><v-icon color="green">people</v-icon> 회원목록</h1>
-      <p class="caption" style="margin:0 0 0 10px !important;">회원평균연령 : {{average}}세</p>
+      <h1 class="headline"><v-icon color="green">insert_chart</v-icon> 회원별 참여도 통계</h1>
+      <p class="caption" style="margin:0 0 0 10px !important;">*회원 이름을 클릭하세요</p>
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -42,9 +42,11 @@
   </v-card>
 </template>
 
+
 <script lang="ts">
 import { Component, Prop, Vue, Emit, Watch } from 'vue-property-decorator';
 import { MemberService } from '../service/MemberService';
+import { GradeService } from '../service/GradeService';
 import ProgressComp from '../components/ProgressComp.vue';
 import moment from 'moment';
 
@@ -53,7 +55,7 @@ import moment from 'moment';
     ProgressComp
   }
 })
-export default class Management extends Vue {
+export default class MembersParti extends Vue {
   @Prop() windowSize: any;
   @Prop() currentUser: any;
   @Prop() query: any;
@@ -173,7 +175,7 @@ export default class Management extends Vue {
     }
   }
   meberDetail(memberKey:any){
-    this.$router.push(`/member/${memberKey}`);
+    this.$router.push(`/statistics/membersParti/${memberKey}`);
   }
 }
 </script>

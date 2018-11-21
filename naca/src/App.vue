@@ -72,10 +72,6 @@ Vue.use(Vuetify, {
 import VeeValidate, { Validator } from 'vee-validate';
 Vue.use(VeeValidate);
 
-import moment from 'moment';
-import VueMomentJS from "vue-momentjs";
-Vue.use(VueMomentJS, moment);
-
 //component
 import HeaderComp from './components/HeaderComp.vue';
 import FooterComp from './components/FooterComp.vue';

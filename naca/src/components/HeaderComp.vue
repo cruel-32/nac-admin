@@ -34,7 +34,7 @@
 import { Component, Prop, Vue, Emit } from 'vue-property-decorator';
 import { Firebase } from '../service/Firebase';
 
-@Component()
+@Component
 export default class HeaderComp extends Vue {
   @Prop() windowSize: any;
   @Prop() currentUser: any;
