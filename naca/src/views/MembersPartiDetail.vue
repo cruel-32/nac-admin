@@ -34,7 +34,7 @@
                     <strong class="cus-title">가장 많이 본 사람 {{mostCount}} 번</strong>
                     <ul class="member-list" v-if="mostMembers.length">
                       <li v-for="mostMember in mostMembers" :key="mostMember.key">
-                        <router-link :to="{path:`/member/${mostMember.key}`}">{{mostMember.name}}</router-link>
+                        <router-link :to="{path:`/statistics/membersParti/${mostMember.key}`}">{{mostMember.name}}</router-link>
                       </li>
                     </ul>
                     <div v-else>
@@ -45,7 +45,7 @@
                     <strong class="cus-title">가장 적게 본 사람 {{leastCount}} 번</strong>
                     <ul class="member-list" v-if="leastMembers.length">
                       <li v-for="leastMember in leastMembers" :key="leastMember.key">
-                        <router-link :to="{path:`/member/${leastMember.key}`}">{{leastMember.name}}</router-link>
+                        <router-link :to="{path:`/statistics/membersParti/${leastMember.key}`}">{{leastMember.name}}</router-link>
                       </li>
                     </ul>
                     <div v-else>
@@ -56,7 +56,7 @@
                     <strong class="cus-title">한번도 못 본 사람</strong>
                     <ul class="member-list" v-if="neverSeenMembers.length">
                       <li v-for="neverSeenMember in neverSeenMembers" :key="neverSeenMember.key">
-                        <router-link :to="{path:`/member/${neverSeenMember.key}`}">{{neverSeenMember.name}}</router-link>
+                        <router-link :to="{path:`/statistics/membersParti/${neverSeenMember.key}`}">{{neverSeenMember.name}}</router-link>
                       </li>
                     </ul>
                     <div v-else>
@@ -109,12 +109,18 @@ export default class MembersParti extends Vue {
   @Watch('currentUser')
   changedUser(){
     if(this.currentUser && !this.member){
-      this.getAllInfo(this.params.key);
+      this.getMembersAndMeetings();
     }
+  }
+  @Watch('$route')
+  changeRoute(to,from){
+    this.cleanMemberStats();
+    this.setMemberStats();
   }
   loading:boolean = false;
   member:any = null;
-
+  membersObj:any = null;
+  meetings:any = null;
   firstMeeting:any = null;
   lastMeeting:any = null;
   meetingCount:any = null;
@@ -128,111 +134,123 @@ export default class MembersParti extends Vue {
 
   created(){
     if(this.currentUser){
-      this.getAllInfo(this.params.key);
+      this.getMembersAndMeetings();
     }
   }
-  getAllInfo(key:any){
-    this.loading = true;
-    MemberService.getMembers({}).then((membersSnapShot:any)=>{
-      const membersObj = membersSnapShot.val();
-      const memberKeys = Object.keys(membersObj);
-      const memberKey = memberKeys.find((memberKey:any)=>{
-        return memberKey === key;
-      }) || key;
-      const member = membersObj[memberKey];
-      this.member = member;
+  cleanMemberStats(){
+    this.participatedMeetings = [];
+    this.mostMembers = [];
+    this.leastMembers = [];
+    this.neverSeenMembers = [];
+  }
 
-      MeetingService.getMeetings({}).then((meetingsSnapShot:any)=>{
-        const meetings = meetingsSnapShot.val();
+  setMemberStats(){
+    const memberKeys = Object.keys(this.membersObj);
+    const memberKey = memberKeys.find((memberKey:any)=>{
+      return memberKey === this.params.key;
+    }) || this.params.key;
+    const member = this.membersObj[memberKey];
+    this.member = member;
 
-        //최근벙
-        if(member.participation){
-          const participationKeys = Object.keys(member.participation);
-          participationKeys.sort((a:any,b:any)=>{
-            return b-a;
-          });
-          if(participationKeys.length){
-            this.firstMeeting = {
-              link : `/meeting/${participationKeys[0]}`,
-              date : moment(participationKeys[0]).format('YYYY.MM.DD'),
-              name : meetings[participationKeys[0]].title
-            }
-            this.lastMeeting = {
-              link : `/meeting/${participationKeys[participationKeys.length-1]}`,
-              date : moment(participationKeys[participationKeys.length-1]).format('YYYY.MM.DD'),
-              name : meetings[participationKeys[participationKeys.length-1]].title
-            }
-            this.meetingCount = participationKeys.length;
+    //최근벙
+    if(member.participation){
+      const participationKeys = Object.keys(member.participation);
+      participationKeys.sort((a:any,b:any)=>{
+        return b-a;
+      });
+      if(participationKeys.length){
+        this.firstMeeting = {
+          link : `/meeting/${participationKeys[participationKeys.length-1]}`,
+          date : moment(participationKeys[participationKeys.length-1]).format('YYYY.MM.DD'),
+          name : this.meetings[participationKeys[participationKeys.length-1]].title
+        }
+        this.lastMeeting = {
+          link : `/meeting/${participationKeys[0]}`,
+          date : moment(participationKeys[0]).format('YYYY.MM.DD'),
+          name : this.meetings[participationKeys[0]].title
+        }
+        this.meetingCount = participationKeys.length;
 
-            const seenMembers = [];
-            participationKeys.forEach((participationKey:any)=>{
-              if(meetings[participationKey]){
-                const participatedMeeting = meetings[participationKey];
-                this.participatedMeetings.push({
-                  key : participationKey,
-                  date : moment(participationKey.toString()).format('YYYY.MM.DD'),
-                  title : participatedMeeting.title
-                });
-                participatedMeeting.members.forEach((seenMember:any)=>{
-                  if(seenMember !== key){
-                    let seenMemberInfo = seenMembers.find((sm:any)=>{
-                      return sm['key'] === seenMember
-                    });
-                    if(seenMemberInfo){
-                      seenMemberInfo['count']+=1;
-                    } else {
-                      if(membersObj[seenMember]){
-                        seenMembers.push({
-                          count : 1,
-                          key : seenMember,
-                          name : membersObj[seenMember].name
-                        })
-                      }
-                    }
-                  }
-                });
-              }
+        const seenMembers = [];
+        participationKeys.forEach((participationKey:any)=>{
+          if(this.meetings[participationKey]){
+            const participatedMeeting = this.meetings[participationKey];
+            this.participatedMeetings.push({
+              key : participationKey,
+              date : moment(participationKey.toString()).format('YYYY.MM.DD'),
+              title : participatedMeeting.title
             });
-            seenMembers.sort((a:any,b:any)=>{
-              return a.count - b.count;
-            });
-
-            if(seenMembers.length){
-              this.leastCount = seenMembers[0].count;
-              this.mostCount = seenMembers[seenMembers.length-1].count;
-
-              if(this.leastCount === this.mostCount){
-                this.mostMembers = seenMembers;
-                this.leastMembers = seenMembers;
-              } else {
-                seenMembers.forEach((sm:any)=>{
-                  if(sm.count === this.leastCount){
-                    this.leastMembers.push(sm);
-                  } else if(sm.count === this.mostCount){
-                    this.mostMembers.push(sm);
-                  }
+            participatedMeeting.members.forEach((seenMember:any)=>{
+              if(seenMember !== this.params.key){
+                let seenMemberInfo = seenMembers.find((sm:any)=>{
+                  return sm['key'] === seenMember
                 });
-              }
-              this.neverSeenMembers = memberKeys.reduce((prev:any, memberKey:any, arr:any)=>{
-              
-                if(!seenMembers.find((seenMember:any)=>{
-                  return memberKey === seenMember.key; 
-                })){
-                  if(memberKey !== key){
-                    const memberObj = membersObj[memberKey];
-                    prev.push({
-                      key : memberKey,
-                      name : memberObj.name
-                    });
+                if(seenMemberInfo){
+                  seenMemberInfo['count']+=1;
+                } else {
+                  if(this.membersObj[seenMember]){
+                    seenMembers.push({
+                      count : 1,
+                      key : seenMember,
+                      name : this.membersObj[seenMember].name
+                    })
                   }
                 }
-                return prev;
-              },[]);
-
-            }
+              }
+            });
           }
+        });
+        seenMembers.sort((a:any,b:any)=>{
+          return a.count - b.count;
+        });
+
+        if(seenMembers.length){
+          this.leastCount = seenMembers[0].count;
+          this.mostCount = seenMembers[seenMembers.length-1].count;
+
+          if(this.leastCount === this.mostCount){
+            this.mostMembers = seenMembers;
+            this.leastMembers = seenMembers;
+          } else {
+            seenMembers.forEach((sm:any)=>{
+              if(sm.count === this.leastCount){
+                this.leastMembers.push(sm);
+              } else if(sm.count === this.mostCount){
+                this.mostMembers.push(sm);
+              }
+            });
+          }
+          this.neverSeenMembers = memberKeys.reduce((prev:any, memberKey:any, arr:any)=>{
+          
+            if(!seenMembers.find((seenMember:any)=>{
+              return memberKey === seenMember.key; 
+            })){
+              if(memberKey !== this.params.key){
+                const memberObj = this.membersObj[memberKey];
+                prev.push({
+                  key : memberKey,
+                  name : memberObj.name
+                });
+              }
+            }
+            return prev;
+          },[]);
+
         }
-        this.loading = false;
+      }
+    }
+    this.loading = false;
+
+  }  
+
+  getMembersAndMeetings(){
+    this.loading = true;
+    this.cleanMemberStats();
+    MemberService.getMembers({}).then((membersSnapShot:any)=>{
+      MeetingService.getMeetings({}).then((meetingsSnapShot:any)=>{
+        this.membersObj = membersSnapShot.val();
+        this.meetings = meetingsSnapShot.val();
+        this.setMemberStats();
       }).catch((err:any)=>{
         console.log("err : ", err);
         this.loading = false;
