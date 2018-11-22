@@ -7,7 +7,7 @@
           <v-card>
             <v-card-title class="pb-0">
               <span class="headline">
-                {{params.key ? "회원정보 수정": "신입 회원정보 입력"}}
+                <v-icon color="green">people</v-icon> {{params.key ? "회원정보 수정": "신입 회원정보 입력"}}
               </span>
             </v-card-title>
             <v-card-text class="pa-0">
