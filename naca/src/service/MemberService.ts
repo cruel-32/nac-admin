@@ -32,7 +32,7 @@ export const MemberService = Object.assign(DefaultApi,{
 
                     const gradeChanger = (member:any,participation:any)=>{
                         const participationKeys = Object.keys(participation);
-                        if(member.grade == 2 || member.grade == 3 || member.grade == 4){
+                        if(member.grade == 3 || member.grade == 4){ //member.grade == 2 || 도 넣으면 일반회원에서 강등도 가능
                             if(participationKeys.length >= 4){
                                 member.grade = 2
                             } else if(participationKeys.length >= 1){
