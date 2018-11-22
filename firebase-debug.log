@@ -1,0 +1,121 @@
+[debug] [2018-11-22T09:19:30.225Z] ----------------------------------------------------------------------
+[debug] [2018-11-22T09:19:30.227Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\csh\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2018-11-22T09:19:30.227Z] CLI Version:   6.1.1
+[debug] [2018-11-22T09:19:30.227Z] Platform:      win32
+[debug] [2018-11-22T09:19:30.227Z] Node Version:  v8.12.0
+[debug] [2018-11-22T09:19:30.229Z] Time:          Thu Nov 22 2018 18:19:30 GMT+0900 (대한민국 표준시)
+[debug] [2018-11-22T09:19:30.229Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-11-22T09:19:30.240Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-11-22T09:19:30.241Z] > authorizing via signed-in user
+[debug] [2018-11-22T09:19:30.241Z] [iam] checking project nac-admin for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]
+[debug] [2018-11-22T09:19:30.243Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/nac-admin:testIamPermissions  
+
+[debug] [2018-11-22T09:19:31.591Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-22T09:19:31.593Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/nac-admin  
+ 
+[debug] [2018-11-22T09:19:32.396Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'nac-admin'...
+[info] 
+[info] i  deploying database, firestore, hosting
+[info] i  database: checking rules syntax...
+[debug] [2018-11-22T09:19:32.404Z] >>> HTTP REQUEST PUT https://nac-admin.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  /* Visit https://firebase.google.com/docs/database/security to learn more about security rules. */
+  "rules": {
+    "member" : {
+      ".read": "auth != null",
+      ".write": "auth.uid === '1qKjeQg5NJVkJgGse4AQU6zP7Jp1' || auth.uid === 'MP6nhPUIdtYeeyM5dkY4qpO6pYW2'",
+      ".indexOn" : ["name","grade"]
+    },
+    "meeting" : {
+      ".read": true,
+      ".write": "auth.uid === '1qKjeQg5NJVkJgGse4AQU6zP7Jp1' || auth.uid === 'MP6nhPUIdtYeeyM5dkY4qpO6pYW2'",
+      ".indexOn" : ["date"]
+    },
+    "content" : {
+      ".read": "auth.uid === '1qKjeQg5NJVkJgGse4AQU6zP7Jp1'",
+      ".write": "auth.uid === '1qKjeQg5NJVkJgGse4AQU6zP7Jp1'",
+      ".indexOn" : ["name"]
+    },
+    "place" : {
+      ".read": "auth.uid === '1qKjeQg5NJVkJgGse4AQU6zP7Jp1'",
+      ".write": "auth.uid === '1qKjeQg5NJVkJgGse4AQU6zP7Jp1'",
+      ".indexOn" : ["name"]
+    },
+    "grade" : {
+      ".read": "auth.uid === '1qKjeQg5NJVkJgGse4AQU6zP7Jp1'",
+      ".write": "auth.uid === '1qKjeQg5NJVkJgGse4AQU6zP7Jp1'",
+      ".indexOn" : ["name"]
+    }
+  }
+}
+[debug] [2018-11-22T09:19:33.388Z] <<< HTTP RESPONSE 200
+[info] +  database: rules syntax for database nac-admin is valid
+[info] i  firestore: checking firestore.rules for compilation errors...
+[debug] [2018-11-22T09:19:33.393Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/nac-admin:test  
+
+[debug] [2018-11-22T09:19:34.712Z] <<< HTTP RESPONSE 200
+[info] +  firestore: rules file firestore.rules compiled successfully
+[debug] [2018-11-22T09:19:34.714Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/nac-admin/versions  
+
+[debug] [2018-11-22T09:19:36.460Z] <<< HTTP RESPONSE 200
+[info] i  firestore: uploading rules firestore.rules...
+[debug] [2018-11-22T09:19:36.462Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/nac-admin/rulesets  
+
+[debug] [2018-11-22T09:19:36.463Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1beta1/projects/nac-admin/databases/(default)/indexes  
+ 
+[debug] [2018-11-22T09:19:37.259Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-22T09:19:37.800Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-22T09:19:37.800Z] [rules] created ruleset projects/nac-admin/rulesets/b80aeeda-9b28-4c2e-8b93-0b0dc9fec33b
+[info] i  hosting[nac-admin]: beginning deploy...
+[info] i  hosting[nac-admin]: found 42 files in naca/dist
+[debug] [2018-11-22T09:19:37.829Z] [hosting] hash cache [bmFjYVxkaXN0] load error: lines is not defined
+[debug] [2018-11-22T09:19:39.201Z] [hosting] hash cache [bmFjYVxkaXN0] stored for 42 files
+[debug] [2018-11-22T09:19:39.201Z] [hosting][hash queue][FINAL]
+[debug] [2018-11-22T09:19:39.201Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/nac-admin/versions/0d9c7a0984453fa4:populateFiles  
+ <request body omitted>
+[debug] [2018-11-22T09:19:40.939Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-22T09:19:40.944Z] [hosting][populate queue][FINAL]
+[debug] [2018-11-22T09:19:40.944Z] [hosting] uploads queued: 9
+[debug] [2018-11-22T09:19:44.441Z] [hosting][upload queue][FINAL]
+[info] +  hosting[nac-admin]: file upload complete
+[debug] [2018-11-22T09:19:44.442Z] [hosting] deploy completed after 6639ms
+[info] i  database: releasing rules...
+[debug] [2018-11-22T09:19:44.691Z] >>> HTTP REQUEST PUT https://nac-admin.firebaseio.com/.settings/rules.json  
+ {
+  /* Visit https://firebase.google.com/docs/database/security to learn more about security rules. */
+  "rules": {
+    "member" : {
+      ".read": "auth != null",
+      ".write": "auth.uid === '1qKjeQg5NJVkJgGse4AQU6zP7Jp1' || auth.uid === 'MP6nhPUIdtYeeyM5dkY4qpO6pYW2'",
+      ".indexOn" : ["name","grade"]
+    },
+    "meeting" : {
+      ".read": true,
+      ".write": "auth.uid === '1qKjeQg5NJVkJgGse4AQU6zP7Jp1' || auth.uid === 'MP6nhPUIdtYeeyM5dkY4qpO6pYW2'",
+      ".indexOn" : ["date"]
+    },
+    "content" : {
+      ".read": "auth.uid === '1qKjeQg5NJVkJgGse4AQU6zP7Jp1'",
+      ".write": "auth.uid === '1qKjeQg5NJVkJgGse4AQU6zP7Jp1'",
+      ".indexOn" : ["name"]
+    },
+    "place" : {
+      ".read": "auth.uid === '1qKjeQg5NJVkJgGse4AQU6zP7Jp1'",
+      ".write": "auth.uid === '1qKjeQg5NJVkJgGse4AQU6zP7Jp1'",
+      ".indexOn" : ["name"]
+    },
+    "grade" : {
+      ".read": "auth.uid === '1qKjeQg5NJVkJgGse4AQU6zP7Jp1'",
+      ".write": "auth.uid === '1qKjeQg5NJVkJgGse4AQU6zP7Jp1'",
+      ".indexOn" : ["name"]
+    }
+  }
+}
+[debug] [2018-11-22T09:19:45.526Z] <<< HTTP RESPONSE 200
+[info] +  database: rules for database nac-admin released successfully
+[debug] [2018-11-22T09:19:45.529Z] [rules] releasing cloud.firestore with ruleset projects/nac-admin/rulesets/b80aeeda-9b28-4c2e-8b93-0b0dc9fec33b
+[debug] [2018-11-22T09:19:45.530Z] >>> HTTP REQUEST PATCH https://firebaserules.googleapis.com/v1/projects/nac-admin/releases/cloud.firestore  
+

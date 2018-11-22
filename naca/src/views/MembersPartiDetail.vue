@@ -218,11 +218,13 @@ export default class MembersParti extends Vue {
                 if(!seenMembers.find((seenMember:any)=>{
                   return memberKey === seenMember.key; 
                 })){
-                  const memberObj = membersObj[memberKey];
-                  prev.push({
-                    key : memberKey,
-                    name : memberObj.name
-                  });
+                  if(memberKey !== key){
+                    const memberObj = membersObj[memberKey];
+                    prev.push({
+                      key : memberKey,
+                      name : memberObj.name
+                    });
+                  }
                 }
                 return prev;
               },[]);
