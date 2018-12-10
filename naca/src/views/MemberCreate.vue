@@ -199,6 +199,7 @@ import ProgressComp from '../components/ProgressComp.vue';
 import { debounce } from "typescript-debounce-decorator";
 import moment from 'moment';
 import VueMomentJS from "vue-momentjs";
+import {exitDay} from '../helper/memberExitDay.js'
 
 @Component({
   components : {
@@ -307,15 +308,15 @@ export default class MemberCreate extends Vue {
           break;
         case 2 : 
           this.grade = '일반회원';
-          this.exitDay = `${105 - moment(new Date).diff(this.lastDay || moment(member.joinDate.toString()).format('YYYYMMDD'), 'days')}일`;
+          this.exitDay = `${exitDay['2'] - moment(new Date).diff(this.lastDay || moment(member.joinDate.toString()).format('YYYYMMDD'), 'days')}일`;
           break;
         case 3 : 
           this.grade = '신입(1~3회 참석)';
-          this.exitDay = `${70 - moment(new Date).diff(this.lastDay || moment(member.joinDate.toString()).format('YYYYMMDD'), 'days')}일`;
+          this.exitDay = `${exitDay['3'] - moment(new Date).diff(this.lastDay || moment(member.joinDate.toString()).format('YYYYMMDD'), 'days')}일`;
           break;
         case 4 : 
           this.grade = '신입(미참석)';
-          this.exitDay = `${35 - moment(new Date).diff(this.lastDay || moment(member.joinDate.toString()).format('YYYYMMDD'), 'days')}일`;
+          this.exitDay = `${exitDay['4'] - moment(new Date).diff(this.lastDay || moment(member.joinDate.toString()).format('YYYYMMDD'), 'days')}일`;
           break;
         case 5 : 
           this.grade = '특수회원';

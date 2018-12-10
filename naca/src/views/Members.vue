@@ -47,6 +47,7 @@ import { Component, Prop, Vue, Emit, Watch } from 'vue-property-decorator';
 import { MemberService } from '../service/MemberService';
 import ProgressComp from '../components/ProgressComp.vue';
 import moment from 'moment';
+import {exitDay} from '../helper/memberExitDay.js'
 
 @Component({
   components : {
@@ -165,7 +166,7 @@ export default class Management extends Vue {
       } else {
         lastDay = moment(member.joinDate.toString())
       }
-      ExitDay = (grade == 2 ? 105 : (grade == 3 ? 70 : 35))
+      ExitDay = (grade == 2 ? exitDay['2'] : (grade == 3 ? exitDay['3'] : exitDay['4']))
         - moment(new Date).diff(lastDay, 'days');
       return ExitDay;
     } else {
