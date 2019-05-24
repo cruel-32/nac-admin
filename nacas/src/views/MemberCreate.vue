@@ -223,6 +223,7 @@ export default class MemberCreate extends Vue {
   
   joinDate:any = moment(new Date).format('YYYY-MM-DD');
   birth:any = moment(new Date).format('YYYY-MM-DD');
+  outDay:any = null;
   grade:any = "신입(미참석)";
   loading:boolean = false;
   exitDay:any = '';
@@ -277,6 +278,7 @@ export default class MemberCreate extends Vue {
     )
     this.birth = moment(memberInfo.birth.toString()).format('YYYY-MM-DD');
     this.joinDate = moment(memberInfo.joinDate.toString()).format('YYYY-MM-DD');
+    if(memberInfo.outDay){this.outDay = moment(memberInfo.outDay.toString()).format('YYYY-MM-DD')}
   }
   getMember(){
     this.loading = true;
@@ -377,6 +379,8 @@ export default class MemberCreate extends Vue {
   @debounce(1000)
   deleteMember(){
     if(this.currentUser){
+      //20190526
+      //-Lfe2zIBxdSMuFDvZxde
       this.loading = true;
       MemberService.updateMember(this.params.key, Object.assign(this.memberOrigin,{
         "grade" : 6,

@@ -60,7 +60,7 @@
                       >
                         <v-list-tile
                           slot="prepend-item"
-                          ripple
+                          
                           @click="toggleSelectAllContents"
                         >
                           <v-list-tile-action>
@@ -96,11 +96,11 @@
                       >
                         <v-list-tile
                           slot="prepend-item"
-                          ripple
+                          
                           @click="toggleSelectAllMembers"
                         >
                           <v-list-tile-action>
-                            <v-icon :color="meeting.members.length > 0 ? 'indigo darken-4' : ''">{{membersCheckboxIcon}}</v-icon>
+                            <v-icon :color="meeting.members.length > 0 ? 'indigo darken-4' : ''">1{{membersCheckboxIcon}}</v-icon>
                           </v-list-tile-action>
                           <v-list-tile-title>
                             {{meeting.members.length == memberList.length ? 'Deselect All' : 'Select All'}}
@@ -128,19 +128,19 @@
                             <span>평균나이 : {{(joinMembersInfo.ageAverage/meeting.members.length).toFixed(2)}}살</span>
                           </v-flex>
 
-                          <v-flex xs6 sm6 md6>
+                          <v-flex xs6 sm3 md2>
                             <span>운영진 : {{joinMembersInfo.adminCount}}명</span>
                           </v-flex>
 
-                          <v-flex xs6 sm6 md6>
+                          <v-flex xs6 sm3 md2>
                             <span>일반회원 : {{joinMembersInfo.normalCount}}명</span>
                           </v-flex>
 
-                          <v-flex xs6 sm6 md6>
+                          <v-flex xs6 sm3 md2>
                             <span>신입회원 :{{joinMembersInfo.newbieCount}}명</span>
                           </v-flex>
 
-                          <v-flex xs6 sm6 md6>
+                          <v-flex xs6 sm3 md2>
                             <span>특수멤버 : {{joinMembersInfo.specialCount}}명</span>
                           </v-flex>
 
@@ -244,7 +244,10 @@ export default class MeetingCreate extends Vue {
     const today = parseInt(moment(new Date()).format('YYYY'));
     this.joinMembersInfo = members.reduce((obj,member)=>{
       const joinMemberInfo = this.memberListObj[member];
-      const age = today - parseInt(moment(joinMemberInfo.birth.toString()).format('YYYY'));
+      if(!joinMemberInfo){
+        return obj
+      }
+      const age = 1+today - parseInt(moment(joinMemberInfo.birth.toString()).format('YYYY'));
       obj.ageAverage+=age
       if(joinMemberInfo.grade === 0 || joinMemberInfo.grade === 1){
         obj.adminCount+=1
