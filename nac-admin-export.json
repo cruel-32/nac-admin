@@ -404,6 +404,24 @@
       "place" : "xxxxxxdffffeeer",
       "title" : "이슬라이브"
     },
+    "20190516" : {
+      "contents" : [ "qqqweerrtyyy" ],
+      "members" : [ "-LOvteMzU211Morqz6pJ", "dfgbtujkyn", "dfgbrb", "ertbunrtu", "-LWaik6X6pYfqY5vrG9b", "-LeaELum-TtioaJKzbbV", "ertvuj56ub" ],
+      "place" : "ertberbertvwnzx",
+      "title" : "보드게임"
+    },
+    "20190518" : {
+      "contents" : [ "cccccddddfee", "eeerfccaqycw" ],
+      "members" : [ "-LWaik6X6pYfqY5vrG9b", "nnnnghtyrtbrtyb", "bretyv3456n3", "fgryntubtn", "wervwerv", "dfgbtujkyn", "-Lc4IiRD9yPOGA3jVJxc", "ertbunrtu", "wrtbeynunrtub", "wevterybxxxx", "-LdBkGX9GPAyWaVU8Nxx", "ertvuj56ub", "dfgbrb", "-LdvxqCZQIwt59CSkMvo" ],
+      "place" : "zzzzz0rkghbu",
+      "title" : "상암 무료영화와 피크닉"
+    },
+    "20190525" : {
+      "contents" : [ "qpqpqpqpwkej" ],
+      "members" : [ "cccbryiumrtbryb", "-LOvteMzU211Morqz6pJ", "bretyv3456n3", "fgryntubtn", "wervwerv", "hbrtuyb", "dfgbtujkyn", "ertbunrtu", "wevterybxxxx", "wrtbeynunrtub", "-LaUywmc6asvIuxzJqdT" ],
+      "place" : "fghnnnfthitynuu",
+      "title" : "ㅋㅋ페스티발"
+    },
     "-LPzeutXFpoC0PleK8jL" : {
       "contents" : [ "cccccddddfee" ],
       "date" : 20181031,
@@ -429,7 +447,9 @@
         "20190406" : true,
         "20190424" : true,
         "20190504" : true,
-        "20190510" : true
+        "20190510" : true,
+        "20190516" : true,
+        "20190525" : true
       },
       "phone" : 1012345678
     },
@@ -456,36 +476,9 @@
         "20190414" : true,
         "20190421" : true,
         "20190424" : true,
-        "20190510" : true
-      },
-      "phone" : 1012345678
-    },
-    "-LYZdhhO8H3tG1Czdqok" : {
-      "address" : "창동",
-      "birth" : 19931102,
-      "grade" : 3,
-      "job" : "회사원 중곡동",
-      "joinDate" : 20190212,
-      "mail" : "",
-      "name" : "김민수",
-      "outDay" : 0,
-      "participation" : {
-        "20190302" : true
-      },
-      "phone" : 1012345678
-    },
-    "-LZCSBNqf-XfNhVOovlg" : {
-      "address" : "노원구",
-      "birth" : 19911022,
-      "grade" : 3,
-      "job" : "대학원생",
-      "joinDate" : 20190221,
-      "mail" : "",
-      "name" : "탁윤석",
-      "outDay" : 0,
-      "participation" : {
-        "20190225" : true,
-        "20190306" : true
+        "20190510" : true,
+        "20190516" : true,
+        "20190518" : true
       },
       "phone" : 1012345678
     },
@@ -613,19 +606,9 @@
         "20190420" : true,
         "20190424" : true,
         "20190504" : true,
-        "20190510" : true
+        "20190510" : true,
+        "20190525" : true
       },
-      "phone" : 1012345678
-    },
-    "-LayMKiWUN0WFQi6nMWR" : {
-      "address" : "의정부",
-      "birth" : 19900529,
-      "grade" : 6,
-      "job" : "설비",
-      "joinDate" : 20190326,
-      "mail" : "",
-      "name" : "이준성",
-      "outDay" : 20190511,
       "phone" : 1012345678
     },
     "-Lba1fLXV2d77rzFV8q3" : {
@@ -657,7 +640,8 @@
         "20190414" : true,
         "20190421" : true,
         "20190424" : true,
-        "20190503" : true
+        "20190503" : true,
+        "20190518" : true
       },
       "phone" : 1012345678
     },
@@ -684,17 +668,6 @@
       "participation" : {
         "20190501" : true
       },
-      "phone" : 1012345678
-    },
-    "-LchsiKnTk9cZp5Xegy_" : {
-      "address" : "공릉",
-      "birth" : 19910901,
-      "grade" : 6,
-      "job" : "서비스직",
-      "joinDate" : 20190418,
-      "mail" : "",
-      "name" : "이주희",
-      "outDay" : 20190511,
       "phone" : 1012345678
     },
     "-LchtwaYu4lsV_oPNww4" : {
@@ -743,19 +716,9 @@
       "name" : "정시은",
       "outDay" : 0,
       "participation" : {
-        "20190503" : true
+        "20190503" : true,
+        "20190518" : true
       },
-      "phone" : 1012345678
-    },
-    "-LdcINwuVlIZsO42A1-f" : {
-      "address" : "의정부",
-      "birth" : 19870508,
-      "grade" : 4,
-      "job" : "사무직",
-      "joinDate" : 20190429,
-      "mail" : "",
-      "name" : "조은희",
-      "outDay" : 0,
       "phone" : 1012345678
     },
     "-Ldh040Pu-ddrSKguLel" : {
@@ -770,17 +733,6 @@
       "participation" : {
         "20190501" : true
       },
-      "phone" : 1012345678
-    },
-    "-Ldl2ufTDTOLW2gvewPX" : {
-      "address" : "광진구",
-      "birth" : 19931007,
-      "grade" : 6,
-      "job" : "물리치료사",
-      "joinDate" : 20190501,
-      "mail" : "",
-      "name" : "류현선",
-      "outDay" : 20190511,
       "phone" : 1012345678
     },
     "-LdnpgbygdLmxHtBaTfL" : {
@@ -825,34 +777,15 @@
     "-LdvxqCZQIwt59CSkMvo" : {
       "address" : "노원구",
       "birth" : 19930630,
-      "grade" : 4,
+      "grade" : 3,
       "job" : "학생",
       "joinDate" : 20190503,
       "mail" : "",
       "name" : "최중현",
       "outDay" : 0,
-      "phone" : 1012345678
-    },
-    "-LdxCz1RNnaao8qli0ZP" : {
-      "address" : "수유",
-      "birth" : 19870131,
-      "grade" : 6,
-      "job" : "사무직",
-      "joinDate" : 20190503,
-      "mail" : "",
-      "name" : "성경아",
-      "outDay" : 20190511,
-      "phone" : 1012345678
-    },
-    "-LeZljonKREFbj78nZpt" : {
-      "address" : "도봉구",
-      "birth" : 19930221,
-      "grade" : 4,
-      "job" : "회사원",
-      "joinDate" : 20190504,
-      "mail" : "",
-      "name" : "김경수",
-      "outDay" : 0,
+      "participation" : {
+        "20190518" : true
+      },
       "phone" : 1012345678
     },
     "-LeZlrfjPblPULGuO1bJ" : {
@@ -866,25 +799,28 @@
       "outDay" : 0,
       "phone" : 1012345678
     },
-    "-LeZm-MqzYT8h-3KRIvI" : {
-      "address" : "혜화",
-      "birth" : 19910410,
-      "grade" : 4,
-      "job" : "대기업직원 - 강북",
-      "joinDate" : 20190510,
-      "mail" : "",
-      "name" : "손석준",
-      "outDay" : 0,
-      "phone" : 1012345678
-    },
     "-LeaELum-TtioaJKzbbV" : {
       "address" : "노원",
       "birth" : 19920302,
-      "grade" : 4,
+      "grade" : 3,
       "job" : "회사원",
       "joinDate" : 20190511,
       "mail" : "",
       "name" : "서태현",
+      "outDay" : 0,
+      "participation" : {
+        "20190516" : true
+      },
+      "phone" : 1012345678
+    },
+    "-LfFTjVSs-UcNp4nMTbV" : {
+      "address" : "도봉구",
+      "birth" : 19910305,
+      "grade" : 4,
+      "job" : "일식조리사",
+      "joinDate" : 20190519,
+      "mail" : "",
+      "name" : "한오승",
       "outDay" : 0,
       "phone" : 1012345678
     },
@@ -909,7 +845,9 @@
         "20190323" : true,
         "20190421" : true,
         "20190427" : true,
-        "20190511" : true
+        "20190511" : true,
+        "20190518" : true,
+        "20190525" : true
       },
       "phone" : 1012345678
     },
@@ -943,7 +881,8 @@
         "20190502" : true,
         "20190503" : true,
         "20190504" : true,
-        "20190511" : true
+        "20190511" : true,
+        "20190525" : true
       },
       "phone" : 1074547357
     },
@@ -1006,7 +945,9 @@
         "20190424" : true,
         "20190430" : true,
         "20190501" : true,
-        "20190504" : true
+        "20190504" : true,
+        "20190516" : true,
+        "20190518" : true
       },
       "phone" : 1012345678
     },
@@ -1059,7 +1000,10 @@
         "20190504" : true,
         "20190506" : true,
         "20190510" : true,
-        "20190511" : true
+        "20190511" : true,
+        "20190516" : true,
+        "20190518" : true,
+        "20190525" : true
       },
       "phone" : 1093924918
     },
@@ -1138,7 +1082,10 @@
         "20190502" : true,
         "20190504" : true,
         "20190506" : true,
-        "20190510" : true
+        "20190510" : true,
+        "20190516" : true,
+        "20190518" : true,
+        "20190525" : true
       },
       "phone" : 1050544147
     },
@@ -1192,7 +1139,9 @@
         "20190421" : true,
         "20190424" : true,
         "20190501" : true,
-        "20190504" : true
+        "20190504" : true,
+        "20190516" : true,
+        "20190518" : true
       },
       "phone" : 1012345678
     },
@@ -1216,7 +1165,9 @@
         "20190323" : true,
         "20190421" : true,
         "20190427" : true,
-        "20190511" : true
+        "20190511" : true,
+        "20190518" : true,
+        "20190525" : true
       },
       "phone" : 1012345678
     },
@@ -1232,7 +1183,8 @@
         "20181107" : true,
         "20181222" : true,
         "20190323" : true,
-        "20190407" : true
+        "20190407" : true,
+        "20190525" : true
       },
       "phone" : 1012345678
     },
@@ -1297,7 +1249,8 @@
         "20190302" : true,
         "20190430" : true,
         "20190502" : true,
-        "20190504" : true
+        "20190504" : true,
+        "20190518" : true
       },
       "phone" : 1012345678
     },
@@ -1438,7 +1391,9 @@
         "20190427" : true,
         "20190430" : true,
         "20190502" : true,
-        "20190510" : true
+        "20190510" : true,
+        "20190518" : true,
+        "20190525" : true
       },
       "phone" : 1012345678
     },
@@ -1458,7 +1413,9 @@
         "20190323" : true,
         "20190421" : true,
         "20190427" : true,
-        "20190502" : true
+        "20190502" : true,
+        "20190518" : true,
+        "20190525" : true
       },
       "phone" : 1027857472
     },
@@ -1494,7 +1451,9 @@
         "20190502" : true,
         "20190504" : true,
         "20190510" : true,
-        "20190511" : true
+        "20190511" : true,
+        "20190518" : true,
+        "20190525" : true
       },
       "phone" : 1012345678
     }

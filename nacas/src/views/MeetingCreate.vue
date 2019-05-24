@@ -80,7 +80,6 @@
                         ></v-divider>
                       </v-select>
                     </v-flex>
-                    
                     <v-flex xs12>
                       <v-select
                         v-model="meeting.members"
@@ -93,7 +92,7 @@
                         deletable-chips
                         multiple
                         dense
-                        :messages="['필수입력값이 아니므로 모임 생성 후 입력가능']"
+                        :messages="[`필수입력값이 아니므로 모임 생성 후 입력가능. ${meeting.members.length}명 선택`]"
                       >
                         <v-list-tile
                           slot="prepend-item"
@@ -116,8 +115,42 @@
                           class="mb-2"
                         ></v-divider>
                       </v-select>
-
                     </v-flex>
+
+
+                    <v-card>
+                      <v-card-title class="pb-0">
+                        <span class="title">이 날의 모임정보</span>
+                      </v-card-title>
+                      <v-container grid-list-md>
+                        <v-layout wrap>
+                          <v-flex xs12 sm12 md12>
+                            <span>평균나이 : {{(joinMembersInfo.ageAverage/meeting.members.length).toFixed(2)}}살</span>
+                          </v-flex>
+
+                          <v-flex xs6 sm6 md6>
+                            <span>운영진 : {{joinMembersInfo.adminCount}}명</span>
+                          </v-flex>
+
+                          <v-flex xs6 sm6 md6>
+                            <span>일반회원 : {{joinMembersInfo.normalCount}}명</span>
+                          </v-flex>
+
+                          <v-flex xs6 sm6 md6>
+                            <span>신입회원 :{{joinMembersInfo.newbieCount}}명</span>
+                          </v-flex>
+
+                          <v-flex xs6 sm6 md6>
+                            <span>특수멤버 : {{joinMembersInfo.specialCount}}명</span>
+                          </v-flex>
+
+                          <v-flex xs12 sm12 md12>
+                            <span>신입회원(미참여) : {{joinMembersInfo.perfectNewbieCount}}명</span>
+                          </v-flex>
+                        </v-layout>
+                      </v-container>
+                    </v-card>
+                    
                   </v-layout>
                 </v-container>
               </v-card-text>
@@ -206,6 +239,35 @@ export default class MeetingCreate extends Vue {
     console.log('text : ', text);
   }
 
+  @Watch('meeting.members')
+  joinMembersInfoChange(members){
+    const today = parseInt(moment(new Date()).format('YYYY'));
+    this.joinMembersInfo = members.reduce((obj,member)=>{
+      const joinMemberInfo = this.memberListObj[member];
+      const age = today - parseInt(moment(joinMemberInfo.birth.toString()).format('YYYY'));
+      obj.ageAverage+=age
+      if(joinMemberInfo.grade === 0 || joinMemberInfo.grade === 1){
+        obj.adminCount+=1
+      } else if(joinMemberInfo.grade === 2){
+        obj.normalCount+=1
+      } else if(joinMemberInfo.grade === 3){
+        obj.newbieCount+=1
+      } else if(joinMemberInfo.grade === 4){
+        obj.perfectNewbieCount+=1
+      } else if(joinMemberInfo.grade === 5){
+        obj.specialCount+=1
+      }
+      return obj
+    },{
+      ageAverage : 0,
+      adminCount : 0,
+      normalCount : 0,
+      newbieCount : 0,
+      perfectNewbieCount : 0,
+      specialCount : 0,
+    });
+
+  }
   @Watch('currentUser')
   changeCurrentUser() {
     if(this.currentUser && !this.memberList.length){
@@ -243,9 +305,20 @@ export default class MeetingCreate extends Vue {
   meeting:Meeting = new Meeting();
   meetingOrigin:Meeting = new Meeting();
   viewConfirmDelete:boolean = false;
+  memberListObj:any[];
   memberList:any[] = [];
   loading:boolean = false;
   isNew:boolean = true;
+
+  joinMembersInfo:any  = {
+    ageAverage : 0,
+    adminCount : 0,
+    normalCount : 0,
+    newbieCount : 0,
+    perfectNewbieCount : 0,
+    specialCount : 0,
+  }
+
 
   @Watch('params.key')
   keyChange(){
@@ -310,10 +383,13 @@ export default class MeetingCreate extends Vue {
     .then((snapShot:any)=>{
       if(snapShot){
         let memberList = snapShot.val();
+        this.memberListObj = memberList
         this.memberList = Object.keys(memberList).map(memberKey=>{
           return {
             "key" : memberKey,
-            "name" : memberList[memberKey].name
+            "name" : memberList[memberKey].name,
+            "grade" : memberList[memberKey].grade,
+            "birth" : memberList[memberKey].birth,
           }
         }).sort((a, b)=>{
           return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
