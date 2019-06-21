@@ -28,6 +28,7 @@
           <td class="text-xs-left">{{ props.item.age }}세</td>
           <td class="text-xs-left">{{ props.item.joinDate }}</td>
           <td class="text-xs-left">{{ props.item.address }}</td>
+          <td class="text-xs-center">{{ props.item.grade }}</td>
           <td class="text-xs-left" >
             <span v-if="props.item.exitDay<1" class="custom-red">강퇴대상</span>
             <span v-else-if="props.item.grade == 5" class="custom-blue">특수회원</span>
@@ -71,7 +72,7 @@ export default class Management extends Vue {
   average:any = 0;
   loading:boolean = false;
   search:string = '';
-  options:any[] = [10,20,{"text":"$vuetify.dataIterator.rowsPerPageAll","value":-1}];
+  options:any[] = [{"text":"$vuetify.dataIterator.rowsPerPageAll","value":-1}, 10,20,];
   headers:any[] = [
     {
       text: '이름',
@@ -97,6 +98,11 @@ export default class Management extends Vue {
       text : '사는곳',
       align: 'left',
       value: 'address',
+    },
+    {
+      text : '등급',
+      align: 'left',
+      value: 'grade',
     },
     {
       text : 'D-XX',

@@ -333,6 +333,7 @@ export default class MeetingCreate extends Vue {
     }
   }
   created(){
+    // console.log('created');
     if(this.currentUser){
       this.getPlaces();
       this.getContents();
