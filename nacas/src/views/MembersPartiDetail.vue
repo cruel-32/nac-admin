@@ -31,10 +31,10 @@
                     <span>{{meetingCount}} 번</span>
                   </v-flex>
                   <v-flex xs12 sm6 md4>
-                    <strong class="cus-title">가장 많이 본 사람 {{mostCount}} 번</strong>
+                    <strong class="cus-title">가장 많이 본 사람 5명</strong>
                     <ul class="member-list" v-if="mostMembers.length">
                       <li v-for="mostMember in mostMembers" :key="mostMember.key">
-                        <router-link :to="{path:`/statistics/membersParti/${mostMember.key}`}">{{mostMember.name}}</router-link>
+                        <router-link :to="{path:`/statistics/membersParti/${mostMember.key}`}">{{mostMember.name}} {{mostMember.count}}번</router-link>
                       </li>
                     </ul>
                     <div v-else>
@@ -128,7 +128,7 @@ export default class MembersParti extends Vue {
   lastMeeting:any = null;
   meetingCount:any = null;
   participatedMeetings:any = [];
-  mostMembers:any = [];
+  mostMembers: any=[];
   leastMembers:any = [];
   neverSeenMembers:any = [];
 
@@ -210,6 +210,8 @@ export default class MembersParti extends Vue {
         if(seenMembers.length){
           this.leastCount = seenMembers[0].count;
           this.mostCount = seenMembers[seenMembers.length-1].count;
+          this.mostMembers = seenMembers.slice(-5,seenMembers.length).reverse();
+          console.log('this.mostMembers  : ', this.mostMembers );
 
           if(this.leastCount === this.mostCount){
             this.mostMembers = seenMembers;
@@ -218,8 +220,6 @@ export default class MembersParti extends Vue {
             seenMembers.forEach((sm:any)=>{
               if(sm.count === this.leastCount){
                 this.leastMembers.push(sm);
-              } else if(sm.count === this.mostCount){
-                this.mostMembers.push(sm);
               }
             });
           }

@@ -126,6 +126,16 @@
                         disabled
                       ></v-text-field>
                     </v-flex>
+                    <v-flex xs12 sm6 md4>
+                      <v-radio-group v-model="member.gender" color='success' :row="true">
+                        <v-radio
+                          v-for="gender in genderList"
+                          :key="gender"
+                          :label="`${gender === 'F' ? '여성' : '남성'}`"
+                          :value="gender"
+                        ></v-radio>
+                      </v-radio-group>
+                    </v-flex>
                   </v-layout>
                 </v-container>
               </v-card-text>
@@ -220,7 +230,7 @@ export default class MemberCreate extends Vue {
   setYear(val:any) {
     val && this.$nextTick(() => (this.$refs.picker['activePicker'] = 'YEAR'))
   }
-  
+  genderList:Array<string> = ['F','M'];
   joinDate:any = moment(new Date).format('YYYY-MM-DD');
   birth:any = moment(new Date).format('YYYY-MM-DD');
   outDay:any = null;
@@ -262,7 +272,8 @@ export default class MemberCreate extends Vue {
       memberInfo.grade,
       memberInfo.participation,
       memberInfo.phone,
-      memberInfo.outDay
+      memberInfo.outDay,
+      memberInfo.gender,
     );
     this.memberOrigin = new Member(
       memberInfo.address,
@@ -274,7 +285,8 @@ export default class MemberCreate extends Vue {
       memberInfo.grade,
       memberInfo.participation,
       memberInfo.phone,
-      memberInfo.outDay
+      memberInfo.outDay,
+      memberInfo.gender
     )
     this.birth = moment(memberInfo.birth.toString()).format('YYYY-MM-DD');
     this.joinDate = moment(memberInfo.joinDate.toString()).format('YYYY-MM-DD');

@@ -68,10 +68,16 @@ export default class Statistics extends Vue {
     },
     { divider: true},
     {
-      title: '월별/연별 모임 관련 통계',
-      subtitle: "월별/연별 모임 관련 통계를 봅니다.",
+      title: '월별 모임 관련 통계',
+      subtitle: "월별 모임 관련 통계를 봅니다.",
       link: '/statistics/meetingsStats'
-    }
+    },
+    { divider: true},
+    {
+      title: '연별 모임 관련 통계',
+      subtitle: "연별 모임 관련 통계를 봅니다.",
+      link: '/statistics/meetingsStatsYear'
+    },
   ]
   created(){
     // console.log('currentUser : ', this.currentUser);

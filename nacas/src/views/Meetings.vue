@@ -25,6 +25,9 @@
             locale="ko"
           ></v-date-picker>
         </v-card>
+        <v-card>
+          이 달의 벙 횟수 : {{this.dates && this.dates.length}}
+        </v-card>
       </v-layout>
     </v-slide-y-transition>
   </v-container>
@@ -61,6 +64,7 @@ export default class Meeting extends Vue {
   @Watch('pickerDate')
   dateChanged(changedDate:any){
     if(changedDate.length > 4){
+      console.log('mmmmmm : ',moment(changedDate)['_d']);
       this.getMeetingsMonth(moment(changedDate)['_d']);
     }
   }

@@ -124,6 +124,7 @@
                       </v-card-title>
                       <v-container grid-list-md>
                         <v-layout wrap>
+
                           <v-flex xs12 sm12 md12>
                             <span>평균나이 : {{(joinMembersInfo.ageAverage/meeting.members.length).toFixed(2)}}살</span>
                           </v-flex>
@@ -147,6 +148,11 @@
                           <v-flex xs12 sm12 md12>
                             <span>신입회원(미참여) : {{joinMembersInfo.perfectNewbieCount}}명</span>
                           </v-flex>
+
+                          <v-flex xs12 sm12 md12>
+                            <span>남자:{{rate[0]}}명 여자: {{rate[1]}}명</span>
+                          </v-flex>
+
                         </v-layout>
                       </v-container>
                     </v-card>
@@ -247,6 +253,8 @@ export default class MeetingCreate extends Vue {
       if(!joinMemberInfo){
         return obj
       }
+
+      this.rate[joinMemberInfo.gender === 'M' ? 0:1]++;
       const age = 1+today - parseInt(moment(joinMemberInfo.birth.toString()).format('YYYY'));
       obj.ageAverage+=age
       if(joinMemberInfo.grade === 0 || joinMemberInfo.grade === 1){
@@ -312,6 +320,7 @@ export default class MeetingCreate extends Vue {
   memberList:any[] = [];
   loading:boolean = false;
   isNew:boolean = true;
+  rate:Array<number> = [0,0];
 
   joinMembersInfo:any  = {
     ageAverage : 0,

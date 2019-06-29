@@ -9,6 +9,7 @@ export class Member {
     participation:any = {};
     phone:number = 1012345678;
     outDay:number = 0;
+    gender:string = "F";
     
     constructor(
         address:string,
@@ -20,7 +21,8 @@ export class Member {
         grade:number = 4,
         participation:any = {},
         phone:number = 1012345678,
-        outDay:number = 0
+        outDay:number = 0,
+        gender:string = "F",
     ) {
         this.address = address;
         this.birth = birth;
@@ -32,5 +34,6 @@ export class Member {
         this.participation = participation;
         this.phone = phone;
         this.outDay = outDay;
+        this.gender = gender;
     }
 }

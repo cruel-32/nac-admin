@@ -3,7 +3,10 @@
     <ProgressComp :propData="loading"></ProgressComp>
     <v-card-title>
       <h1 class="headline"><v-icon color="green">people</v-icon> 회원목록</h1>
-      <p class="caption" style="margin:0 0 0 10px !important;">회원평균연령 : {{average}}세</p>
+      <p class="caption" style="margin:0 0 0 10px !important;">
+        <span>평균연령 : {{average}}세, </span>
+        <span>남자:{{rate[0]}}명 여자: {{rate[1]}}명</span>
+      </p>
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -27,15 +30,23 @@
           <td class="text-xs-left">{{ props.item.birth }}</td>
           <td class="text-xs-left">{{ props.item.age }}세</td>
           <td class="text-xs-left">{{ props.item.joinDate }}</td>
+          <td class="text-xs-left">{{ props.item.gender === 'M' ? '남' : '여' }}</td>
           <td class="text-xs-left">{{ props.item.address }}</td>
-          <td class="text-xs-center">{{ props.item.grade }}</td>
+          <td class="text-xs-center"
+            :class="['text-xs-center',
+                      props.item.exitDay < 1 ? 'custom-red' : '',
+                      props.item.grade == 0 ? 'custom-green' : '',
+                      props.item.grade == 1 ? 'custom-blue' : '',
+                      props.item.grade == 5 ? 'custom-blue' : '',
+                    ]"
+          >{{ parseGradeString(props.item.grade) }}</td>
           <td class="text-xs-left" >
-            <span v-if="props.item.exitDay<1" class="custom-red">강퇴대상</span>
-            <span v-else-if="props.item.grade == 5" class="custom-blue">특수회원</span>
-            <span v-else-if="props.item.grade == 1" class="custom-blue">운영진</span>
-            <span v-else-if="props.item.grade == 0" class="custom-green">모임장</span>
-            <span v-else-if="props.item.exitDay>=1 && props.item.exitDay<15" class="custom-amber">{{props.item.exitDay}}일</span>
-            <span v-else>{{props.item.exitDay}}일</span>
+            <span
+              :class="['text-xs-center',
+                props.item.exitDay <= 10 ? 'custom-red' : '',
+                (props.item.exitDay > 10 && props.item.exitDay < 21) ? 'custom-amber' : '',
+              ]"
+            >{{props.item.exitDay}}일</span>
           </td>
         </tr>
       </template>
@@ -70,6 +81,7 @@ export default class Management extends Vue {
   }
   today:number = parseInt(moment(new Date()).format('YYYY'));
   average:any = 0;
+  rate:Array<number> = [0,0];
   loading:boolean = false;
   search:string = '';
   options:any[] = [{"text":"$vuetify.dataIterator.rowsPerPageAll","value":-1}, 10,20,];
@@ -95,12 +107,17 @@ export default class Management extends Vue {
       value: 'joinDate'
     },
     {
+      text : '성별',
+      align: 'left',
+      value: 'gender',
+    },
+    {
       text : '사는곳',
       align: 'left',
       value: 'address',
     },
     {
-      text : '등급',
+      text : '회원등급',
       align: 'left',
       value: 'grade',
     },
@@ -133,11 +150,13 @@ export default class Management extends Vue {
               "birth" : moment(memberList[memberKey].birth.toString()).format('YYYY.MM.DD') || "-",
               "age" : (1+this.today - parseInt(moment(memberList[memberKey].birth.toString()).format('YYYY'))),
               "joinDate" : moment(memberList[memberKey].joinDate.toString()).format('YYYY.MM.DD') || "-",
+              "gender" : memberList[memberKey].gender,
               "address" : memberList[memberKey].address || "-",
               "exitDay" : this.computeExitDay(memberList[memberKey])
             }
           });
           this.memberList.forEach((member:any)=>{
+            this.rate[member.gender === 'M'? 0 : 1]++;
             this.average+=member.age;
           });
           this.average = (this.average/this.memberList.length).toFixed(2);
@@ -145,6 +164,21 @@ export default class Management extends Vue {
       });
     } else {
       this.showSnackbar('error','로그인이 필요합니다');
+    }
+  }
+  parseGradeString(grade:number){
+    if(grade === 0){
+      return '모임장';
+    } else if(grade === 1){
+      return '운영진'
+    } else if(grade === 2){
+      return '일반회원'
+    } else if(grade === 3){
+      return '신입회원'
+    } else if(grade === 4){
+      return '미참석'
+    } else if(grade === 5){
+      return '특수회원'
     }
   }
   computeExitDay(member:any){

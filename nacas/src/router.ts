@@ -121,5 +121,23 @@ export default new Router({
       }),
       component: () => import('./views/MeetingsStats.vue'),
     },
+    {
+      path: '/statistics/meetingsStatsDetail/:YYYYMM',
+      name: 'meetingsStatsDetail',
+      props: (route) => ({
+        params : route.params,
+        query: route.query
+      }),
+      component: () => import('./views/MeetingsStatsDetail.vue'),
+    },
+    {
+      path: '/statistics/meetingsStatsYear',
+      name: 'meetingsStatsYear',
+      props: (route) => ({
+        params : route.params,
+        query: route.query
+      }),
+      component: () => import('./views/MeetingsStatsYear.vue'),
+    },
   ],
 });

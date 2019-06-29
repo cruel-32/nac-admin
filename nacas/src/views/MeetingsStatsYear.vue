@@ -6,10 +6,11 @@
         <v-card class="pt-3 pa-3">
           <h1 class="headline">
             <v-icon color="#009688">date_range</v-icon>
-            월별 모임 통계
+            이달의 모임(벙) 목록
           </h1>
           <p class="pt-2 caption">
-            *보고싶은 월을 선택하세요
+            *모임을 생성 혹은 수정,삭제하고나 하는 날짜를 클릭하세요<br/>
+            *이미 모임이 있는 날은 초록색으로 마킹되어 있습니다<br/>
           </p>
           <v-date-picker
             v-model="date"
@@ -38,7 +39,7 @@ import moment from 'moment';
     ProgressComp
   }
 })
-export default class MeetingsStats extends Vue {
+export default class MeetingsStatsYear extends Vue {
   @Prop() currentUser: any;
   @Prop() query: any;
   @Prop() params: any;
@@ -52,8 +53,8 @@ export default class MeetingsStats extends Vue {
     // console.log('params : ', this.params);
   }
 
-  changePickMonth(month){
-    this.$router.push(`/statistics/meetingsStatsDetail/${month}`);
+  changePickMonth(){
+    console.log('changePickMonth')
   }
 }
 </script>
