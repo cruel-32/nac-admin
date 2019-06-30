@@ -48,7 +48,6 @@ import { Component, Prop, Vue, Emit, Watch } from 'vue-property-decorator';
 import { MemberService } from '../service/MemberService';
 import { GradeService } from '../service/GradeService';
 import ProgressComp from '../components/ProgressComp.vue';
-import moment from 'moment';
 import {exitDay} from '../helper/memberExitDay.js'
 
 @Component({
@@ -69,7 +68,7 @@ export default class MembersParti extends Vue {
       this.getMembers();
     }
   }
-  today:number = parseInt(moment(new Date()).format('YYYY'));
+  today:number = parseInt(this.$moment(new Date()).format('YYYY'));
   average:any = 0;
   loading:boolean = false;
   search:string = '';
@@ -126,9 +125,9 @@ export default class MembersParti extends Vue {
               "key" : memberKey,
               "grade" : memberList[memberKey].grade,
               "name" : memberList[memberKey].name || "-",
-              "birth" : moment(memberList[memberKey].birth.toString()).format('YYYY.MM.DD') || "-",
-              "age" : (1+this.today - parseInt(moment(memberList[memberKey].birth.toString()).format('YYYY'))),
-              "joinDate" : moment(memberList[memberKey].joinDate.toString()).format('YYYY.MM.DD') || "-",
+              "birth" : this.$moment(memberList[memberKey].birth.toString()).format('YYYY.MM.DD') || "-",
+              "age" : (1+this.today - parseInt(this.$moment(memberList[memberKey].birth.toString()).format('YYYY'))),
+              "joinDate" : this.$moment(memberList[memberKey].joinDate.toString()).format('YYYY.MM.DD') || "-",
               "address" : memberList[memberKey].address || "-",
               "exitDay" : this.computeExitDay(memberList[memberKey])
             }
@@ -157,19 +156,19 @@ export default class MembersParti extends Vue {
       if(memberPart){
         let memberPartArr = Object.keys(memberPart);
         if(memberPartArr.length){
-          lastDay = moment(
+          lastDay = this.$moment(
             memberPartArr.sort((a:any,b:any)=>{
               return b-a;
             })[0].toString()
           )
         } else {
-          lastDay = moment(member.joinDate.toString())
+          lastDay = this.$moment(member.joinDate.toString())
         }
       } else {
-        lastDay = moment(member.joinDate.toString())
+        lastDay = this.$moment(member.joinDate.toString())
       }
       ExitDay = (grade == 2 ? exitDay['2'] : (grade == 3 ? exitDay['3'] : exitDay['4']))
-        - moment(new Date).diff(lastDay, 'days');
+        - this.$moment(new Date).diff(lastDay, 'days');
       return ExitDay;
     } else {
       return 100

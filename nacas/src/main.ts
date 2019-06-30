@@ -5,6 +5,12 @@ import router from './router'
 import store from './store'
 import './registerServiceWorker'
 
+declare module 'vue/types/vue' {
+  interface Vue {
+    $moment: any
+  }
+}
+Vue.use(require('vue-moment'));
 Vue.config.productionTip = false
 
 new Vue({

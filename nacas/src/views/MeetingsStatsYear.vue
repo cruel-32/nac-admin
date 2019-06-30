@@ -32,7 +32,6 @@
 import { Component, Prop, Vue, Watch, Emit } from 'vue-property-decorator';
 import { MeetingService } from '../service/MeetingService';
 import ProgressComp from '../components/ProgressComp.vue';
-import moment from 'moment';
 
 @Component({
   components : {
@@ -45,7 +44,7 @@ export default class MeetingsStatsYear extends Vue {
   @Prop() params: any;
   @Emit('showSnackbar') showSnackbar(color:string,text:string){}
 
-  date:any = moment(new Date).format('YYYY-MM-DD');
+  date:any = this.$moment(new Date).format('YYYY-MM-DD');
 
   created(){
     // console.log('currentUser : ', this.currentUser);

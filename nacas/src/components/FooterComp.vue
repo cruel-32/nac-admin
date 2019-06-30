@@ -89,7 +89,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Emit } from 'vue-property-decorator';
-import moment from 'moment';
+;
 
 @Component({})
 export default class FooterComp extends Vue {
@@ -99,7 +99,7 @@ export default class FooterComp extends Vue {
   
   pageNum:number = 4;
   fab:boolean = false;
-  joinDate:any = parseInt(moment(new Date()).format('YYYYMMDD'));
+  joinDate:any = parseInt(this.$moment(new Date()).format('YYYYMMDD'));
 
   get pageColor() {
     switch (this.pageNum) {

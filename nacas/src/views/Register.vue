@@ -14,9 +14,9 @@ export default class Register extends Vue {
   @Prop() params: any;
 
   created(){
-    console.log('currentUser : ', this.currentUser);
-    console.log('query : ', this.query);
-    console.log('params : ', this.params);
+    // console.log('currentUser : ', this.currentUser);
+    // console.log('query : ', this.query);
+    // console.log('params : ', this.params);
   }
 }
 </script>

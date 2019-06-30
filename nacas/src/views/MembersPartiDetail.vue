@@ -34,7 +34,8 @@
                     <strong class="cus-title">가장 많이 본 사람 5명</strong>
                     <ul class="member-list" v-if="mostMembers.length">
                       <li v-for="mostMember in mostMembers" :key="mostMember.key">
-                        <router-link :to="{path:`/statistics/membersParti/${mostMember.key}`}">{{mostMember.name}} {{mostMember.count}}번</router-link>
+                        <router-link :to="{path:`/statistics/membersParti/${mostMember.key}`}">{{mostMember.name}}</router-link>
+                        <span> : {{mostMember.count}}번</span>
                       </li>
                     </ul>
                     <div v-else>
@@ -93,7 +94,6 @@ import { MemberService } from '../service/MemberService';
 import { MeetingService } from '../service/MeetingService';
 import ProgressComp from '../components/ProgressComp.vue';
 // import Meeting from './Meetings.vue';
-import moment from 'moment';
 
 @Component({
   components : {
@@ -106,8 +106,8 @@ export default class MembersParti extends Vue {
   @Prop() query: any;
   @Prop() params: any;
   @Emit('showSnackbar') showSnackbar(color:string,text:string){
-    console.log('color : ', color);
-    console.log('text : ', text);
+    // console.log('color : ', color);
+    // console.log('text : ', text);
   }
   @Watch('currentUser')
   changedUser(){
@@ -164,12 +164,12 @@ export default class MembersParti extends Vue {
       if(participationKeys.length){
         this.firstMeeting = {
           link : `/meeting/${participationKeys[participationKeys.length-1]}`,
-          date : moment(participationKeys[participationKeys.length-1]).format('YYYY.MM.DD'),
+          date : this.$moment(participationKeys[participationKeys.length-1]).format('YYYY.MM.DD'),
           name : this.meetings[participationKeys[participationKeys.length-1]].title
         }
         this.lastMeeting = {
           link : `/meeting/${participationKeys[0]}`,
-          date : moment(participationKeys[0]).format('YYYY.MM.DD'),
+          date : this.$moment(participationKeys[0]).format('YYYY.MM.DD'),
           name : this.meetings[participationKeys[0]].title
         }
         this.meetingCount = participationKeys.length;
@@ -180,7 +180,7 @@ export default class MembersParti extends Vue {
             const participatedMeeting = this.meetings[participationKey];
             this.participatedMeetings.push({
               key : participationKey,
-              date : moment(participationKey.toString()).format('YYYY.MM.DD'),
+              date : this.$moment(participationKey.toString()).format('YYYY.MM.DD'),
               title : participatedMeeting.title
             });
             participatedMeeting.members.forEach((seenMember:any)=>{
@@ -211,7 +211,6 @@ export default class MembersParti extends Vue {
           this.leastCount = seenMembers[0].count;
           this.mostCount = seenMembers[seenMembers.length-1].count;
           this.mostMembers = seenMembers.slice(-5,seenMembers.length).reverse();
-          console.log('this.mostMembers  : ', this.mostMembers );
 
           if(this.leastCount === this.mostCount){
             this.mostMembers = seenMembers;
@@ -255,12 +254,12 @@ export default class MembersParti extends Vue {
         this.meetings = meetingsSnapShot.val();
         this.setMemberStats();
       }).catch((err:any)=>{
-        console.log("err : ", err);
+        // console.log("err : ", err);
         this.loading = false;
         this.showSnackbar('error',`모임 정보를 불러올 수 없습니다`);
       })
     }).catch((err:any)=>{
-      console.log("err : ", err);
+      // console.log("err : ", err);
       this.loading = false;
       this.showSnackbar('error', `회원 정보를 불러올 수 없습니다`);
     });

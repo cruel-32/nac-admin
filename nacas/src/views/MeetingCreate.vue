@@ -227,8 +227,6 @@ import { Meeting }  from '../model/meeting.model';
 // import { Member }  from '../model/member.model';
 import ProgressComp from '../components/ProgressComp.vue';
 import { debounce } from "typescript-debounce-decorator";
-import moment from 'moment';
-
 
 @Component({
   components : {
@@ -241,13 +239,13 @@ export default class MeetingCreate extends Vue {
   @Prop() query: any;
   @Prop() params: any;
   @Emit('showSnackbar') showSnackbar(color:string,text:string){
-    console.log('color : ', color);
-    console.log('text : ', text);
+    // console.log('color : ', color);
+    // console.log('text : ', text);
   }
 
   @Watch('meeting.members')
   joinMembersInfoChange(members){
-    const today = parseInt(moment(new Date()).format('YYYY'));
+    const today = parseInt(this.$moment(new Date()).format('YYYY'));
     this.joinMembersInfo = members.reduce((obj,member)=>{
       const joinMemberInfo = this.memberListObj[member];
       if(!joinMemberInfo){
@@ -255,7 +253,7 @@ export default class MeetingCreate extends Vue {
       }
 
       this.rate[joinMemberInfo.gender === 'M' ? 0:1]++;
-      const age = 1+today - parseInt(moment(joinMemberInfo.birth.toString()).format('YYYY'));
+      const age = 1+today - parseInt(this.$moment(joinMemberInfo.birth.toString()).format('YYYY'));
       obj.ageAverage+=age
       if(joinMemberInfo.grade === 0 || joinMemberInfo.grade === 1){
         obj.adminCount+=1
@@ -286,7 +284,7 @@ export default class MeetingCreate extends Vue {
     }
   }
   get computedDateFormatted () {
-    return moment(this.params.key.toString()).format('YYYY-MM-DD');
+    return this.$moment(this.params.key.toString()).format('YYYY-MM-DD');
   }
   get allContents () {
     return this.meeting.contents.length === this.contentsList.length
@@ -342,7 +340,6 @@ export default class MeetingCreate extends Vue {
     }
   }
   created(){
-    // console.log('created');
     if(this.currentUser){
       this.getPlaces();
       this.getContents();
@@ -442,12 +439,12 @@ export default class MeetingCreate extends Vue {
               }
             },(err:any)=>{
               this.loading = false;
-              console.error(err);
+              // console.error(err);
               this.showSnackbar('error', this.isNew ? '모임을 생성 실패했습니다' : '모임수정을 실패했습니다');
             })
           },(err:any)=>{
             this.loading = false;
-            console.error(err);
+            // console.error(err);
             this.showSnackbar('error','권한이 없습니다.');
           });
         } else {
