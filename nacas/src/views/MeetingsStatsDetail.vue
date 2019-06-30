@@ -19,7 +19,7 @@
                     <v-layout wrap mt-1>
                       <v-flex xs12 sm12 md12 v-for="(meeting,index) in dates" :key="index">
                         {{$moment(meeting).format('YYYY.MM.DD')}} -
-                        <router-link v-if="meetingsMonth[meeting]" :to="{path:`/meeting/${meeting}`}">
+                        <router-link v-if="meetingsMonth && meetingsMonth[meeting]" :to="{path:`/meeting/${meeting}`}">
                            {{meetingsMonth[meeting].title}}
                         </router-link>
                       </v-flex>
@@ -88,8 +88,7 @@ export default class MeetingsStats extends Vue {
   loading:boolean = false;
   date:any = this.$moment(new Date).format('YYYY-MM-DD');
   dates:any = [];
-  meetingsMonth:any = null;
-  pickerDate:any = null;
+  meetingsMonth:any = {};
 
   contents:any = [];
   places:any = [];
@@ -114,8 +113,7 @@ export default class MeetingsStats extends Vue {
   }
   reset(){
     this.dates = [];
-    this.meetingsMonth = null;
-    this.pickerDate = null;
+    this.meetingsMonth = {};
     this.contents = [];
     this.places = [];
     this.memberList = [];
@@ -152,16 +150,15 @@ export default class MeetingsStats extends Vue {
         this.loading = false;
       })
     } else {
-        this.showSnackbar('error','로그인이 필요합니다');
+      this.showSnackbar('error','로그인이 필요합니다');
     }
   }
 
-  getMeetingsMonth(pDate:Date=new Date()){
+  getMeetingsMonth(){
     // this.reset();
     // this.loading = true;
     const {YYYYMM} = this.params;
-    this.$moment(YYYYMM)['_d']
-    const date:string = this.$moment(pDate).format('YYYYMM');
+    const date:string = this.$moment(this.$moment(YYYYMM)['_d']).format('YYYYMM');
     return MeetingService.getMeetings({
       startAt : `${date}01`,
       endAt : `${date}32`
